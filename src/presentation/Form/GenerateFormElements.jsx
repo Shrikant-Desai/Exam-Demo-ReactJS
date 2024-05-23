@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import FormMainComp from "./FormMainComp";
 import { EDLabel } from "../../shared/EDLabel";
@@ -8,6 +8,7 @@ import { EDSelect } from "../../shared/EDSelect";
 import { EDCheckbox } from "../../shared/EDCheckbox";
 import { EDButton } from "../../shared/EDButton";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
+import EDStack from "../../shared/EDStack";
 
 const GenerateFormElements = ({
   item,
@@ -22,7 +23,7 @@ const GenerateFormElements = ({
   switch (item.type) {
     case "labeledInput":
       return (
-        <div className="mb-1 ">
+        <EDStack direction="column">
           <EDLabel {...item} />
           <EDInput
             {...{ path }}
@@ -30,7 +31,7 @@ const GenerateFormElements = ({
             value={formDataState?.[item?.fieldName] || ""}
             {...item.inputProps}
           />
-        </div>
+        </EDStack>
       );
 
     case "radio":

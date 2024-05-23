@@ -15,6 +15,7 @@ const FormMainComp = ({
   formName,
   className,
   isSubForm,
+  sxObject,
   handleChange,
   resetForm,
   handleSubmit,
@@ -55,31 +56,34 @@ const FormMainComp = ({
   };
 
   const generateForm = (
-    <EDGrid
-      container
-      spacing={3}
-      className
-      direction={"column"}
-      justifyContent={"flex-start"}
-      alignItems={"flex-center"}
-    >
-      <EDTypography value={formName} align="center" />
-      <GenerateForm
-        {...{
-          path,
-          formArr,
-          handleSubmit,
-          formDataState,
-          formErrors: formErrorsState,
-          handleChange: newHandleChange,
-          resetForm: newResetForm,
-        }}
+    <EDBox>
+      <EDTypography
+        sx={{ ...sxObject.sxFormname }}
+        value={formName}
+        align="center"
       />
-    </EDGrid>
+      <EDGrid container direction="column" spacing={3}>
+        <GenerateForm
+          {...{
+            path,
+            formArr,
+            handleSubmit,
+            formDataState,
+            formErrors: formErrorsState,
+            handleChange: newHandleChange,
+            resetForm: newResetForm,
+          }}
+        />
+      </EDGrid>
+    </EDBox>
   );
   return (
-    <EDStack className={className} justifyContent="flex-" direction="column">
-      <EDBox className="mainFormCard">
+    <EDStack
+      sx={{ ...sxObject.sxMainForm }}
+      justifyContent=""
+      direction="column"
+    >
+      <EDBox>
         {isSubForm ? (
           <EDBox>{generateForm} </EDBox>
         ) : (

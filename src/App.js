@@ -11,11 +11,9 @@ function App() {
       <Router>
         {/* <Navbar /> */}
 
-        <EDStack direction="row">
-          <EDBox sx={{ m: 5 }}>
-            <AllRoutes />
-          </EDBox>
-        </EDStack>
+        <EDBox sx={{ m: 5 }}>
+          <AllRoutes />
+        </EDBox>
       </Router>
     </Provider>
   );

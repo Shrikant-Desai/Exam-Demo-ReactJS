@@ -1,3 +1,5 @@
+import SendIcon from "@mui/icons-material/Send";
+import ClearIcon from "@mui/icons-material/Clear";
 import {
   EMAIL_REGEX,
   NAME_ADVANCE_REGEX,
@@ -28,8 +30,9 @@ export const ERRORS_MSG_USERFORM = {
 //   path: "PersonalDetails",
 //       type: "subForm",
 //       className: "card w-100 lg p-5 pb-1  user-basic-details",
-//       colSpan: "12",
+//       xs: "12",
 //       subFormArr:
+
 export const signUpFormArray = [
   {
     type: "labeledInput",
@@ -43,9 +46,8 @@ export const signUpFormArray = [
       name: "name",
       type: "text",
       placeholder: "Enter name",
-      className: "form-control",
     },
-    colSpan: "6",
+    xs: 12,
     isRequired: true,
     rulesData: [
       {
@@ -69,7 +71,7 @@ export const signUpFormArray = [
       placeholder: "Enter email here",
       className: "form-control",
     },
-    colSpan: "8",
+    xs: 12,
     isRequired: true,
     rulesData: [
       {
@@ -93,7 +95,7 @@ export const signUpFormArray = [
       placeholder: "Enter password",
       className: "form-control",
     },
-    colSpan: "4",
+    xs: 12,
     isRequired: true,
     rulesData: [
       {
@@ -116,10 +118,10 @@ export const signUpFormArray = [
     },
     options: [
       { value: "", name: "Select Role" },
-      { value: "Gujarat", id: "student", name: "Student" },
-      { value: "Maharashtra", id: "teacher", name: "Teacher" },
+      { value: "Student", id: "student", name: "Student" },
+      { value: "Teacher", id: "teacher", name: "Teacher" },
     ],
-    colSpan: "12",
+    xs: 12,
     isRequired: true,
     rulesData: [],
   },
@@ -127,15 +129,83 @@ export const signUpFormArray = [
   {
     identifier: "button",
     type: "submit",
+    xs: 6,
+    variant: "contained",
+    color: "success",
     value: "Submit",
-    variant: "primary",
+    rulesData: [],
+    endIcon: <SendIcon />,
+  },
+  // {
+  //   identifier: "button",
+  //   type: "reset",
+  //   value: "Reset",
+  //   variant: "secondary",
+  //   rulesData: [],
+  // },
+];
+export const signInFormArray = [
+  {
+    type: "labeledInput",
+    fieldName: "email",
+    labelProps: {
+      htmlFor: "email",
+      value: "Email",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "email",
+      name: "email",
+      type: "text",
+      placeholder: "Enter email here",
+      className: "form-control",
+    },
+    xs: 4,
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: EMAIL_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.EMAIL.NOT_VALID,
+      },
+    ],
+  },
+
+  {
+    type: "labeledInput",
+    fieldName: "password",
+    labelProps: {
+      value: "Password",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "password",
+      name: "password",
+      type: "password",
+      placeholder: "Enter password",
+      className: "form-control",
+    },
+    xs: 4,
+    isRequired: true,
     rulesData: [],
   },
+
   {
     identifier: "button",
-    type: "reset",
-    value: "Reset",
-    variant: "secondary",
+    type: "submit",
+    xs: 6,
+    variant: "contained",
+    color: "success",
+    value: "Submit",
     rulesData: [],
+    endIcon: <SendIcon />,
   },
+  // {
+  //   identifier: "button",
+  //   xs: 6,
+  //   type: "reset",
+  //   value: "Reset",
+  //   variant: "outlined",
+  //   startIcon: <ClearIcon />,
+  //   rulesData: [],
+  // },
 ];
