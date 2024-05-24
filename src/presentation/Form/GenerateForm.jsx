@@ -1,7 +1,6 @@
 import React from "react";
 import GenerateFormElements from "./GenerateFormElements";
 import { EDErrorDiv } from "../../shared/EDErrorDiv";
-import EDBox from "../../shared/EDBox";
 import EDGrid from "../../shared/EDGrid";
 
 const GenerateForm = ({
@@ -15,7 +14,7 @@ const GenerateForm = ({
 }) => {
   const renderFormItem = formArr.map((item, index) => {
     return (
-      <EDGrid item xs={Number(item?.xs)}>
+      <EDGrid key={index} item xs={Number(item?.xs)}>
         <GenerateFormElements
           {...{
             item,

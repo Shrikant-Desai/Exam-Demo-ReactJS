@@ -3,7 +3,6 @@ import { signUpFormArray } from "../../../description/loginforms.description";
 import FormMainComp from "../../Form/FormMainComp";
 import { ReduxFormActions } from "../../../container/reduxFormActions.container";
 import EDBox from "../../../shared/EDBox";
-import { styled } from "@mui/material";
 
 const SignUp = () => {
   const path = "SignUpForm";

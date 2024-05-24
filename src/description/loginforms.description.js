@@ -1,10 +1,11 @@
 import SendIcon from "@mui/icons-material/Send";
-import ClearIcon from "@mui/icons-material/Clear";
 import {
   EMAIL_REGEX,
   NAME_ADVANCE_REGEX,
   PASSWORD_REGEX,
 } from "../utils/regEx";
+import { Email, Lock, Person } from "@mui/icons-material";
+import { InputAdornment } from "@mui/material";
 export const ERRORS_MSG_USERFORM = {
   NAME: {
     LAST_NAME_EMPTY: "Please enter last name.",
@@ -42,6 +43,13 @@ export const signUpFormArray = [
       className: "form-group",
     },
     inputProps: {
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Person />
+          </InputAdornment>
+        ),
+      },
       id: "name",
       name: "name",
       type: "text",
@@ -66,6 +74,13 @@ export const signUpFormArray = [
     },
     inputProps: {
       id: "email",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Email />
+          </InputAdornment>
+        ),
+      },
       name: "email",
       type: "text",
       placeholder: "Enter email here",
@@ -91,6 +106,13 @@ export const signUpFormArray = [
     inputProps: {
       id: "password",
       name: "password",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Lock />
+          </InputAdornment>
+        ),
+      },
       type: "password",
       placeholder: "Enter password",
       className: "form-control",
@@ -108,11 +130,12 @@ export const signUpFormArray = [
     type: "select",
     fieldName: "userrole",
     labelProps: {
-      value: "Role",
+      value: "Select Role",
       className: "form-group",
     },
     inputProps: {
       id: "userrole",
+
       name: "userrole",
       className: "form-control",
     },
@@ -156,6 +179,13 @@ export const signInFormArray = [
     inputProps: {
       id: "email",
       name: "email",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Email />
+          </InputAdornment>
+        ),
+      },
       type: "text",
       placeholder: "Enter email here",
       className: "form-control",
@@ -180,6 +210,14 @@ export const signInFormArray = [
     inputProps: {
       id: "password",
       name: "password",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Lock />
+          </InputAdornment>
+        ),
+      },
+
       type: "password",
       placeholder: "Enter password",
       className: "form-control",

@@ -8,7 +8,7 @@ export const EDSelect = ({ handleChange, path, ...props }) => {
       labelId="demo-simple-select-label"
       {...props}
       value={props.value}
-      label={props.value}
+      displayEmpty
       onChange={(e) => handleChange(e, path)}
     >
       {props.children}

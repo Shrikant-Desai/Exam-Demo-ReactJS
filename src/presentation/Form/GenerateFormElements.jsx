@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import FormMainComp from "./FormMainComp";
 import { EDLabel } from "../../shared/EDLabel";
@@ -7,7 +7,7 @@ import { EDRadio } from "../../shared/EDRadioButton";
 import { EDSelect } from "../../shared/EDSelect";
 import { EDCheckbox } from "../../shared/EDCheckbox";
 import { EDButton } from "../../shared/EDButton";
-import { FormControl, InputLabel, MenuItem } from "@mui/material";
+import { FormControl, MenuItem, RadioGroup } from "@mui/material";
 import EDStack from "../../shared/EDStack";
 
 const GenerateFormElements = ({
@@ -37,17 +37,26 @@ const GenerateFormElements = ({
     case "radio":
       return (
         <div className="mb- 1 h-50 d-flex flex-wrap pt-2">
-          <EDLabel {...item} />
           <div className="form-check d-flex flex-wrap">
-            {item.inputProps.map((radioProps, index) => (
-              <EDRadio
-                {...{ path }}
-                handleChange={handleChange}
-                selectedOption={formDataState?.[item?.fieldName] || ""}
-                {...radioProps}
-                key={index}
-              />
-            ))}
+            <FormControl>
+              <EDLabel {...item} />
+              <RadioGroup
+                row={item?.design}
+                aria-labelledby="gender-radio-buttons-group-label"
+                name="radio-buttons-group"
+              >
+                {item.inputProps.map((radioProps, index) => (
+                  <EDRadio
+                    {...{ path }}
+                    handleChange={handleChange}
+                    selectedOption={formDataState?.[item?.fieldName] || ""}
+                    {...radioProps}
+                    key={index}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+            ;
           </div>
         </div>
       );
@@ -55,7 +64,7 @@ const GenerateFormElements = ({
     case "select":
       return (
         <FormControl sx={{ maxWidth: 400, minWidth: 300 }}>
-          <InputLabel>{item.labelProps.value}</InputLabel>
+          <EDLabel {...item} />
           <EDSelect
             {...{ path }}
             handleChange={handleChange}
@@ -63,7 +72,7 @@ const GenerateFormElements = ({
             {...item.inputProps}
           >
             {item.options.map((option, index) => (
-              <MenuItem value={option.value} id={option.id}>
+              <MenuItem key={index} value={option.value} id={option.id}>
                 {option.name}
               </MenuItem>
             ))}
