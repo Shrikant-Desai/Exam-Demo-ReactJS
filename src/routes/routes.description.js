@@ -1,10 +1,14 @@
 import { Typography } from "@mui/material";
-import SignIn from "../presentation/pages/Login/SignIn";
-import SignUp from "../presentation/pages/Login/SignUp";
+import SignIn from "../presentation/user/SignIn";
+import SignUp from "../presentation/user/SignUp";
+import LoginSidebar from "../presentation/user/CommonLayout";
+import ForgotPassword from "../presentation/user/ForgotPassword";
+import Dashboard from "../presentation/student/Dashboard";
 
 const studentRoutes = [
   {
-    path: "/student/dashboard",
+    path: "/dashboard/student",
+    element: <Dashboard />,
   },
   {
     path: "/student/profile",
@@ -12,13 +16,23 @@ const studentRoutes = [
 ];
 const userRoutes = [
   {
-    path: "/",
-    element: <SignIn />,
+    element: <LoginSidebar />,
+    children: [
+      {
+        path: "/",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+    ],
   },
   {
-    path: "/signup",
-    element: <SignUp />,
+    path: "/newPassword",
+    element: <ForgotPassword />,
   },
+
   {
     path: "*",
     element: (

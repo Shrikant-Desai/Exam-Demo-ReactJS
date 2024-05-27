@@ -9,6 +9,7 @@ import { EDCheckbox } from "../../shared/EDCheckbox";
 import { EDButton } from "../../shared/EDButton";
 import { FormControl, MenuItem, RadioGroup } from "@mui/material";
 import EDStack from "../../shared/EDStack";
+import EDBox from "../../shared/EDBox";
 
 const GenerateFormElements = ({
   item,
@@ -36,8 +37,8 @@ const GenerateFormElements = ({
 
     case "radio":
       return (
-        <div className="mb- 1 h-50 d-flex flex-wrap pt-2">
-          <div className="form-check d-flex flex-wrap">
+        <EDBox sx={{ mb: 1, display: "flex", pt: 2 }}>
+          <EDStack direction="row">
             <FormControl>
               <EDLabel {...item} />
               <RadioGroup
@@ -57,13 +58,13 @@ const GenerateFormElements = ({
               </RadioGroup>
             </FormControl>
             ;
-          </div>
-        </div>
+          </EDStack>
+        </EDBox>
       );
 
     case "select":
       return (
-        <FormControl sx={{ maxWidth: 400, minWidth: 300 }}>
+        <FormControl>
           <EDLabel {...item} />
           <EDSelect
             {...{ path }}
@@ -82,19 +83,19 @@ const GenerateFormElements = ({
 
     case "checkbox":
       return (
-        <div>
+        <EDBox>
           <EDLabel {...item} />
           {item.inputProps.map((checkboxProps, index) => (
-            <div className="form-check form-check-inline" key={index}>
+            <EDBox key={index}>
               <EDCheckbox
                 {...{ path }}
                 handleChange={handleChange}
                 selectedOption={formDataState?.[item?.fieldName] || []}
                 {...checkboxProps}
               />
-            </div>
+            </EDBox>
           ))}
-        </div>
+        </EDBox>
       );
     case "subForm":
       return (

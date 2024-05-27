@@ -1,19 +1,20 @@
 import { validateForm, validateFormField } from "../utils/validation";
+
+import { getFieldArr } from "../utils/javascript";
+import { useSelector } from "react-redux";
 import {
   resetFormStates,
   setFormData,
   setFormErrors,
   setIsFormValid,
   setUpdateId,
-} from "../redux/form.slice";
+} from "../redux/slices/form.slice";
 import {
   addData,
   createFormDataState,
   deleteData,
   updateData,
-} from "../redux/formData.slice";
-import { getFieldArr } from "../utils/javascript";
-import { useSelector } from "react-redux";
+} from "../redux/slices/formData.slice";
 
 export const ReduxFormActions = (props) => {
   const mainForm = useSelector((state) => state.dynamicForm);

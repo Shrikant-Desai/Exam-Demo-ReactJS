@@ -13,8 +13,17 @@ const GenerateForm = ({
   formErrors,
 }) => {
   const renderFormItem = formArr.map((item, index) => {
+    const grid = item.gridValues;
     return (
-      <EDGrid key={index} item xs={Number(item?.xs)}>
+      <EDGrid
+        key={index}
+        item
+        xs={grid?.xs}
+        sm={grid?.sm}
+        md={grid?.md}
+        lg={grid?.lg}
+        xl={grid?.xl}
+      >
         <GenerateFormElements
           {...{
             item,
@@ -26,7 +35,9 @@ const GenerateForm = ({
             formDataState,
           }}
         />
-        <EDErrorDiv item={item} formErrors={formErrors} />
+        {item.identifier !== "button" ? (
+          <EDErrorDiv item={item} formErrors={formErrors} />
+        ) : null}
       </EDGrid>
     );
   });

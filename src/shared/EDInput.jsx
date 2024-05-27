@@ -9,7 +9,6 @@ export const EDInput = ({ handleChange, path, ...props }) => {
       value={props?.value}
       onChange={(e) => handleChange(e, path)}
       {...props}
-      autoComplete="on"
     />
   );
 };

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FORM_DATA, FORM_ERRORS } from "../utils/constant";
+import { FORM_DATA, FORM_ERRORS } from "../../utils/constant";
 
 export const makeStatesFromPath = (state, path, data) => {
   const pathSegments = path?.split("/").filter((segment) => segment !== "");

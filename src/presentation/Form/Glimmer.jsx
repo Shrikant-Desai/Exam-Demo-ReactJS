@@ -1,14 +1,8 @@
 import React from "react";
+import EDBox from "../../shared/EDBox";
 
 const Glimmer = () => {
-  return (
-    <div className="load-wrapp">
-      <div className="load-4">
-        <div className="ring-1" />
-        Loading...
-      </div>
-    </div>
-  );
+  return <EDBox>Loading....</EDBox>;
 };
 
 export default Glimmer;

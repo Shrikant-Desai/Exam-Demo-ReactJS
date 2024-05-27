@@ -55,7 +55,14 @@ export const signUpFormArray = [
       type: "text",
       placeholder: "Enter name",
     },
-    xs: 12,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [
       {
@@ -86,7 +93,14 @@ export const signUpFormArray = [
       placeholder: "Enter email here",
       className: "form-control",
     },
-    xs: 12,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [
       {
@@ -117,7 +131,14 @@ export const signUpFormArray = [
       placeholder: "Enter password",
       className: "form-control",
     },
-    xs: 12,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [
       {
@@ -140,11 +161,18 @@ export const signUpFormArray = [
       className: "form-control",
     },
     options: [
-      { value: "", name: "Select Role" },
+      { value: "", name: "---- Select Here ----" },
       { value: "Student", id: "student", name: "Student" },
       { value: "Teacher", id: "teacher", name: "Teacher" },
     ],
-    xs: 12,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [],
   },
@@ -152,7 +180,14 @@ export const signUpFormArray = [
   {
     identifier: "button",
     type: "submit",
-    xs: 6,
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+
     variant: "contained",
     color: "success",
     value: "Submit",
@@ -190,7 +225,14 @@ export const signInFormArray = [
       placeholder: "Enter email here",
       className: "form-control",
     },
-    xs: 4,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [
       {
@@ -222,7 +264,14 @@ export const signInFormArray = [
       placeholder: "Enter password",
       className: "form-control",
     },
-    xs: 4,
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
     isRequired: true,
     rulesData: [],
   },
@@ -230,10 +279,85 @@ export const signInFormArray = [
   {
     identifier: "button",
     type: "submit",
-    xs: 6,
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+
     variant: "contained",
     color: "success",
     value: "Submit",
+    rulesData: [],
+    endIcon: <SendIcon />,
+  },
+  // {
+  //   identifier: "button",
+  //   xs: 6,
+  //   type: "reset",
+  //   value: "Reset",
+  //   variant: "outlined",
+  //   startIcon: <ClearIcon />,
+  //   rulesData: [],
+  // },
+];
+
+export const forgotPasswordForm = [
+  {
+    type: "labeledInput",
+    fieldName: "email",
+    labelProps: {
+      htmlFor: "email",
+      value: "Email",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "email",
+      name: "email",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Email />
+          </InputAdornment>
+        ),
+      },
+      type: "text",
+      placeholder: "Enter email here",
+      className: "form-control",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: EMAIL_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.EMAIL.NOT_VALID,
+      },
+    ],
+  },
+
+  {
+    identifier: "button",
+    type: "submit",
+    gridValues: {
+      xs: 12,
+      sm: 6,
+      md: 6,
+      lg: 6,
+      xl: 6,
+    },
+
+    variant: "contained",
+    color: "success",
+    value: "Send Link to Email",
     rulesData: [],
     endIcon: <SendIcon />,
   },

@@ -3,17 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import GenerateForm from "./GenerateForm";
 import { FORM_DATA, FORM_ERRORS } from "../../utils/constant";
 import { getStateValue } from "../../utils/javascript";
-import { createFormState, deleteFormState } from "../../redux/form.slice";
 import EDTypography from "../../shared/EDTypography";
 import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
 import EDGrid from "../../shared/EDGrid";
+import {
+  createFormState,
+  deleteFormState,
+} from "../../redux/slices/form.slice";
 
 const FormMainComp = ({
   formArr,
   path,
   formName,
-  className,
   isSubForm,
   sxObject,
   handleChange,
@@ -62,7 +64,12 @@ const FormMainComp = ({
         value={formName}
         align="center"
       />
-      <EDGrid container direction="column" spacing={3}>
+      <EDGrid
+        container
+        // containerdirection="column"
+        justifyContent="center"
+        // alignItems="stretch"
+      >
         <GenerateForm
           {...{
             path,

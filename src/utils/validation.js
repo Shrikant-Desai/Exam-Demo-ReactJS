@@ -1,4 +1,4 @@
-import { setFormErrors } from "../redux/form.slice";
+import { setFormErrors } from "../redux/slices/form.slice";
 
 const checkSingleField = (value, fieldArr) => {
   if (!value && fieldArr?.isRequired) {

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.login-image {
+  width: 500px;
+}
+
+.text-link {
+  color: rgba(86, 97, 255, 0.792);
+  text-decoration: none;
+}
+.text-link:hover {
+  color: rgba(0, 0, 255, 0.641);
+}
