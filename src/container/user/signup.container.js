@@ -32,19 +32,15 @@ const SignUpContainer = () => {
             password: data?.password,
             role: data?.userrole,
           },
+          isToastMessage: true,
         })
       );
-      console.log(data);
     }
   }, [formData]);
 
-  // if (apiData.data.statusCode === 200) {
-  //   <Navigate to="/dashboard/student" />;
-  // }
-
   const sxObject = {
     sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "40vw" },
+      width: { xs: "70vw", sm: "50vw", md: "40vw", lg: "30vw" },
       height: "100%",
       padding: "10px",
       borderRadius: "10px",

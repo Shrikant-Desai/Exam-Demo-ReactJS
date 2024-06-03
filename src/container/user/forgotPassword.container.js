@@ -3,6 +3,7 @@ import { ReduxFormActions } from "../reduxFormActions.container";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { API_STATUS_SUCCESS } from "../../utils/constant";
 
 const ForgotPasswordContainer = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const ForgotPasswordContainer = () => {
     }
   }, [formData]);
 
-  if (apiData?.data?.statusCode === 200) {
+  if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
     console.log("test successfull");
     navigate("/");
   }

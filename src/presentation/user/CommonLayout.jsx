@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import LoginHomeImg from "../../assets/LoginImage.jpg";
-import LoginBackgroundImage from "../../assets/LoginBackground.jpg";
 import EDBox from "../../shared/EDBox";
 import EDStack from "../../shared/EDStack";
 

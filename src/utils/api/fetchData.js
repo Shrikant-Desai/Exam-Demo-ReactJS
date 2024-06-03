@@ -1,6 +1,7 @@
 import axios from "axios";
 import { EXAM_DEMO_URL } from "./baseURLs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { showAPIToastMessage } from "../javascript";
 
 const apiInstance = axios.create({
   baseURL: EXAM_DEMO_URL,
@@ -9,17 +10,32 @@ const apiInstance = axios.create({
   },
 });
 
+apiInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      config.headers.Authorization = "Bearer " + token;
+    }
+    return config;
+  },
+
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const fetchDataThunkFunc = createAsyncThunk(
   "fetchAPI",
-  async ({ url, method, bodyData }) => {
+  async ({ url, method, bodyData, isToastMessage }) => {
     try {
-      console.log("url: " + url, method, bodyData);
       const response = await apiInstance({
         url: url,
         method: method,
         data: bodyData,
       });
-      console.log("response", response);
+      if (isToastMessage) {
+        showAPIToastMessage(response);
+      }
       return response;
     } catch (error) {
       console.log(error.AxiosError);
@@ -30,7 +46,11 @@ export const fetchDataThunkFunc = createAsyncThunk(
 const fetchDataSlice = createSlice({
   name: "fetchDataSlice",
   initialState: {},
-  reducers: {},
+  reducers: {
+    clearFetchData: (state, action) => {
+      return {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchDataThunkFunc.pending,
@@ -58,5 +78,7 @@ const fetchDataSlice = createSlice({
     );
   },
 });
+
+export const { clearFetchData } = fetchDataSlice.actions;
 
 export default fetchDataSlice.reducer;

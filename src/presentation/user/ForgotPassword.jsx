@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  forgotPasswordForm,
-  signInFormArray,
-} from "../../description/userModuleForms.description";
+import { forgotPasswordForm } from "../../description/userModuleForms.description";
 import FormMainComp from "../form/FormMainComp";
-import { ReduxFormActions } from "../../container/reduxFormActions.container";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import ForgotPasswordContainer from "../../container/user/forgotPassword.container";

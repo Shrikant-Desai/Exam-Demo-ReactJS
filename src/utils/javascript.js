@@ -1,3 +1,7 @@
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { API_STATUS_ERROR, API_STATUS_SUCCESS } from "./constant";
+
 export const getStateValue = (state, pathArr) => {
   let currentState = state;
   return pathArr.reduce((accum, item) => {
@@ -29,73 +33,39 @@ export const getFieldArr = (formArray, currentFormName, fieldValue) => {
   return data;
 };
 
-export const getHeader = (arr) => {
-  let headerArr = [];
-  const makeHeaderFromArray = (arr) => {
-    arr?.flatMap((obj) => {
-      const data = Object.entries(obj)
-        .map(([key, value]) => {
-          return typeof value === "object" ? makeHeaderFromObject(value) : key;
-        })
-        .flat(Infinity)
-        .filter((item) => (item === "id" ? false : true));
-      headerArr = [...headerArr, ...data];
-      return data;
-    });
-  };
-  const makeHeaderFromObject = (obj) => {
-    const data = Object.entries(obj).map(([key, value]) => {
-      return typeof value === "object" && !Array.isArray(value)
-        ? makeHeaderFromObject(value)
-        : key;
-    });
-
-    return data;
-  };
-  makeHeaderFromArray(arr);
-  headerArr = Array.from(new Set(headerArr));
-  return headerArr;
+export const showAPIToastMessage = (apiData) => {
+  if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
+    toast.success(apiData?.data?.message, { autoClose: 1000 });
+  } else {
+    toast.error(apiData?.data?.message, { autoClose: 2000 });
+  }
 };
 
-export const getFormattedData = (arr) => {
-  let dataArray = [];
-  let newData = [];
-  const makeHeaderFromArray = (arr) => {
-    arr?.flatMap((obj) => {
-      const data = Object.entries(obj).map(([key, value]) => {
-        return typeof value === "object"
-          ? makeHeaderFromObject(value)
-          : [key, value];
-      });
+function stringToColor(string) {
+  let hash = 0;
+  let i;
 
-      getNestedData(data);
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
 
-      dataArray = [...dataArray, Object.fromEntries(newData)];
-      newData = [];
+  let color = "#";
 
-      return data;
-    });
-  };
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
 
-  const getNestedData = (data) => {
-    data.map((item) => {
-      if (item[0] !== "hobbies" && Array.isArray(item[1] || item)) {
-        return getNestedData(item);
-      } else {
-        newData = [...newData, item];
-        return item;
+  return color;
+}
+
+export function stringAvatar(name) {
+  return name
+    ? {
+        sx: {
+          bgcolor: stringToColor(name),
+        },
+        children: `${name.split(" ")[0][0]}`,
       }
-    });
-  };
-
-  const makeHeaderFromObject = (obj) => {
-    const tempData = Object.entries(obj).map(([key, value]) => {
-      return typeof value === "object" && !Array.isArray(value)
-        ? makeHeaderFromObject(value)
-        : [key, value];
-    });
-    return tempData;
-  };
-  makeHeaderFromArray(arr);
-  return dataArray;
-};
+    : "";
+}

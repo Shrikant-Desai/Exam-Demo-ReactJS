@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ReduxFormActions } from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { API_STATUS_SUCCESS } from "../../utils/constant";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
@@ -33,20 +34,29 @@ const SignInContainer = () => {
             email: data?.email,
             password: data?.password,
           },
+          isToastMessage: true,
         })
       );
-
-      console.log(data);
     }
   }, [formData]);
 
-  if (apiData?.data?.statusCode === 200) {
-    console.log("test successfull");
-    navigate("/dashboard/student");
-  }
+  useEffect(() => {
+    if (
+      apiData?.data?.data?.token &&
+      apiData?.data?.statusCode === API_STATUS_SUCCESS
+    ) {
+      localStorage.setItem(
+        "authToken",
+        JSON.stringify(apiData?.data?.data?.token)
+      );
+      localStorage.setItem("loginDetails", JSON.stringify(apiData?.data?.data));
+      navigate(`/dashboard/${apiData?.data?.data?.role}`);
+    }
+  }, [apiData]);
+
   const sxObject = {
     sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw" },
+      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "30vw" },
       height: "100%",
       padding: "10px",
       borderRadius: "10px",

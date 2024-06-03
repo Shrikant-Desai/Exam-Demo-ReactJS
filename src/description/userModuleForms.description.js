@@ -120,6 +120,7 @@ export const signUpFormArray = [
     inputProps: {
       id: "password",
       name: "password",
+      autoComplete: "on",
       InputProps: {
         startAdornment: (
           <InputAdornment position="start">
@@ -252,6 +253,7 @@ export const signInFormArray = [
     inputProps: {
       id: "password",
       name: "password",
+      autoComplete: "on",
       InputProps: {
         startAdornment: (
           <InputAdornment position="start">
