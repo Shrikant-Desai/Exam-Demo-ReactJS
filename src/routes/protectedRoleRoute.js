@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoleRoute = ({ accessRole }) => {
-  const navigate = useNavigate();
   const currentRole = JSON.parse(localStorage.getItem("loginDetails"))?.role;
-  console.log("current role: " + currentRole, "Access Role: " + accessRole);
 
-  useEffect(() => {
-    if (currentRole === accessRole) {
-      <Outlet />;
-    } else {
-      navigate("/signin");
-    }
-  });
+  return (
+    <>{currentRole === accessRole ? <Outlet /> : <Navigate to="/signin" />}</>
+  );
 };
 
 export default ProtectedRoleRoute;

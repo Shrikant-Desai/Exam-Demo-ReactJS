@@ -1,82 +1,98 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getFormattedData, getHeader } from "../utils/javascript";
-import { ReduxFormActions } from "../container/reduxFormActions.container";
-import { setUpdateId } from "../redux/form.slice";
-// import { setFormData, setUpdateId } from "../redux/form.slice";
-// import DynamicFormMain from "../container/DynamicFormMain.container";
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import { EDButton } from "./EDButton";
+import EDStack from "./EDStack";
 
-export const EDTable = ({ formName }) => {
-  const formData = useSelector((state) => state.dynamicForm);
-  const dynamicFormData = useSelector(
-    (state) => state.dynamicFormData?.[formName]
-  );
+export default function EDTable({
+  rowsArr,
+  columnsArr,
+  tableHeight,
+  tableWidth,
+  rowsPerPageArr,
+}) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageArr[0]);
 
-  const headerArr = getHeader(dynamicFormData);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-  const dataArray = getFormattedData(dynamicFormData);
-
-  const dispatch = useDispatch();
-  const { handleDelete, setDataIntoForm } = ReduxFormActions();
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
-    <div className="table-responsive">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            {headerArr.map((header, index) => (
-              <th key={index} className="text-start">
-                {header.toUpperCase()}
-              </th>
-            ))}
-            {headerArr.length > 0 ? <th>Edit</th> : ""}
-            {headerArr.length > 0 ? <th>delete</th> : ""}
-          </tr>
-        </thead>
-        <tbody>
-          {dataArray?.map((data, dataIndex) => (
-            <tr key={dataIndex}>
-              {headerArr.map((header, headerIndex) => (
-                <td key={headerIndex} className="text-start">
-                  {data[header]}
-                </td>
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ maxHeight: tableHeight, width: tableWidth }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow key={`tr-${columnsArr}`}>
+              {columnsArr.map((column) => (
+                <TableCell
+                  key={`td-${column.id}`}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
               ))}
-              <td>
-                <button
-                  className="btn btn-outline-primary"
-                  disabled={
-                    formData?.[formName]?.updateId === data.id ? true : false
-                  }
-                  onClick={() => {
-                    setDataIntoForm(
-                      dynamicFormData,
-                      formName,
-                      data.id,
-                      dispatch
-                    );
-                    dispatch(
-                      setUpdateId({
-                        name: formName,
-                        data: data.id,
-                      })
-                    );
-                  }}
-                >
-                  Edit
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-outline-danger"
-                  onClick={() => handleDelete(formName, data.id, dispatch)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rowsArr
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    {columnsArr.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={`tc-${column.id}`} align={column.align}>
+                          {column.id === "action" ? (
+                            <EDStack spacing={1}>
+                              {value.map((item) => {
+                                return (
+                                  <EDButton
+                                    size="small"
+                                    key={item.id}
+                                    handleChange={() =>
+                                      item.handleChange(row["_id"])
+                                    }
+                                    value={item.text}
+                                    variant="contained"
+                                  />
+                                );
+                              })}
+                            </EDStack>
+                          ) : (
+                            value
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={rowsPerPageArr}
+        component="div"
+        count={rowsArr.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
   );
-};
+}

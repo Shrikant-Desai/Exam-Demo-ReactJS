@@ -3,6 +3,7 @@ import { ReduxFormActions } from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { Navigate } from "react-router-dom";
+import { END_POINTS } from "../../utils/api/baseURLs";
 
 const SignUpContainer = () => {
   const path = "SignUpForm";
@@ -24,7 +25,7 @@ const SignUpContainer = () => {
 
       dispatch(
         fetchDataThunkFunc({
-          url: "/users/SignUp",
+          url: END_POINTS.USER_SIGNUP,
           method: "Post",
           bodyData: {
             name: data?.name,

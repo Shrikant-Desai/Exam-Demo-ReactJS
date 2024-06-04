@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useNavigate } from "react-router-dom";
 import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { END_POINTS } from "../../utils/api/baseURLs";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const SignInContainer = () => {
 
       dispatch(
         fetchDataThunkFunc({
-          url: "/users/Login",
+          url: END_POINTS.USER_LOGIN,
           method: "Post",
           bodyData: {
             email: data?.email,

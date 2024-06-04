@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AccountCircle,
   Article,
@@ -12,7 +12,13 @@ import { useDispatch } from "react-redux";
 import { clearFetchData } from "../utils/api/fetchData";
 
 const DashboardContainer = () => {
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    const isLoggedIn = !!localStorage.getItem("loginDetails");
+    isLoggedIn ? setIsLogin(true) : navigate("/signin");
+  });
+
   const dispatch = useDispatch();
 
   const teacherDashboardDes = {
@@ -29,9 +35,7 @@ const DashboardContainer = () => {
         navigate: "teacher/all-students",
       },
     ],
-    afterDiv: [
-      { text: "Profile", icon: <AccountCircle />, navigate: "teacher/profile" },
-    ],
+    afterDiv: [],
   };
 
   const studentDashboardDes = {
@@ -47,7 +51,7 @@ const DashboardContainer = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("loginDetails");
     dispatch(clearFetchData());
-    navigate("/");
+    navigate("/signin");
   };
   const profileMenuData = [
     { text: "Log Out", icon: <Logout />, handleChange: logoutFunction },
@@ -66,6 +70,7 @@ const DashboardContainer = () => {
     loginDetails,
     profileMenuData,
     logoutFunction,
+    isLogin,
   };
 };
 

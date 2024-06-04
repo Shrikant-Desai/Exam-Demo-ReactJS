@@ -5,7 +5,6 @@ import LoginSidebar from "../presentation/user/CommonLayout";
 import ForgotPassword from "../presentation/user/ForgotPassword";
 import Dashboard from "../presentation/pages/Dashboard";
 import HomePage from "../presentation/user/HomePage";
-import DashboardT from "../presentation/teacher/HomepageT";
 import ProfileT from "../presentation/teacher/ProfileT";
 import AllStudents from "../presentation/teacher/AllStudents";
 import CreateExam from "../presentation/teacher/CreateExam";
@@ -14,6 +13,7 @@ import ProfileS from "../presentation/student/ProfileS";
 import AllExams from "../presentation/student/AllExams";
 import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
+import SingleStudentData from "../presentation/teacher/SingleStudentData";
 
 const studentRoutes = [
   {
@@ -34,6 +34,10 @@ const studentRoutes = [
           {
             path: "teacher/all-students",
             element: <AllStudents />,
+          },
+          {
+            path: "teacher/viewStudentDetail/*",
+            element: <SingleStudentData />,
           },
           {
             path: "teacher/create-exam",

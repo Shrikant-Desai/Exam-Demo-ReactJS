@@ -1,10 +1,12 @@
 import axios from "axios";
-import { EXAM_DEMO_URL } from "./baseURLs";
+import { EXAM_DEMO_BASE_ENDPOINT } from "./baseURLs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { showAPIToastMessage } from "../javascript";
+import { API_STATUS_UNAUTHORIZED } from "../constant";
+import { Navigate } from "react-router-dom";
 
 const apiInstance = axios.create({
-  baseURL: EXAM_DEMO_URL,
+  baseURL: EXAM_DEMO_BASE_ENDPOINT,
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,9 +14,9 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("authToken");
+    const token = JSON.parse(localStorage.getItem("authToken"));
     if (token) {
-      config.headers.Authorization = "Bearer " + token;
+      config.headers["access-token"] = token;
     }
     return config;
   },
@@ -33,8 +35,13 @@ export const fetchDataThunkFunc = createAsyncThunk(
         method: method,
         data: bodyData,
       });
-      if (isToastMessage) {
-        showAPIToastMessage(response);
+      if (response.data.statusCode === API_STATUS_UNAUTHORIZED) {
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("loginDetails");
+        <Navigate to="/signin" />;
+        if (isToastMessage) {
+          showAPIToastMessage(response);
+        }
       }
       return response;
     } catch (error) {

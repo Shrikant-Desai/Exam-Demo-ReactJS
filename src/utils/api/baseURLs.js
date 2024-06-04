@@ -1,1 +1,21 @@
-export const EXAM_DEMO_URL = "https://examination.onrender.com";
+export const EXAM_DEMO_BASE_ENDPOINT = "https://examination.onrender.com";
+export const END_POINTS = {
+  GET_ALL_STUDENTS: "dashboard/Teachers",
+  GET_ACTIVE_STUDENTS: "dashboard/Teachers/StudentForExam",
+  GET_SINGLE_STUDENTS: "dashboard/Teachers/viewStudentDetail?id=",
+  CREATE_EXAM: "dashboard/Teachers/Exam",
+  VIEW_ALL_EXAM: "dashboard/Teachers/viewExam",
+  VIEW_SINGLE_EXAM: "dashboard/Teachers/viewExam?id=",
+  EDIT_EXAM: "dashboard/Teachers/editExam?id=",
+  DELETE_EXAM: "dashboard/Teachers/deleteExam?id=",
+  ALL_EXAMS: "student/studentExam",
+  EXAM_PAPER: "student/examPaper?id=",
+  GIVE_EXAM: "student/giveExam?id=",
+  GET_STUDENT_PROFILE: "student/getStudentDetail",
+  UPDATE_STUDENT_PROFILE: "student/studentProfile",
+  USER_SIGNUP: "users/SignUp",
+  USER_LOGIN: "users/Login",
+  USER_FORGOT_PASSWORD: "users/ForgotPassword",
+  NEW_PASSWORD: "users/ForgotPassword/Verify?token=",
+  RESET_PASSWORD: "users/ResetPassword",
+};

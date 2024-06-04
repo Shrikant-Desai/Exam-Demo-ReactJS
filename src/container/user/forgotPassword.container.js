@@ -4,6 +4,7 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { END_POINTS } from "../../utils/api/baseURLs";
 
 const ForgotPasswordContainer = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ForgotPasswordContainer = () => {
 
       dispatch(
         fetchDataThunkFunc({
-          url: "/users/Login",
+          url: END_POINTS.USER_FORGOT_PASSWORD,
           method: "Post",
           bodyData: {
             email: data?.email,
