@@ -16,7 +16,7 @@ import {
   updateData,
 } from "../redux/slices/formData.slice";
 
-export const ReduxFormActions = (props) => {
+const ReduxFormActions = (props) => {
   const mainForm = useSelector((state) => state.dynamicForm);
   let isFormSuccess;
   if (props?.path) {
@@ -176,3 +176,4 @@ export const ReduxFormActions = (props) => {
     isFormSuccess,
   };
 };
+export default ReduxFormActions;

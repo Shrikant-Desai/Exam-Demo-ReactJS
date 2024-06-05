@@ -190,7 +190,6 @@ export const signUpFormArray = [
     },
 
     variant: "contained",
-    color: "success",
     value: "Submit",
     rulesData: [],
     endIcon: <SendIcon />,
@@ -290,7 +289,6 @@ export const signInFormArray = [
     },
 
     variant: "contained",
-    color: "success",
     value: "Submit",
     rulesData: [],
     endIcon: <SendIcon />,
@@ -358,7 +356,6 @@ export const forgotPasswordForm = [
     },
 
     variant: "contained",
-    color: "success",
     value: "Send Link to Email",
     rulesData: [],
     endIcon: <SendIcon />,

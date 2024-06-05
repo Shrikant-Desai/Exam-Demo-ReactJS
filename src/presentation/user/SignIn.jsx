@@ -4,11 +4,11 @@ import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import EDGrid from "../../shared/EDGrid";
-import SignInContainer from "../../container/user/signin.container";
+import signInContainer from "../../container/user/signin.container";
 
 const SignIn = () => {
   const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    SignInContainer();
+    signInContainer();
   return (
     <>
       <EDStack

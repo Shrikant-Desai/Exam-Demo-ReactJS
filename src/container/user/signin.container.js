@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ReduxFormActions } from "../reduxFormActions.container";
+import reduxFormActions from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const SignInContainer = () => {
 
   //sx to center a box in mui
 
-  const { handleChange, handleSubmit, resetForm } = ReduxFormActions({ path });
+  const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);

@@ -5,7 +5,6 @@ import LoginSidebar from "../presentation/user/CommonLayout";
 import ForgotPassword from "../presentation/user/ForgotPassword";
 import Dashboard from "../presentation/pages/Dashboard";
 import HomePage from "../presentation/user/HomePage";
-import ProfileT from "../presentation/teacher/ProfileT";
 import AllStudents from "../presentation/teacher/AllStudents";
 import CreateExam from "../presentation/teacher/CreateExam";
 import HomePageS from "../presentation/student/HomepageS";
@@ -27,10 +26,7 @@ const studentRoutes = [
             path: "teacher",
             element: <HomepageT />,
           },
-          {
-            path: "teacher/profile",
-            element: <ProfileT />,
-          },
+
           {
             path: "teacher/all-students",
             element: <AllStudents />,

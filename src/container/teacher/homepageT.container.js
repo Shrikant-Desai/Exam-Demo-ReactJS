@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 
-export const HomepageTContainer = () => {
+const HomepageTContainer = () => {
   const currentLoginUser = JSON.parse(localStorage.getItem("loginDetails"));
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
@@ -13,7 +13,7 @@ export const HomepageTContainer = () => {
       fetchDataThunkFunc({
         url: END_POINTS.VIEW_ALL_EXAM,
         method: "Get",
-        isToastMessage: true,
+        isToastMessage: false,
       })
     );
   }, []);
@@ -60,7 +60,7 @@ export const HomepageTContainer = () => {
     },
     {
       id: "__v",
-      label: "_V",
+      label: "__V",
       minWidth: 170,
       align: "right",
     },
@@ -68,7 +68,7 @@ export const HomepageTContainer = () => {
       id: "action",
       label: "Actions",
       minWidth: 170,
-      align: "right",
+      align: "center",
     },
   ];
   const tableHeight = 550;
@@ -100,3 +100,4 @@ export const HomepageTContainer = () => {
     rowsPerPageArr,
   };
 };
+export default HomepageTContainer;

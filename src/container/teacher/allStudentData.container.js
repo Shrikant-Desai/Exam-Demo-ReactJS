@@ -4,7 +4,7 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 
-export const AllStudentDataContainer = () => {
+const AllStudentDataContainer = () => {
   const currentLoginUser = JSON.parse(localStorage.getItem("loginDetails"));
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const AllStudentDataContainer = () => {
         url: END_POINTS.GET_ALL_STUDENTS,
         // get all students data
         method: "Get",
-        isToastMessage: true,
+        isToastMessage: false,
       })
     );
   }, []);
@@ -85,3 +85,4 @@ export const AllStudentDataContainer = () => {
     rowsPerPageArr,
   };
 };
+export default AllStudentDataContainer;

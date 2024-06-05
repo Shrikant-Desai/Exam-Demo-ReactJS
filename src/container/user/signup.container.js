@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
-import { ReduxFormActions } from "../reduxFormActions.container";
+import { useEffect } from "react";
+import reduxFormActions from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
-import { Navigate } from "react-router-dom";
 import { END_POINTS } from "../../utils/api/baseURLs";
 
 const SignUpContainer = () => {
   const path = "SignUpForm";
 
-  const { handleChange, handleSubmit, resetForm } = ReduxFormActions({ path });
+  const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);

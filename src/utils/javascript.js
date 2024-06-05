@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API_STATUS_ERROR, API_STATUS_SUCCESS } from "./constant";
+import { API_STATUS_SUCCESS } from "./constant";
 
 export const getStateValue = (state, pathArr) => {
   let currentState = state;

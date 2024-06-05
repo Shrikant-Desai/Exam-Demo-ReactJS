@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ReduxFormActions } from "../reduxFormActions.container";
+import reduxFormActions from "../reduxFormActions.container";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -32,8 +32,6 @@ const ForgotPasswordContainer = () => {
           },
         })
       );
-
-      console.log(data);
     }
   }, [formData]);
 
@@ -41,7 +39,7 @@ const ForgotPasswordContainer = () => {
     console.log("test successfull");
     navigate("/");
   }
-  const { handleChange, handleSubmit, resetForm } = ReduxFormActions({ path });
+  const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
   const sxObject = {
     sxMainForm: {
       width: { xs: "70vw", sm: "50vw", md: "35vw" },

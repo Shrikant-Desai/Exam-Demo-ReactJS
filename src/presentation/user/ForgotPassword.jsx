@@ -3,11 +3,11 @@ import { forgotPasswordForm } from "../../description/userModuleForms.descriptio
 import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
-import ForgotPasswordContainer from "../../container/user/forgotPassword.container";
+import forgotPasswordContainer from "../../container/user/forgotPassword.container";
 
 const ForgotPassword = () => {
   const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    ForgotPasswordContainer();
+    forgotPasswordContainer();
 
   return (
     <EDStack

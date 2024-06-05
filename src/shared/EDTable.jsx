@@ -87,7 +87,7 @@ export default function EDTable({
       <TablePagination
         rowsPerPageOptions={rowsPerPageArr}
         component="div"
-        count={rowsArr.length}
+        count={rowsArr?.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

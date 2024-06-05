@@ -35,13 +35,15 @@ export const fetchDataThunkFunc = createAsyncThunk(
         method: method,
         data: bodyData,
       });
+
+      if (isToastMessage) {
+        showAPIToastMessage(response);
+      }
       if (response.data.statusCode === API_STATUS_UNAUTHORIZED) {
         localStorage.removeItem("authToken");
         localStorage.removeItem("loginDetails");
-        <Navigate to="/signin" />;
-        if (isToastMessage) {
-          showAPIToastMessage(response);
-        }
+        showAPIToastMessage(response);
+        return <Navigate to={"/signin"} />;
       }
       return response;
     } catch (error) {

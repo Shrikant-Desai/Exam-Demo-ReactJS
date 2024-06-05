@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import LoginHomeImg from "../../assets/LoginImage.jpg";
+import { ReactComponent as LoginHomeImg } from "../../assets/LoginImage.svg";
 import EDBox from "../../shared/EDBox";
 import EDStack from "../../shared/EDStack";
 
@@ -25,12 +25,8 @@ const LoginSidebar = () => {
         justifyContent="space-evenly"
         alignItems="center"
       >
-        <EDBox sx={{ background: "transparent" }}>
-          <img
-            src={LoginHomeImg}
-            className="login-image"
-            alt="Login Pictures"
-          />
+        <EDBox sx={{ background: "transparent", width: 500, height: 500 }}>
+          <LoginHomeImg />
         </EDBox>
         <Outlet />
       </EDStack>
