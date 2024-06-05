@@ -57,7 +57,7 @@ const ReduxFormActions = (props) => {
     dispatch(
       setFormData({
         path: path,
-        data: newFormData.trim(),
+        data: newFormData,
       })
     );
 
