@@ -1,10 +1,10 @@
 import React from "react";
-import { signUpFormArray } from "../../description/userModuleForms.description";
 import FormMainComp from "../form/FormMainComp";
 import EDGrid from "../../shared/EDGrid";
 import { Link } from "react-router-dom";
 import EDStack from "../../shared/EDStack";
 import signUpContainer from "../../container/user/signup.container";
+import { signUpFormArray } from "../../description/formsData.description";
 
 const SignUp = () => {
   const { handleChange, handleSubmit, resetForm, sxObject, path } =

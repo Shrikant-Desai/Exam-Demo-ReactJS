@@ -1,5 +1,5 @@
 import React from "react";
-import { signInFormArray } from "../../description/userModuleForms.description";
+import { signInFormArray } from "../../description/formsData.description";
 import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";

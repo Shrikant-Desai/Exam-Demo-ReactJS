@@ -1,7 +1,7 @@
 import React from "react";
 import createExamContainer from "../../container/teacher/createExam.container";
 import FormMainComp from "../form/FormMainComp";
-import { signInFormArray } from "../../description/userModuleForms.description";
+import { signInFormArray } from "../../description/formsData.description";
 import EDStack from "../../shared/EDStack";
 import { styled } from "@mui/material";
 

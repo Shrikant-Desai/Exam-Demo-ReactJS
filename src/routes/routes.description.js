@@ -14,6 +14,7 @@ import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
+import ResetPassword from "../presentation/student/ResetPassword";
 
 const studentRoutes = [
   {
@@ -53,6 +54,7 @@ const studentRoutes = [
             path: "student/profile",
             element: <ProfileS />,
           },
+
           {
             path: "student/all-exams",
             element: <AllExams />,
@@ -66,6 +68,10 @@ const userRoutes = [
   {
     element: <HomePage />,
     path: "/",
+  },
+  {
+    path: "reset-password",
+    element: <ResetPassword />,
   },
   {
     element: <LoginSidebar />,

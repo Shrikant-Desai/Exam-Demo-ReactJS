@@ -46,7 +46,7 @@ const ReduxFormActions = (props) => {
         ? [...checkboxArr, value]
         : checkboxArr.filter((e) => e !== value);
     } else {
-      newValue = e.target.value.trim();
+      newValue = e.target.value;
     }
 
     const newFormData = {
@@ -57,7 +57,7 @@ const ReduxFormActions = (props) => {
     dispatch(
       setFormData({
         path: path,
-        data: newFormData,
+        data: newFormData.trim(),
       })
     );
 

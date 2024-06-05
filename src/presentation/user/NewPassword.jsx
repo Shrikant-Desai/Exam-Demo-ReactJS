@@ -2,7 +2,7 @@ import React from "react";
 import newPasswordContainer from "../../container/user/newPassword.container";
 import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
-import { newPasswordArray } from "../../description/userModuleForms.description";
+import { newPasswordArray } from "../../description/formsData.description";
 
 const NewPassword = () => {
   const { handleChange, handleSubmit, resetForm, sxObject, path } =
