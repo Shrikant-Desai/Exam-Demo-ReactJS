@@ -34,10 +34,10 @@ export default function EDTable({
       <TableContainer sx={{ maxHeight: tableHeight, width: tableWidth }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow key={`tr-${columnsArr}`}>
+            <TableRow key="header-row">
               {columnsArr.map((column) => (
                 <TableCell
-                  key={`td-${column.id}`}
+                  key={`header-cell-${column.id}`}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
@@ -49,38 +49,34 @@ export default function EDTable({
           <TableBody>
             {rowsArr
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columnsArr.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={`tc-${column.id}`} align={column.align}>
-                          {column.id === "action" ? (
-                            <EDStack spacing={1}>
-                              {value.map((item) => {
-                                return (
-                                  <EDButton
-                                    size="small"
-                                    key={item.id}
-                                    handleChange={() =>
-                                      item.handleChange(row["_id"])
-                                    }
-                                    value={item.text}
-                                    variant="contained"
-                                  />
-                                );
-                              })}
-                            </EDStack>
-                          ) : (
-                            value
-                          )}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+              .map((row) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                  {columnsArr.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={`cell-${row._id}-${column.id}`} align={column.align}>
+                        {column.id === "action" ? (
+                          <EDStack spacing={1}>
+                            {value.map((item, index) => (
+                              <EDButton
+                                size="small"
+                                key={`button-${row._id}-${item.id}-${index}`}
+                                handleChange={() =>
+                                  item.handleChange(row["_id"])
+                                }
+                                value={item.text}
+                                variant="contained"
+                              />
+                            ))}
+                          </EDStack>
+                        ) : (
+                          value
+                        )}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
