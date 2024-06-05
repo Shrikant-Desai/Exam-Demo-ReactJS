@@ -13,8 +13,6 @@ const SignUpContainer = () => {
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
 
-  const apiData = useSelector((state) => state.fetchData);
-
   useEffect(() => {
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {

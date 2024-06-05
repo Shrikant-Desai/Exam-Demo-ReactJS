@@ -14,8 +14,7 @@ export const ERRORS_MSG_USERFORM = {
     SPACE_ERROR: "Use only letters and Avoid extra spaces",
   },
   PASSWORD: {
-    NOT_VALID:
-      "Password should contain at least one number and one special character.",
+    NOT_VALID: "Password is valid between [6-30] characters.",
   },
   EMAIL: {
     NOT_VALID: "Email is Not Valid. (Kindly follow this format abc@xyz.com)",
@@ -360,13 +359,97 @@ export const forgotPasswordForm = [
     rulesData: [],
     endIcon: <SendIcon />,
   },
-  // {
-  //   identifier: "button",
-  //   xs: 6,
-  //   type: "reset",
-  //   value: "Reset",
-  //   variant: "outlined",
-  //   startIcon: <ClearIcon />,
-  //   rulesData: [],
-  // },
+];
+export const newPasswordArray = [
+  {
+    type: "labeledInput",
+    fieldName: "password",
+    labelProps: {
+      value: "Password",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "password",
+      name: "password",
+      autoComplete: "on",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Lock />
+          </InputAdornment>
+        ),
+      },
+
+      type: "password",
+      placeholder: "Enter password",
+      className: "form-control",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: PASSWORD_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.PASSWORD.NOT_VALID,
+      },
+    ],
+  },
+
+  {
+    type: "labeledInput",
+    fieldName: "confirmpassword",
+    labelProps: {
+      value: "Confirm Password",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "confirmPassword",
+      name: "confirmpassword",
+      autoComplete: "on",
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Lock />
+          </InputAdornment>
+        ),
+      },
+
+      type: "password",
+      placeholder: "Enter confirm password",
+      className: "form-control",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [],
+  },
+
+  {
+    identifier: "button",
+    type: "submit",
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+
+    variant: "contained",
+    value: "Submit",
+    rulesData: [],
+    endIcon: <SendIcon />,
+  },
 ];

@@ -36,7 +36,7 @@ const SignIn = () => {
             </Link>
           </EDGrid>
           <EDGrid item>
-            <Link className="text-link" to="/newPassWord">
+            <Link className="text-link" to="/forgot-password">
               Forgot Password?
             </Link>
           </EDGrid>

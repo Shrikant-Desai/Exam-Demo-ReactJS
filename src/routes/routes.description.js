@@ -13,6 +13,7 @@ import AllExams from "../presentation/student/AllExams";
 import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
+import NewPassword from "../presentation/user/NewPassword";
 
 const studentRoutes = [
   {
@@ -80,8 +81,12 @@ const userRoutes = [
     ],
   },
   {
-    path: "newPassword",
+    path: "forgot-password",
     element: <ForgotPassword />,
+  },
+  {
+    path: "newPassword/*",
+    element: <NewPassword />,
   },
 
   {

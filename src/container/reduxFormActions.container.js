@@ -46,7 +46,7 @@ const ReduxFormActions = (props) => {
         ? [...checkboxArr, value]
         : checkboxArr.filter((e) => e !== value);
     } else {
-      newValue = e.target.value;
+      newValue = e.target.value.trim();
     }
 
     const newFormData = {
@@ -61,7 +61,15 @@ const ReduxFormActions = (props) => {
       })
     );
 
-    checkFieldErrors(e, newValue, fieldArr, currentFormErrors, dispatch, path);
+    checkFieldErrors(
+      e,
+      newValue,
+      fieldArr,
+      currentFormErrors,
+      dispatch,
+      path,
+      formDataState
+    );
   };
 
   const checkFieldErrors = (
@@ -70,10 +78,15 @@ const ReduxFormActions = (props) => {
     fieldArr,
     currentFormErrors,
     dispatch,
-    path
+    path,
+    formDataState
   ) => {
     const errMsg = {
-      [`${e.target.name}Error`]: validateFormField(newValue, fieldArr),
+      [`${e.target.name}Error`]: validateFormField(
+        newValue,
+        fieldArr,
+        formDataState
+      ),
     };
 
     const errObject = { ...currentFormErrors, ...errMsg };

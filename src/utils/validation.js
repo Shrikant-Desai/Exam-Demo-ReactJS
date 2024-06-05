@@ -20,9 +20,17 @@ const testRegex = (value, fieldArr) => {
   }
 };
 
-export const validateFormField = (data, fieldArr) => {
+export const validateFormField = (data, fieldArr, formDataState) => {
   let errMsg;
-  if (fieldArr?.type === "checkbox") {
+  if (fieldArr?.fieldName === "confirmpassword") {
+    if (!data && fieldArr?.isRequired) {
+      errMsg = `${fieldArr.labelProps.value} is required`;
+    } else if (data !== formDataState?.password) {
+      errMsg = `${fieldArr.labelProps.value} does not match`;
+    } else {
+      errMsg = "";
+    }
+  } else if (fieldArr?.type === "checkbox") {
     errMsg = checkSingleField(data?.length, fieldArr);
   } else {
     errMsg = checkSingleField(data, fieldArr);
@@ -52,6 +60,7 @@ export const validateForm = (formState, formArr, path, dispatch) => {
           item.path
         );
       }
+
       if (item.fieldName) {
         accum = {
           ...accum,
@@ -60,7 +69,8 @@ export const validateForm = (formState, formArr, path, dispatch) => {
             ...{
               [`${item?.fieldName}Error`]: validateFormField(
                 formState?.[item?.fieldName],
-                item
+                item,
+                formState
               ),
             },
           },

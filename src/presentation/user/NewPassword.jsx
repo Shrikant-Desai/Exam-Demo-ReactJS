@@ -1,13 +1,12 @@
 import React from "react";
-import { forgotPasswordForm } from "../../description/userModuleForms.description";
+import newPasswordContainer from "../../container/user/newPassword.container";
 import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
-import { Link } from "react-router-dom";
-import forgotPasswordContainer from "../../container/user/forgotPassword.container";
+import { newPasswordArray } from "../../description/userModuleForms.description";
 
-const ForgotPassword = () => {
+const NewPassword = () => {
   const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    forgotPasswordContainer();
+    newPasswordContainer();
 
   return (
     <EDStack
@@ -41,20 +40,15 @@ const ForgotPassword = () => {
               resetForm,
               sxObject,
               isSubForm: false,
-              formArr: forgotPasswordForm,
-              formName: "Forgot Password",
+              formArr: newPasswordArray,
+              formName: "Set Password",
               path,
             }}
           />
-          <EDStack direction="row" justifyContent="space-between">
-            <Link className="text-link" to="/signin">
-              Go back
-            </Link>
-          </EDStack>
         </EDStack>
       </EDStack>
     </EDStack>
   );
 };
 
-export default ForgotPassword;
+export default NewPassword;

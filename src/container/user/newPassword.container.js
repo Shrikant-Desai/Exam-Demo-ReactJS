@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import reduxFormActions from "../reduxFormActions.container";
-import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-const ForgotPasswordContainer = () => {
+const NewPasswordContainer = () => {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const path = "ForgotPassword";
+  const path = "NewPassWord";
+
+  const token = searchParams.get("token");
+
+  //sx to center a box in mui
+
+  const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
@@ -25,10 +32,11 @@ const ForgotPasswordContainer = () => {
 
       dispatch(
         fetchDataThunkFunc({
-          url: END_POINTS.USER_FORGOT_PASSWORD,
+          url: `${END_POINTS.NEW_PASSWORD}${token}`,
           method: "Post",
           bodyData: {
-            email: data?.email,
+            Password: data?.password,
+            ConfirmPassword: data?.confirmpassword,
           },
           isToastMessage: true,
         })
@@ -36,13 +44,19 @@ const ForgotPasswordContainer = () => {
     }
   }, [formData]);
 
-  const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
+  useEffect(() => {
+    if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
+      navigate(`/signin`);
+    }
+  }, [apiData]);
+
   const sxObject = {
     sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw" },
+      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "30vw" },
       height: "100%",
       padding: "10px",
       borderRadius: "10px",
+      // boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
       backgroundColor: "rgba(255, 255, 255, 0.8)",
     },
     sxFormname: {
@@ -52,9 +66,9 @@ const ForgotPasswordContainer = () => {
       textAlign: "center",
       marginBottom: "20px",
     },
-    //sx to center a box in mui
   };
+
   return { handleChange, handleSubmit, resetForm, sxObject, path };
 };
 
-export default ForgotPasswordContainer;
+export default NewPasswordContainer;
