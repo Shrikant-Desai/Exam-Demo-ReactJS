@@ -160,3 +160,171 @@ function ResponsiveNavbar() {
   );
 }
 export default ResponsiveNavbar;
+
+/* 
+import React from "react";
+import createExamContainer from "../../container/teacher/createExam.container";
+import { EDQuestionForm } from "../../shared/EDQuestionForm";
+
+const CreateExam = () => {
+  const {
+    examDetails,
+    questions,
+    currentQuestionIndex,
+    handleExamDetailChange,
+    handleQuestionChange,
+    handleNext,
+    handlePrevious,
+    handleSubmit,
+  } = createExamContainer();
+
+  return (
+    <div>
+      <h1>Create Exam</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title:
+          <input
+            type="text"
+            name="title"
+            value={examDetails.title}
+            onChange={handleExamDetailChange}
+          />
+        </label>
+        <br />
+        <label>
+          Description:
+          <input
+            type="text"
+            name="description"
+            value={examDetails.description}
+            onChange={handleExamDetailChange}
+          />
+        </label>
+        <br />
+        <EDQuestionForm
+          question={questions[currentQuestionIndex]}
+          index={currentQuestionIndex}
+          onChange={handleQuestionChange}
+        />
+        <div>
+          <button
+            type="button"
+            onClick={handlePrevious}
+            disabled={currentQuestionIndex === 0}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={currentQuestionIndex === 13}
+          >
+            Next
+          </button>
+        </div>
+        <br />
+        <button type="submit">Submit Exam</button>
+      </form>
+    </div>
+  );
+};
+
+export default CreateExam;
+
+
+
+
+
+
+export const EDQuestionForm = ({ question, index, onChange }) => {
+  const handleInputChange = (e) => {
+    const newQuestion = { ...question, [e.target.name]: e.target.value };
+    onChange(index, newQuestion);
+  };
+
+  return (
+    <div>
+      <h2>Question {index + 1}</h2>
+      <label>
+        Question:
+        <input
+          type="text"
+          name="question"
+          value={question.question}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Answer:
+        <input
+          type="text"
+          name="answer"
+          value={question.answer}
+          onChange={handleInputChange}
+        />
+      </label>
+    </div>
+  );
+};
+
+
+
+
+
+import { useState } from "react";
+
+const CreateExamContainer = () => {
+  const [examDetails, setExamDetails] = useState({
+    title: "",
+    description: "",
+  });
+  const [questions, setQuestions] = useState(
+    Array(14).fill({ question: "", answer: "", options: [] })
+  );
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const handleExamDetailChange = (e) => {
+    setExamDetails({ ...examDetails, [e.target.name]: e.target.value });
+  };
+
+  const handleQuestionChange = (index, question) => {
+    const newQuestions = questions.slice();
+    newQuestions[index] = question;
+    setQuestions(newQuestions);
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < 13) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Exam Details:", examDetails);
+    console.log("Questions:", questions);
+  };
+
+  return {
+    examDetails,
+    questions,
+    currentQuestionIndex,
+    handleExamDetailChange,
+    handleQuestionChange,
+    handleNext,
+    handlePrevious,
+    handleSubmit,
+  };
+};
+
+export default CreateExamContainer;
+
+*/

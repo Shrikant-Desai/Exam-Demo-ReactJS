@@ -61,7 +61,7 @@ const FormMainComp = ({
   const generateForm = (
     <EDBox>
       <EDTypography
-        sx={{ ...sxObject.sxFormname }}
+        sx={{ ...sxObject?.sxFormname }}
         value={formName}
         align="center"
       />
@@ -88,7 +88,7 @@ const FormMainComp = ({
   );
   return (
     <EDStack
-      sx={{ ...sxObject.sxMainForm }}
+      sx={{ ...sxObject?.sxMainForm }}
       justifyContent=""
       direction="column"
     >

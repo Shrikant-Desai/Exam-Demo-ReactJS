@@ -59,7 +59,7 @@ const SignInContainer = () => {
 
   const sxObject = {
     sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "30vw" },
+      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "25vw" },
       height: "100%",
       padding: "10px",
       borderRadius: "10px",

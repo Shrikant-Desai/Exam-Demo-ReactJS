@@ -180,6 +180,14 @@ const ReduxFormActions = (props) => {
     }
   };
 
+  const handlePrevious = () => {
+    console.log("previous clicked");
+  };
+
+  const handleNext = () => {
+    console.log("next clicked");
+  };
+
   return {
     handleChange,
     handleSubmit,
@@ -187,6 +195,8 @@ const ReduxFormActions = (props) => {
     handleDelete,
     setDataIntoForm,
     isFormSuccess,
+    handlePrevious,
+    handleNext,
   };
 };
 export default ReduxFormActions;

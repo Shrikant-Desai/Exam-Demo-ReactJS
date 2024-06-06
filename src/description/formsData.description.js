@@ -156,7 +156,6 @@ export const signUpFormArray = [
     },
     inputProps: {
       id: "userrole",
-
       name: "userrole",
       className: "form-control",
     },
@@ -577,6 +576,323 @@ export const resetPasswordArray = [
 
     variant: "contained",
     value: "Reset Password",
+    rulesData: [],
+    // endIcon: <SendIcon />,
+  },
+];
+
+export const createExamFormArray = [
+  {
+    type: "labeledInput",
+    fieldName: "subjectName",
+    labelProps: {
+      value: "Subject Name",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "subjectName",
+      name: "subjectName",
+      autoComplete: "on",
+      size: "small",
+      type: "text",
+      placeholder: "Enter subject name.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    type: "labeledInput",
+    fieldName: "notes",
+    labelProps: {
+      value: "notes",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "notes",
+      name: "notes",
+      autoComplete: "on",
+      size: "small",
+      type: "text",
+      placeholder: "Enter Notes.",
+      className: "form-control",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+
+  {
+    identifier: "button",
+    type: "submit",
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+
+    variant: "contained",
+    value: "Create Exam",
+    rulesData: [],
+    // endIcon: <SendIcon />,
+  },
+];
+
+export const questionFormArray = [
+  {
+    type: "labeledInput",
+    fieldName: "question",
+    labelProps: {
+      value: "Question ",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "question",
+      name: "question",
+      autoComplete: "on",
+      type: "text",
+      size: "small",
+      placeholder: "Enter Question.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+
+  {
+    type: "labeledInput",
+    fieldName: "option1",
+    labelProps: {
+      value: "Option-1",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "option1",
+      name: "option1",
+      autoComplete: "on",
+      type: "text",
+      size: "small",
+      placeholder: "Enter option - 1.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 5,
+      lg: 5,
+      xl: 5,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    type: "labeledInput",
+    fieldName: "option2",
+    labelProps: {
+      value: "Option-2",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "option2",
+      name: "option2",
+      autoComplete: "on",
+      type: "text",
+      size: "small",
+      placeholder: "Enter option - 2.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 5,
+      lg: 5,
+      xl: 5,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    type: "labeledInput",
+    fieldName: "option3",
+    labelProps: {
+      value: "Option-3",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "option3",
+      name: "option3",
+      autoComplete: "on",
+      type: "text",
+      size: "small",
+      placeholder: "Enter option - 3.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    type: "labeledInput",
+    fieldName: "option4",
+    labelProps: {
+      value: "Option-4",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "option4",
+      size: "small",
+      name: "option4",
+      autoComplete: "on",
+      type: "text",
+      placeholder: "Enter option - 4.",
+      className: "form-control",
+    },
+
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    type: "labeledInput",
+    fieldName: "answer",
+    labelProps: {
+      value: "Answer",
+      className: "form-group",
+    },
+    inputProps: {
+      id: "answer",
+      name: "answer",
+      size: "small",
+      autoComplete: "on",
+      type: "text",
+      placeholder: "Enter answer.",
+      className: "form-control",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+  {
+    identifier: "button",
+    type: "button",
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+    variant: "contained",
+    value: "Previous",
+    rulesData: [],
+    // endIcon: <SendIcon />,
+  },
+  {
+    identifier: "button",
+    type: "button",
+    gridValues: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 12,
+      xl: 12,
+    },
+
+    variant: "contained",
+    value: "Next",
     rulesData: [],
     // endIcon: <SendIcon />,
   },

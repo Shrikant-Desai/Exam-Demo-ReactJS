@@ -6,7 +6,10 @@ export const EDLabel = (props) => {
 
   const { value, ...restLabelProps } = labelProps;
   return (
-    <label {...restLabelProps} htmlFor={itemProps.inputProps.id}>
+    <label
+      {...restLabelProps}
+      htmlFor={itemProps.inputProps?.id || labelProps?.htmlFor}
+    >
       {value}
       <span style={{ color: "red" }}>{itemProps.isRequired ? "*" : ""}</span>
     </label>

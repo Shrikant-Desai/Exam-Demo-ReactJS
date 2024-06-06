@@ -6,7 +6,6 @@ import ForgotPassword from "../presentation/user/ForgotPassword";
 import Dashboard from "../presentation/pages/Dashboard";
 import HomePage from "../presentation/user/HomePage";
 import AllStudents from "../presentation/teacher/AllStudents";
-import CreateExam from "../presentation/teacher/CreateExam";
 import HomePageS from "../presentation/student/HomepageS";
 import ProfileS from "../presentation/student/ProfileS";
 import AllExams from "../presentation/student/AllExams";
@@ -15,6 +14,7 @@ import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
 import ResetPassword from "../presentation/user/ResetPassword";
+import EDExamCompMain from "../shared/EDExamCompMain";
 
 const studentRoutes = [
   {
@@ -39,7 +39,7 @@ const studentRoutes = [
           },
           {
             path: "teacher/create-exam",
-            element: <CreateExam />,
+            element: <EDExamCompMain />,
           },
         ],
       },

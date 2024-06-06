@@ -27,7 +27,7 @@ export const EDButton = (props) => {
       disabled={isSubmitDisable}
       {...rest}
       loading={isAPILoading}
-      sx={{ width: "100%" }}
+      sx={{ width: "100%", mt: 1 }}
       onClick={handleChange ? () => handleChange() : null}
       loadingPosition="start"
       startIcon={props.startIcon || <></>}

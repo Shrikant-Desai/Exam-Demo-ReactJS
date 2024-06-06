@@ -4,12 +4,12 @@ import FormMainComp from "./FormMainComp";
 import { EDLabel } from "../../shared/EDLabel";
 import { EDInput } from "../../shared/EDInput";
 import { EDRadio } from "../../shared/EDRadioButton";
-import { EDSelect } from "../../shared/EDSelect";
 import { EDCheckbox } from "../../shared/EDCheckbox";
 import { EDButton } from "../../shared/EDButton";
-import { FormControl, MenuItem, RadioGroup } from "@mui/material";
+import { FormControl, RadioGroup } from "@mui/material";
 import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
+import EDSelect from "../../shared/EDSelect";
 
 const GenerateFormElements = ({
   item,
@@ -65,21 +65,13 @@ const GenerateFormElements = ({
 
     case "select":
       return (
-        <FormControl>
-          <EDLabel {...item} />
+        <>
           <EDSelect
-            {...{ path }}
-            handleChange={handleChange}
+            item={item}
+            handleChange={(e) => handleChange(e, path)}
             value={formDataState?.[item?.fieldName] || ""}
-            {...item.inputProps}
-          >
-            {item.options.map((option, index) => (
-              <MenuItem key={index} value={option.value} id={option.id}>
-                {option.name}
-              </MenuItem>
-            ))}
-          </EDSelect>
-        </FormControl>
+          />
+        </>
       );
 
     case "checkbox":
