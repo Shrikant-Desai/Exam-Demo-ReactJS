@@ -15,7 +15,8 @@ const ResetPasswordContainer = () => {
   });
 
   const path = "ResetPassword";
-
+  const apiData = useSelector((state) => state.fetchData);
+  const isAPILoading = apiData?.loading;
   //sx to center a box in mui
 
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
@@ -64,7 +65,15 @@ const ResetPasswordContainer = () => {
     },
   };
 
-  return { handleChange, handleSubmit, resetForm, sxObject, path, isLogin };
+  return {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isLogin,
+    isAPILoading,
+  };
 };
 
 export default ResetPasswordContainer;

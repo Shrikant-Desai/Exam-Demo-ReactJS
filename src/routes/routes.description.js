@@ -14,7 +14,7 @@ import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
-import ResetPassword from "../presentation/student/ResetPassword";
+import ResetPassword from "../presentation/user/ResetPassword";
 
 const studentRoutes = [
   {

@@ -15,7 +15,7 @@ const ForgotPasswordContainer = () => {
   const dispatch = useDispatch();
 
   const apiData = useSelector((state) => state.fetchData);
-
+  const isAPILoading = apiData?.loading;
   useEffect(() => {
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {
@@ -54,7 +54,14 @@ const ForgotPasswordContainer = () => {
     },
     //sx to center a box in mui
   };
-  return { handleChange, handleSubmit, resetForm, sxObject, path };
+  return {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  };
 };
 
 export default ForgotPasswordContainer;

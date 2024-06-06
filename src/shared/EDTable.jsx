@@ -28,7 +28,6 @@ export default function EDTable({
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: tableHeight, width: tableWidth }}>
@@ -54,7 +53,10 @@ export default function EDTable({
                   {columnsArr.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={`cell-${row._id}-${column.id}`} align={column.align}>
+                      <TableCell
+                        key={`cell-${row._id}-${column.id}`}
+                        align={column.align}
+                      >
                         {column.id === "action" ? (
                           <EDStack spacing={1}>
                             {value.map((item, index) => (
@@ -83,7 +85,7 @@ export default function EDTable({
       <TablePagination
         rowsPerPageOptions={rowsPerPageArr}
         component="div"
-        count={rowsArr?.length}
+        count={rowsArr?.length || 1}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

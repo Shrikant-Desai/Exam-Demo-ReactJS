@@ -7,8 +7,14 @@ import { signUpFormArray } from "../../description/formsData.description";
 import FormMainComp from "../form/FormMainComp";
 
 const SignUp = () => {
-  const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    signUpContainer();
+  const {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  } = signUpContainer();
 
   return (
     <>
@@ -28,6 +34,7 @@ const SignUp = () => {
             formArr: signUpFormArray,
             formName: "Sign Up",
             path,
+            isAPILoading,
           }}
         />
         <EDGrid container direction="row" justifyContent="space-around">

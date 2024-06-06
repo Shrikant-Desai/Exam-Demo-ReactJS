@@ -5,8 +5,14 @@ import EDStack from "../../shared/EDStack";
 import { newPasswordArray } from "../../description/formsData.description";
 
 const NewPassword = () => {
-  const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    newPasswordContainer();
+  const {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  } = newPasswordContainer();
 
   return (
     <EDStack
@@ -43,6 +49,7 @@ const NewPassword = () => {
               formArr: newPasswordArray,
               formName: "Set Password",
               path,
+              isAPILoading,
             }}
           />
         </EDStack>

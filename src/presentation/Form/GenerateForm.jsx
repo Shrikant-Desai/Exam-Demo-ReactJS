@@ -11,6 +11,7 @@ const GenerateForm = ({
   resetForm,
   handleSubmit,
   formErrors,
+  isAPILoading,
 }) => {
   const renderFormItem = formArr.map((item, index) => {
     const grid = item.gridValues;
@@ -33,6 +34,7 @@ const GenerateForm = ({
             handleSubmit,
             resetForm,
             formDataState,
+            isAPILoading,
           }}
         />
         {item.identifier !== "button" ? (

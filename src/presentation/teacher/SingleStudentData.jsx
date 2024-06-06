@@ -55,7 +55,7 @@ const SingleStudentData = () => {
               </EDStack>
               {apiData?.data?.data?.[0]?.Result?.length === 0 ? (
                 <EDTypography
-                  sx={{ p: 3, color: "red" }}
+                  sx={{ pl: 5, pt: 2, color: "red" }}
                   value="Student hasn't give any exam till now."
                   variant="h5"
                 />

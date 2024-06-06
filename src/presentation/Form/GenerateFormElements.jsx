@@ -20,6 +20,7 @@ const GenerateFormElements = ({
   resetForm,
   handleSubmit,
   isSubmitDisable,
+  isAPILoading,
 }) => {
   switch (item.type) {
     case "labeledInput":
@@ -110,11 +111,23 @@ const GenerateFormElements = ({
       );
 
     case "reset":
-      return <EDButton handleChange={resetForm} {...item} />;
+      return (
+        <EDButton
+          isAPILoading={isAPILoading}
+          handleChange={resetForm}
+          {...item}
+        />
+      );
     case "submit":
-      return <EDButton isSubmitDisable={isSubmitDisable} {...item} />;
+      return (
+        <EDButton
+          isAPILoading={isAPILoading}
+          isSubmitDisable={isSubmitDisable}
+          {...item}
+        />
+      );
     case "button":
-      return <EDButton {...item} />;
+      return <EDButton isAPILoading={isAPILoading} {...item} />;
 
     default:
       return null;

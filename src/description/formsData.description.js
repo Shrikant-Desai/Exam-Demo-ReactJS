@@ -189,9 +189,9 @@ export const signUpFormArray = [
     },
 
     variant: "contained",
-    value: "Submit",
+    value: "Sign Up",
     rulesData: [],
-    endIcon: <SendIcon />,
+    // endIcon: <SendIcon />,
   },
   // {
   //   identifier: "button",
@@ -288,9 +288,8 @@ export const signInFormArray = [
     },
 
     variant: "contained",
-    value: "Submit",
+    value: "Sign In",
     rulesData: [],
-    endIcon: <SendIcon />,
   },
   // {
   //   identifier: "button",
@@ -357,7 +356,7 @@ export const forgotPasswordForm = [
     variant: "contained",
     value: "Send Link to Email",
     rulesData: [],
-    endIcon: <SendIcon />,
+    // endIcon: <SendIcon />,
   },
 ];
 export const newPasswordArray = [
@@ -450,7 +449,7 @@ export const newPasswordArray = [
     variant: "contained",
     value: "Submit",
     rulesData: [],
-    endIcon: <SendIcon />,
+    // endIcon: <SendIcon />,
   },
 ];
 
@@ -577,8 +576,8 @@ export const resetPasswordArray = [
     },
 
     variant: "contained",
-    value: "Submit",
+    value: "Reset Password",
     rulesData: [],
-    endIcon: <SendIcon />,
+    // endIcon: <SendIcon />,
   },
 ];

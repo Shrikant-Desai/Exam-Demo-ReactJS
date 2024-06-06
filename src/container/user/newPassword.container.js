@@ -22,6 +22,7 @@ const NewPasswordContainer = () => {
   const dispatch = useDispatch();
 
   const apiData = useSelector((state) => state.fetchData);
+  const isAPILoading = apiData?.loading;
 
   useEffect(() => {
     if (form?.isFormValid) {
@@ -68,7 +69,14 @@ const NewPasswordContainer = () => {
     },
   };
 
-  return { handleChange, handleSubmit, resetForm, sxObject, path };
+  return {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  };
 };
 
 export default NewPasswordContainer;

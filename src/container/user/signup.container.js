@@ -12,7 +12,8 @@ const SignUpContainer = () => {
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
-
+  const apiData = useSelector((state) => state.fetchData);
+  const isAPILoading = apiData?.loading;
   useEffect(() => {
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {
@@ -59,7 +60,14 @@ const SignUpContainer = () => {
     },
   };
 
-  return { handleChange, handleSubmit, resetForm, sxObject, path };
+  return {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  };
 };
 
 export default SignUpContainer;

@@ -6,8 +6,14 @@ import { Link } from "react-router-dom";
 import forgotPasswordContainer from "../../container/user/forgotPassword.container";
 
 const ForgotPassword = () => {
-  const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    forgotPasswordContainer();
+  const {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  } = forgotPasswordContainer();
 
   return (
     <EDStack
@@ -44,6 +50,7 @@ const ForgotPassword = () => {
               formArr: forgotPasswordForm,
               formName: "Forgot Password",
               path,
+              isAPILoading,
             }}
           />
           <EDStack direction="row" justifyContent="space-between">

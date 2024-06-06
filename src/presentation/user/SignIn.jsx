@@ -7,8 +7,14 @@ import EDGrid from "../../shared/EDGrid";
 import signInContainer from "../../container/user/signin.container";
 
 const SignIn = () => {
-  const { handleChange, handleSubmit, resetForm, sxObject, path } =
-    signInContainer();
+  const {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isAPILoading,
+  } = signInContainer();
   return (
     <>
       <EDStack
@@ -27,6 +33,7 @@ const SignIn = () => {
             formArr: signInFormArray,
             formName: "Sign In",
             path,
+            isAPILoading,
           }}
         />
         <EDGrid container direction="row" justifyContent="space-around">

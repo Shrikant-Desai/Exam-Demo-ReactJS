@@ -21,6 +21,7 @@ const FormMainComp = ({
   handleChange,
   resetForm,
   handleSubmit,
+  isAPILoading,
 }) => {
   const dispatch = useDispatch();
   const pathArr = path.split("/");
@@ -79,6 +80,7 @@ const FormMainComp = ({
             formErrors: formErrorsState,
             handleChange: newHandleChange,
             resetForm: newResetForm,
+            isAPILoading,
           }}
         />
       </EDGrid>

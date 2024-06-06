@@ -1,4 +1,5 @@
 // CRUDButton.js
+import { LoadingButton } from "@mui/lab";
 import { Button } from "@mui/material";
 import React from "react";
 
@@ -9,16 +10,30 @@ export const EDButton = (props) => {
     rulesData,
     fieldName,
     gridValues,
+    isAPILoading,
+    value,
     ...rest
   } = props;
   return (
-    <Button
+    // <Button
+    //   disabled={isSubmitDisable}
+    //   {...rest}
+    //   sx={{ width: "100%" }}
+    //   onClick={handleChange ? () => handleChange() : null}
+    // >
+    //
+    // </Button>
+    <LoadingButton
       disabled={isSubmitDisable}
       {...rest}
+      loading={isAPILoading}
       sx={{ width: "100%" }}
       onClick={handleChange ? () => handleChange() : null}
+      loadingPosition="start"
+      startIcon={props.startIcon || <></>}
     >
-      {props.value}
-    </Button>
+      {isAPILoading ? "Wait" : value}
+      {/* {value} */}
+    </LoadingButton>
   );
 };

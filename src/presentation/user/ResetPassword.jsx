@@ -3,12 +3,20 @@ import React from "react";
 import FormMainComp from "../form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { resetPasswordArray } from "../../description/formsData.description";
-import resetPasswordContainer from "../../container/student/resetPassword.container";
+
 import { Link } from "react-router-dom";
+import resetPasswordContainer from "../../container/user/resetPassword.container";
 
 const ResetPassword = () => {
-  const { handleChange, handleSubmit, resetForm, sxObject, path, isLogin } =
-    resetPasswordContainer();
+  const {
+    handleChange,
+    handleSubmit,
+    resetForm,
+    sxObject,
+    path,
+    isLogin,
+    isAPILoading,
+  } = resetPasswordContainer();
 
   if (isLogin) {
     return (
@@ -46,6 +54,7 @@ const ResetPassword = () => {
                 formArr: resetPasswordArray,
                 formName: "Forgot Password",
                 path,
+                isAPILoading,
               }}
             />
             <EDStack direction="row" justifyContent="space-between">
