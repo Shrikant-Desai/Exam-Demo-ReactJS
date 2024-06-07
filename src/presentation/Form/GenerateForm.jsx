@@ -38,7 +38,9 @@ const GenerateForm = ({
           }}
         />
         {item.identifier !== "button" ? (
-          <EDErrorDiv item={item} formErrors={formErrors} />
+          <EDErrorDiv
+            errorMsg={formErrors?.[`${item?.fieldName}Error`] || ""}
+          />
         ) : null}
       </EDGrid>
     );

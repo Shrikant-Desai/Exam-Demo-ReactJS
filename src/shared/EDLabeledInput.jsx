@@ -6,9 +6,9 @@ import { EDLabel } from "./EDLabel";
 const EDLabeledInput = (props) => {
   const { inputProps } = props;
   return (
-    <EDStack>
+    <EDStack {...props?.containerDesign}>
       <EDLabel {...props} />
-      <EDInput {...inputProps} />
+      <EDInput sx={{ ...inputProps?.sx }} {...inputProps} />
     </EDStack>
   );
 };

@@ -83,6 +83,7 @@ const EDExamCompMain = () => {
               <EDQuestionForm
                 question={questions[currentQuestionIndex]}
                 index={currentQuestionIndex}
+                questionsArr={questions}
                 onChange={handleQuestionChange}
               />
               <EDBox>

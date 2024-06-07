@@ -6,8 +6,12 @@ export const EDRadio = ({ handleChange, path, selectedOption, ...props }) => {
   return (
     <FormControlLabel
       {...props}
-      control={<Radio checked={selectedOption === props.value} />}
-      onChange={(e) => handleChange(e, path)}
+      control={
+        <Radio
+          checked={selectedOption ? selectedOption == props.value : false}
+        />
+      }
+      onChange={(e) => handleChange(e)}
       label={props.label}
     />
   );

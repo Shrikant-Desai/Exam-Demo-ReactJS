@@ -50,7 +50,7 @@ const GenerateFormElements = ({
                 {item.inputProps.map((radioProps, index) => (
                   <EDRadio
                     {...{ path }}
-                    handleChange={handleChange}
+                    handleChange={(e) => handleChange(e, path)}
                     selectedOption={formDataState?.[item?.fieldName] || ""}
                     {...radioProps}
                     key={index}

@@ -1,15 +1,19 @@
 import questionFormContainer from "../container/questionForm.container";
-import EDBox from "./EDBox";
+import { EDErrorDiv } from "./EDErrorDiv";
 import EDGrid from "./EDGrid";
-import { EDInput } from "./EDInput";
 import EDLabeledInput from "./EDLabeledInput";
-import EDSelect from "./EDSelect";
+import { EDRadio } from "./EDRadioButton";
 
 import EDStack from "./EDStack";
 
-export const EDQuestionForm = ({ question, index, onChange }) => {
-  const { handleInputChange, handleAddOptions, handleAddAnswer, optionArr } =
-    questionFormContainer(question, index, onChange);
+export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
+  const {
+    handleInputChange,
+    handleAddOptions,
+    handleAddAnswer,
+    optionArr,
+    containerDesign,
+  } = questionFormContainer(question, index, onChange, questionsArr);
   return (
     <EDStack>
       <h2>Question {index + 1}</h2>
@@ -26,17 +30,42 @@ export const EDQuestionForm = ({ question, index, onChange }) => {
           },
         }}
       />
+      <EDErrorDiv errorMsg={question?.errors?.questionError} />
 
       <br />
       <EDGrid container direction="row" spacing={2}>
         {optionArr?.map((item, i) => {
           return (
             <EDGrid key={i} item xs={12} md={6}>
-              <EDInput
-                {...item}
-                sx={{ width: "100%" }}
-                value={question?.options?.[i]}
-                handleChange={(e) => handleAddOptions(e, i)}
+              <EDGrid container alignItems="center">
+                <EDGrid item xs={1}>
+                  <EDRadio
+                    {...{
+                      selectedOption: question?.answerIndex,
+                      value: i,
+                      handleChange: handleAddAnswer,
+                    }}
+                  />
+                </EDGrid>
+                <EDGrid item xs={11}>
+                  <EDLabeledInput
+                    {...{
+                      containerDesign: containerDesign,
+                      labelProps: item.labelProps,
+                      inputProps: {
+                        ...item.inputProps,
+                        sx: { width: "100%" },
+                        value: question?.options?.[i],
+                        handleChange: (e) => handleAddOptions(e, i),
+                      },
+                    }}
+                  />
+                </EDGrid>
+              </EDGrid>
+              <EDErrorDiv
+                errorMsg={
+                  question?.errors?.optionErrors?.[`${index}Error`] || ""
+                }
               />
             </EDGrid>
           );
@@ -45,7 +74,7 @@ export const EDQuestionForm = ({ question, index, onChange }) => {
 
       {/* i want to make one select to select one answer from above option  */}
 
-      <EDBox sx={{ my: 3 }}>
+      {/* <EDBox sx={{ my: 3 }}>
         <EDSelect
           {...{
             item: {
@@ -70,7 +99,7 @@ export const EDQuestionForm = ({ question, index, onChange }) => {
           handleChange={handleAddAnswer}
           value={question?.answerIndex}
         />
-      </EDBox>
+      </EDBox> */}
     </EDStack>
   );
 };

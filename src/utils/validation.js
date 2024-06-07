@@ -120,3 +120,18 @@ export const validateForm = (formState, formArr, path, dispatch) => {
 
   return { isFormValid, mainFormDataObject };
 };
+
+export const validateExamFormField = (value, arr, isQuestion) => {
+  const isValueRepeat = arr.some((itemValue) => {
+    return (isQuestion ? itemValue?.["question"] : itemValue) === value;
+  });
+  let errMsg;
+  if (!value) {
+    errMsg = `Please enter value.`;
+  } else if (isValueRepeat) {
+    errMsg = `You have entered same value twice please enter unique value.`;
+  } else {
+    errMsg = "";
+  }
+  return errMsg;
+};
