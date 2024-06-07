@@ -5,6 +5,7 @@ import {
   EditNote,
   Logout,
   People,
+  PeopleAltOutlined,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -33,6 +34,11 @@ const DashboardContainer = () => {
         text: "All Students Data",
         icon: <People />,
         navigate: "teacher/all-students",
+      },
+      {
+        text: "Active Students Data",
+        icon: <PeopleAltOutlined />,
+        navigate: "teacher/active-students",
       },
     ],
     afterDiv: [],

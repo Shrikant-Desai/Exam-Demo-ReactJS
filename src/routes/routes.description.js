@@ -15,6 +15,7 @@ import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
 import ResetPassword from "../presentation/user/ResetPassword";
 import EDExamCompMain from "../shared/EDExamCompMain";
+import ActiveStudents from "../presentation/teacher/ActiveStudents";
 
 const studentRoutes = [
   {
@@ -32,6 +33,10 @@ const studentRoutes = [
           {
             path: "teacher/all-students",
             element: <AllStudents />,
+          },
+          {
+            path: "teacher/active-students",
+            element: <ActiveStudents />,
           },
           {
             path: "teacher/viewStudentDetail/*",

@@ -5,6 +5,7 @@ import EDLabeledInput from "./EDLabeledInput";
 import EDBox from "./EDBox";
 import { EDButton } from "./EDButton";
 import examCompMainContainer from "../container/teacher/examCompMain.container";
+import { EDErrorDiv } from "./EDErrorDiv";
 
 const EDExamCompMain = () => {
   const {
@@ -49,17 +50,21 @@ const EDExamCompMain = () => {
             <form onSubmit={handleSubmit}>
               <EDLabeledInput
                 {...{
-                  labelProps: { htmlFor: "title", value: "Title :" },
+                  labelProps: {
+                    htmlFor: "subjectName",
+                    value: "Subject Name :",
+                  },
                   inputProps: {
                     size: "small",
-                    id: "title",
+                    id: "subjectName",
                     type: "text",
-                    name: "title",
-                    value: examDetails.title,
+                    name: "subjectName",
+                    value: examDetails.subjectName,
                     onChange: handleExamDetailChange,
                   },
                 }}
               />
+              <EDErrorDiv errorMsg={examDetails.subjectNameError} />
 
               <br />
               <EDLabeledInput
@@ -78,6 +83,7 @@ const EDExamCompMain = () => {
                   },
                 }}
               />
+              <EDErrorDiv errorMsg={examDetails.descriptionError} />
 
               <br />
               <EDQuestionForm

@@ -121,17 +121,106 @@ export const validateForm = (formState, formArr, path, dispatch) => {
   return { isFormValid, mainFormDataObject };
 };
 
-export const validateExamFormField = (value, arr, isQuestion) => {
-  const isValueRepeat = arr.some((itemValue) => {
-    return (isQuestion ? itemValue?.["question"] : itemValue) === value;
+// export const showDupPos = (arr, mindups) => {
+//   mindups = mindups || 2;
+//   var result = [];
+//   var positions = {};
+
+//   arr.forEach(function (value, pos) {
+//     positions[value] = positions[value] || [];
+//     positions[value].push(pos);
+//   });
+
+//   Object.keys(positions).forEach(function (value) {
+//     var posArray = positions[value];
+//     if (posArray.length > mindups) {
+//       result = result.concat(posArray);
+//     }
+//   });
+//   console.log("result: " + result);
+//   return result.sort();
+// };
+
+const showDupPos = (arr) => {
+  const repeated = {};
+  arr?.forEach((ele, index) => {
+    if (ele) {
+      if (arr?.indexOf(ele) !== arr?.lastIndexOf(ele)) {
+        if (!repeated[ele]) {
+          repeated[ele] = [index];
+        } else {
+          repeated[ele]?.push(index);
+        }
+      }
+    }
   });
+  const values = Object.values(repeated)?.flat(Infinity);
+  return values;
+};
+
+export const validateExamField = (value, arr, isFormSubmit) => {
+  const isRepeat = isFormSubmit
+    ? false
+    : arr?.some((item) => item.question === value);
+
   let errMsg;
   if (!value) {
-    errMsg = `Please enter value.`;
-  } else if (isValueRepeat) {
-    errMsg = `You have entered same value twice please enter unique value.`;
+    errMsg = `Please Enter any value for the field`;
+  } else if (isRepeat) {
+    errMsg = `Question already exists.`;
   } else {
     errMsg = "";
   }
   return errMsg;
+};
+
+export const emptyValidation = (value) => {
+  let errMsg;
+  if (!value) {
+    errMsg = `Please enter value.`;
+  } else {
+    errMsg = "";
+  }
+  return errMsg;
+};
+
+export const setOptionsErrors = (arr, isFormSubmit) => {
+  const dupIndexArr = showDupPos(arr?.options);
+  let errObject = arr.options.reduce((accum, item, index) => {
+    if (item) {
+      if (dupIndexArr.includes(index)) {
+        accum = {
+          ...accum,
+          [`${index}Option_Error`]: "Two same options exist",
+        };
+      } else {
+        accum = {
+          ...accum,
+          [`${index}Option_Error`]: "",
+        };
+      }
+    } else if (isFormSubmit) {
+      accum = {
+        ...accum,
+        [`${index}Option_Error`]: "Enter value for option",
+      };
+    }
+
+    return accum;
+  }, {});
+  return errObject;
+};
+
+export const validateFullQuestion = (arr) => {
+  console.log(arr);
+  let isCurrentQuestionValid;
+  const errObjectForOptions = setOptionsErrors(arr, true);
+  const questionError = validateExamField(arr.question, arr, true);
+
+  if (questionError || Object.values(errObjectForOptions).some((err) => err)) {
+    isCurrentQuestionValid = false;
+  } else {
+    isCurrentQuestionValid = true;
+  }
+  return { isCurrentQuestionValid, errObjectForOptions, questionError };
 };

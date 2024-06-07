@@ -14,6 +14,7 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
     optionArr,
     containerDesign,
   } = questionFormContainer(question, index, onChange, questionsArr);
+  console.log(question, "onChange");
   return (
     <EDStack>
       <h2>Question {index + 1}</h2>
@@ -34,15 +35,15 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
 
       <br />
       <EDGrid container direction="row" spacing={2}>
-        {optionArr?.map((item, i) => {
+        {optionArr?.map((item, optionIndex) => {
           return (
-            <EDGrid key={i} item xs={12} md={6}>
+            <EDGrid key={optionIndex} item xs={12} md={6}>
               <EDGrid container alignItems="center">
                 <EDGrid item xs={1}>
                   <EDRadio
                     {...{
                       selectedOption: question?.answerIndex,
-                      value: i,
+                      value: optionIndex,
                       handleChange: handleAddAnswer,
                     }}
                   />
@@ -55,8 +56,8 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
                       inputProps: {
                         ...item.inputProps,
                         sx: { width: "100%" },
-                        value: question?.options?.[i],
-                        handleChange: (e) => handleAddOptions(e, i),
+                        value: question?.options?.[optionIndex],
+                        handleChange: (e) => handleAddOptions(e, optionIndex),
                       },
                     }}
                   />
@@ -64,14 +65,18 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
               </EDGrid>
               <EDErrorDiv
                 errorMsg={
-                  question?.errors?.optionErrors?.[`${index}Error`] || ""
+                  question?.errors?.optionErrors?.[`${optionIndex}Option_Error`]
                 }
               />
             </EDGrid>
           );
         })}
       </EDGrid>
-
+      {/* <EDErrorDiv
+                errorMsg={
+                  question?.errors?.optionErrors?.[`${index}Option_Error`] 
+                }
+              /> */}
       {/* i want to make one select to select one answer from above option  */}
 
       {/* <EDBox sx={{ my: 3 }}>

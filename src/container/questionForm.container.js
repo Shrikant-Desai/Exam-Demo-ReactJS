@@ -1,19 +1,8 @@
-import { Directions } from "@mui/icons-material";
-import React from "react";
-import { validateExamFormField } from "../utils/validation";
+import { setOptionsErrors, validateExamField } from "../utils/validation";
 
 const QuestionFormContainer = (question, index, onChange, questionsArr) => {
-  const setOptionsErrors = () => {
-    let errObject;
-    question.options.map((option, index) => {
-      const errMsg = validateExamFormField(option, question?.options);
-
-      errObject = { ...errObject, [`${index}Error`]: option ? errMsg : "" };
-    });
-    return errObject;
-  };
   const handleInputChange = (e) => {
-    const errMsg = validateExamFormField(e.target.value, questionsArr, true);
+    const errMsg = validateExamField(e.target.value, questionsArr);
 
     const newQuestion = {
       ...question,
@@ -26,24 +15,31 @@ const QuestionFormContainer = (question, index, onChange, questionsArr) => {
     onChange(index, newQuestion);
   };
   const handleAddOptions = (e, i) => {
-    const errMsg = validateExamFormField(e.target.value, question?.options);
-    let errObject = setOptionsErrors();
     let newQuestion = {
       ...question,
-      errors: { ...question?.errors, optionErrors: errObject },
-    };
-    newQuestion = {
-      ...question,
       options: [
-        ...newQuestion.options.slice(0, i),
+        ...question.options.slice(0, i),
         e.target.value,
-        ...newQuestion.options.slice(i + 1),
+        ...question.options.slice(i + 1),
       ],
+    };
+
+    let errObject = setOptionsErrors(newQuestion);
+
+    if (!e.target.value) {
+      errObject = {
+        ...errObject,
+        [`${i}Option_Error`]: "Enter value for option",
+      };
+    }
+
+    newQuestion = {
+      ...newQuestion,
       errors: {
-        ...newQuestion.errors,
+        ...newQuestion?.errors,
         optionErrors: {
           ...newQuestion?.errors?.optionErrors,
-          [`${i}Error`]: errMsg,
+          ...errObject,
         },
       },
     };
