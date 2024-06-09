@@ -208,19 +208,31 @@ export const setOptionsErrors = (arr, isFormSubmit) => {
 
     return accum;
   }, {});
+  // console.log("in setoption", errObject);
   return errObject;
 };
 
-export const validateFullQuestion = (arr) => {
-  console.log(arr);
-  let isCurrentQuestionValid;
-  const errObjectForOptions = setOptionsErrors(arr, true);
-  const questionError = validateExamField(arr.question, arr, true);
+export const validateFullQuestion = (question) => {
+  let isCurrentQuestionValid = true;
+  const errObjectForOptions = setOptionsErrors(question, true);
+  const questionError = validateExamField(question.question, [], false);
 
-  if (questionError || Object.values(errObjectForOptions).some((err) => err)) {
+  // Check if an answer is selected
+  const answerError = question.answerIndex === "" ? "Select an answer" : "";
+
+  if (
+    questionError ||
+    Object.values(errObjectForOptions).some((err) => err) ||
+    answerError
+  ) {
     isCurrentQuestionValid = false;
-  } else {
-    isCurrentQuestionValid = true;
   }
-  return { isCurrentQuestionValid, errObjectForOptions, questionError };
+
+  // console.log(errObjectForOptions, questionError, answerError);
+  return {
+    isCurrentQuestionValid,
+    errObjectForOptions,
+    questionError,
+    answerError,
+  };
 };

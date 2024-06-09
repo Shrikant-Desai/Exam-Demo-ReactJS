@@ -14,7 +14,7 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
     optionArr,
     containerDesign,
   } = questionFormContainer(question, index, onChange, questionsArr);
-  console.log(question, "onChange");
+  
   return (
     <EDStack>
       <h2>Question {index + 1}</h2>
@@ -71,40 +71,13 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
             </EDGrid>
           );
         })}
-      </EDGrid>
-      {/* <EDErrorDiv
+          <EDErrorDiv
                 errorMsg={
-                  question?.errors?.optionErrors?.[`${index}Option_Error`] 
+                  question?.errors?.answerError
                 }
-              /> */}
-      {/* i want to make one select to select one answer from above option  */}
-
-      {/* <EDBox sx={{ my: 3 }}>
-        <EDSelect
-          {...{
-            item: {
-              labelProps: {
-                value: "Select Answer",
-                className: "form-group",
-              },
-              inputProps: {
-                id: "answer",
-                name: "answer",
-                className: "form-control",
-              },
-              options: [
-                { value: "", name: "---- Select Answer ----" },
-                { value: "0", id: "first", name: "1st Option" },
-                { value: "1", id: "second", name: "2nd Option" },
-                { value: "2", id: "third", name: "3rd Option" },
-                { value: "3", id: "fourth", name: "4th Option" },
-              ],
-            },
-          }}
-          handleChange={handleAddAnswer}
-          value={question?.answerIndex}
-        />
-      </EDBox> */}
+              />
+      </EDGrid>
+    
     </EDStack>
   );
 };

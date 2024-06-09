@@ -43,7 +43,6 @@ const QuestionFormContainer = (question, index, onChange, questionsArr) => {
         },
       },
     };
-    console.log(newQuestion);
     newQuestion = {
       ...newQuestion,
       answer: newQuestion.options[newQuestion.answerIndex],
@@ -55,6 +54,10 @@ const QuestionFormContainer = (question, index, onChange, questionsArr) => {
     let newQuestion = {
       ...question,
       answerIndex: e.target.value,
+      errors: {
+        ...question?.errors,
+        answerError: "",
+      },
     };
     newQuestion = {
       ...newQuestion,

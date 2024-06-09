@@ -7,6 +7,7 @@ import { EDButton } from "./EDButton";
 import examCompMainContainer from "../container/teacher/examCompMain.container";
 import { EDErrorDiv } from "./EDErrorDiv";
 
+
 const EDExamCompMain = () => {
   const {
     examDetails,
@@ -64,7 +65,7 @@ const EDExamCompMain = () => {
                   },
                 }}
               />
-              <EDErrorDiv errorMsg={examDetails.subjectNameError} />
+              <EDErrorDiv errorMsg={examDetails?.subjectNameError} />
 
               <br />
               <EDLabeledInput
@@ -83,7 +84,7 @@ const EDExamCompMain = () => {
                   },
                 }}
               />
-              <EDErrorDiv errorMsg={examDetails.descriptionError} />
+              <EDErrorDiv errorMsg={examDetails?.descriptionError} />
 
               <br />
               <EDQuestionForm
@@ -92,6 +93,8 @@ const EDExamCompMain = () => {
                 questionsArr={questions}
                 onChange={handleQuestionChange}
               />
+              
+              <EDErrorDiv  errorMsg={examDetails?.allQuestionValidError}/>
               <EDBox>
                 <EDButton
                   type="button"
