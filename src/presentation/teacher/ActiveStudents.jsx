@@ -3,7 +3,7 @@ import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
 import EDTypography from "../../shared/EDTypography";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_STATUS_SUCCESS, SESSION_EXPIRED_MSG } from "../../utils/constant";
 import { EDInput } from "../../shared/EDInput";
 import EDTable from "../../shared/EDTable";
 import activeStudentsContainer from "../../container/teacher/activeStudents.container";
@@ -35,7 +35,7 @@ const ActiveStudents = () => {
           ) : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
             <EDTypography
               sx={{ color: "red" }}
-              value="Session expired please login."
+              value={SESSION_EXPIRED_MSG}
               variant="h5"
             />
           ) : (

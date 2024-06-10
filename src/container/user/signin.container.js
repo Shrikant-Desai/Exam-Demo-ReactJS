@@ -3,14 +3,18 @@ import reduxFormActions from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useNavigate } from "react-router-dom";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import {
+  API_POST,
+  API_STATUS_SUCCESS,
+  LOCAL_AUTH_TOKEN,
+  LOCAL_LOGIN_DETAILS,
+  USER_FORMS,
+} from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
-  const path = "SignInForm";
-
-  //sx to center a box in mui
+  const path = USER_FORMS.LOGIN_PATH;
 
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
@@ -30,7 +34,7 @@ const SignInContainer = () => {
       dispatch(
         fetchDataThunkFunc({
           url: END_POINTS.USER_LOGIN,
-          method: "Post",
+          method: API_POST,
           bodyData: {
             email: data?.email,
             password: data?.password,
@@ -47,10 +51,13 @@ const SignInContainer = () => {
       apiData?.data?.statusCode === API_STATUS_SUCCESS
     ) {
       localStorage.setItem(
-        "authToken",
+        LOCAL_AUTH_TOKEN,
         JSON.stringify(apiData?.data?.data?.token)
       );
-      localStorage.setItem("loginDetails", JSON.stringify(apiData?.data?.data));
+      localStorage.setItem(
+        LOCAL_LOGIN_DETAILS,
+        JSON.stringify(apiData?.data?.data)
+      );
       navigate(`/dashboard/${apiData?.data?.data?.role}`);
     }
   }, [apiData]);

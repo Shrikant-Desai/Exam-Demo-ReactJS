@@ -3,17 +3,15 @@ import reduxFormActions from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const NewPasswordContainer = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const path = "NewPassWord";
+  const path = USER_FORMS.NEW_PASSWORD_PATH;
 
   const token = searchParams.get("token");
-
-  //sx to center a box in mui
 
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
@@ -34,7 +32,7 @@ const NewPasswordContainer = () => {
       dispatch(
         fetchDataThunkFunc({
           url: `${END_POINTS.NEW_PASSWORD}${token}`,
-          method: "Post",
+          method: API_POST,
           bodyData: {
             Password: data?.password,
             ConfirmPassword: data?.confirmpassword,

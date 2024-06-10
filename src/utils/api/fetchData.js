@@ -2,7 +2,11 @@ import axios from "axios";
 import { EXAM_DEMO_BASE_ENDPOINT } from "./baseURLs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { showAPIToastMessage } from "../javascript";
-import { API_STATUS_UNAUTHORIZED } from "../constant";
+import {
+  API_STATUS_UNAUTHORIZED,
+  LOCAL_AUTH_TOKEN,
+  LOCAL_LOGIN_DETAILS,
+} from "../constant";
 import { Navigate } from "react-router-dom";
 
 const apiInstance = axios.create({
@@ -14,7 +18,7 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use(
   (config) => {
-    const token = JSON.parse(localStorage.getItem("authToken"));
+    const token = JSON.parse(localStorage.getItem(LOCAL_AUTH_TOKEN));
     if (token) {
       config.headers["access-token"] = token;
     }
@@ -40,8 +44,8 @@ export const fetchDataThunkFunc = createAsyncThunk(
         showAPIToastMessage(response);
       }
       if (response.data.statusCode === API_STATUS_UNAUTHORIZED) {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("loginDetails");
+        localStorage.removeItem(LOCAL_AUTH_TOKEN);
+        localStorage.removeItem(LOCAL_LOGIN_DETAILS);
         showAPIToastMessage(response);
         return <Navigate to={"/signin"} />;
       }

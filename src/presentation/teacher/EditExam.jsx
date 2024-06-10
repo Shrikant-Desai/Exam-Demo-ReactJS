@@ -3,17 +3,20 @@ import EDExamCompMain from "../../shared/EDExamCompMain";
 import editExamContainer from "../../container/teacher/editExam.container";
 
 const EditExam = () => {
-  const {} = editExamContainer();
-  return (
-    <>
-      {/* <EDExamCompMain
-        // examDetailsArr={EXAMDETAILS_INIT_ARRAY}
-        // questionsArr={QUESTIONS_INIT_ARRAY}
-        action="createExam"
-        formName="Create Exam"
-      /> */}
-    </>
-  );
+  const { examDetailsObject, questionArr, apiData } = editExamContainer();
+
+  if (!apiData?.loading) {
+    return (
+      <>
+        <EDExamCompMain
+          examDetailsArr={examDetailsObject}
+          questionsArr={questionArr}
+          action="editExam"
+          formName="Edit Exam"
+        />
+      </>
+    );
+  }
 };
 
 export default EditExam;

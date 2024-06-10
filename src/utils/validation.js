@@ -121,26 +121,6 @@ export const validateForm = (formState, formArr, path, dispatch) => {
   return { isFormValid, mainFormDataObject };
 };
 
-// export const showDupPos = (arr, mindups) => {
-//   mindups = mindups || 2;
-//   var result = [];
-//   var positions = {};
-
-//   arr.forEach(function (value, pos) {
-//     positions[value] = positions[value] || [];
-//     positions[value].push(pos);
-//   });
-
-//   Object.keys(positions).forEach(function (value) {
-//     var posArray = positions[value];
-//     if (posArray.length > mindups) {
-//       result = result.concat(posArray);
-//     }
-//   });
-//   console.log("result: " + result);
-//   return result.sort();
-// };
-
 const showDupPos = (arr) => {
   const repeated = {};
   arr?.forEach((ele, index) => {

@@ -4,7 +4,7 @@ import EDStack from "./EDStack";
 import EDLabeledInput from "./EDLabeledInput";
 import EDBox from "./EDBox";
 import { EDButton } from "./EDButton";
-import examCompMainContainer from "../container/teacher/examCompMain.container";
+import examCompMainContainer from "../container/examCompMain.container";
 import EDTypography from "./EDTypography";
 import { EDErrorDiv } from "./EDErrorDiv";
 

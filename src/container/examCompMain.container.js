@@ -1,17 +1,22 @@
-import { useState } from "react";
-import { validateFullQuestion, emptyValidation } from "../../utils/validation";
+import { useEffect, useState } from "react";
+import { validateFullQuestion, emptyValidation } from "../utils/validation";
 import {
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
-} from "../../description/examForm.description";
+} from "../description/examForm.description";
 import { useDispatch } from "react-redux";
-import { addExamFormData } from "../../redux/slices/examForm.slice";
+import { addExamFormData } from "../redux/slices/examForm.slice";
+import { EXAM_FORM_ERRORS } from "../utils/constant";
 
 const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
   const dispatch = useDispatch();
   const [examDetails, setExamDetails] = useState(examDetailsArr);
 
   const [questions, setQuestions] = useState(questionsArr);
+
+  useEffect(() => {
+    setQuestions(questionsArr);
+  }, [questionsArr]);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -116,7 +121,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
         ...examDetails,
         subjectNameError,
         descriptionError,
-        allQuestionValidError: "Please enter details for all questions.",
+        allQuestionValidError: EXAM_FORM_ERRORS.ALL_QUESTIONS_ERROR,
       });
 
       const updatedQuestions = questions.map((question, index) => ({

@@ -3,9 +3,10 @@ import reduxFormActions from "../reduxFormActions.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { API_POST, USER_FORMS } from "../../utils/constant";
 
 const SignUpContainer = () => {
-  const path = "SignUpForm";
+  const path = USER_FORMS.SIGNUP_PATH;
 
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
 
@@ -24,7 +25,7 @@ const SignUpContainer = () => {
       dispatch(
         fetchDataThunkFunc({
           url: END_POINTS.USER_SIGNUP,
-          method: "Post",
+          method: API_POST,
           bodyData: {
             name: data?.name,
             email: data?.email,

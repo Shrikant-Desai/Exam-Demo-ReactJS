@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import reduxFormActions from "../reduxFormActions.container";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_POST, USER_FORMS } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
 
 const ForgotPasswordContainer = () => {
-  const navigate = useNavigate();
-  const path = "ForgotPassword";
+  const path = USER_FORMS.FORGOT_PASSWORD_PATH;
 
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
@@ -26,7 +24,7 @@ const ForgotPasswordContainer = () => {
       dispatch(
         fetchDataThunkFunc({
           url: END_POINTS.USER_FORGOT_PASSWORD,
-          method: "Post",
+          method: API_POST,
           bodyData: {
             email: data?.email,
           },

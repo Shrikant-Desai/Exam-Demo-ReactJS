@@ -3,6 +3,7 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { API_GET } from "../../utils/constant";
 
 const SingleStudentContainer = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,7 @@ const SingleStudentContainer = () => {
     dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.GET_SINGLE_STUDENTS}${studentID}`,
-        // get all students data
-        method: "Get",
+        method: API_GET,
         isToastMessage: false,
       })
     );
@@ -25,7 +25,7 @@ const SingleStudentContainer = () => {
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
-  const handleClickToPrevRoute = (id) => {
+  const handleClickToPrevRoute = () => {
     navigate(-1);
   };
 

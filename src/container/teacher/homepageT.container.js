@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
+import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 
 const HomepageTContainer = () => {
-  const currentLoginUser = JSON.parse(localStorage.getItem("loginDetails"));
+  const currentLoginUser = JSON.parse(
+    localStorage.getItem(LOCAL_LOGIN_DETAILS)
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
@@ -14,14 +17,17 @@ const HomepageTContainer = () => {
     dispatch(
       fetchDataThunkFunc({
         url: END_POINTS.VIEW_ALL_EXAM,
-        method: "Get",
+        method: API_GET,
         isToastMessage: false,
       })
     );
   }, []);
   const handleEdit = (id) => {
-    navigate(`/dashboard/teacher/edit-exam/?id=${id}`);
-    console.log("test id", id);
+    const data = apiData?.data?.data?.filter((data) => data?.["_id"] === id);
+
+    navigate(`/dashboard/teacher/edit-exam/?id=${id}`, {
+      state: JSON.stringify(data),
+    });
   };
 
   const handleDelete = (id) => {

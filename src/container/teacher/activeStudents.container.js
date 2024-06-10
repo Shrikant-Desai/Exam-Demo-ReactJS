@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
+import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 
 const ActiveStudentsContainer = () => {
-  const currentLoginUser = JSON.parse(localStorage.getItem("loginDetails"));
+  const currentLoginUser = JSON.parse(
+    localStorage.getItem(LOCAL_LOGIN_DETAILS)
+  );
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,7 +18,7 @@ const ActiveStudentsContainer = () => {
     dispatch(
       fetchDataThunkFunc({
         url: END_POINTS.GET_ACTIVE_STUDENTS,
-        method: "Get",
+        method: API_GET,
         isToastMessage: false,
       })
     );

@@ -11,14 +11,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearFetchData } from "../utils/api/fetchData";
+import {
+  LOCAL_AUTH_TOKEN,
+  LOCAL_LOGIN_DETAILS,
+  ROLES,
+} from "../utils/constant";
 
 const DashboardContainer = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    const isLoggedIn = !!localStorage.getItem("loginDetails");
+    const isLoggedIn = !!localStorage.getItem(LOCAL_LOGIN_DETAILS);
     isLoggedIn ? setIsLogin(true) : navigate("/signin");
-  });
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -52,10 +57,9 @@ const DashboardContainer = () => {
       { text: "Profile", icon: <AccountCircle />, navigate: "student/profile" },
     ],
   };
-  // const { logoutFunction } = DashboardContainer();
   const logoutFunction = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("loginDetails");
+    localStorage.removeItem(LOCAL_AUTH_TOKEN);
+    localStorage.removeItem(LOCAL_LOGIN_DETAILS);
     dispatch(clearFetchData());
     navigate("/signin");
   };
@@ -64,9 +68,9 @@ const DashboardContainer = () => {
   ];
 
   let drawerList;
-  const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
+  const loginDetails = JSON.parse(localStorage.getItem(LOCAL_LOGIN_DETAILS));
 
-  if (loginDetails?.role === "teacher") {
+  if (loginDetails?.role === ROLES.TEACHER) {
     drawerList = teacherDashboardDes;
   } else {
     drawerList = studentDashboardDes;
