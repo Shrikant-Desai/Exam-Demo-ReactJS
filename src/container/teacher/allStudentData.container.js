@@ -15,7 +15,7 @@ const AllStudentDataContainer = () => {
     dispatch(
       fetchDataThunkFunc({
         url: END_POINTS.GET_ALL_STUDENTS,
-        // get all students data
+
         method: "Get",
         isToastMessage: false,
       })

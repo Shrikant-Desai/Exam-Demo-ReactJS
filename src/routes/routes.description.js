@@ -14,8 +14,8 @@ import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
 import ResetPassword from "../presentation/user/ResetPassword";
-import EDExamCompMain from "../shared/EDExamCompMain";
 import ActiveStudents from "../presentation/teacher/ActiveStudents";
+import CreateExam from "../presentation/teacher/CreateExam";
 
 const studentRoutes = [
   {
@@ -44,7 +44,7 @@ const studentRoutes = [
           },
           {
             path: "teacher/create-exam",
-            element: <EDExamCompMain />,
+            element: <CreateExam />,
           },
         ],
       },

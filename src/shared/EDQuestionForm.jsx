@@ -1,4 +1,5 @@
 import questionFormContainer from "../container/questionForm.container";
+import { SINGLE_QUESTION_ARRAY } from "../description/examForm.description";
 import { EDErrorDiv } from "./EDErrorDiv";
 import EDGrid from "./EDGrid";
 import EDLabeledInput from "./EDLabeledInput";
@@ -6,43 +7,46 @@ import { EDRadio } from "./EDRadioButton";
 
 import EDStack from "./EDStack";
 
-export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
+export const EDQuestionForm = ({
+  questionObj,
+  index,
+  onChange,
+  questionsArr,
+}) => {
   const {
     handleInputChange,
     handleAddOptions,
     handleAddAnswer,
-    optionArr,
     containerDesign,
-  } = questionFormContainer(question, index, onChange, questionsArr);
-  
+  } = questionFormContainer(questionObj, index, onChange, questionsArr);
+
   return (
     <EDStack>
       <h2>Question {index + 1}</h2>
       <EDLabeledInput
         {...{
-          labelProps: { htmlFor: "question", value: "Question :" },
+          labelProps: {
+            label: SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.labelProps,
+          },
           inputProps: {
-            size: "small",
-            id: "question",
-            type: "text",
-            name: "question",
-            value: question.question,
-            onChange: handleInputChange,
+            ...SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.inputProps,
+            value: questionObj?.question,
+            handleChange: handleInputChange,
           },
         }}
       />
-      <EDErrorDiv errorMsg={question?.errors?.questionError} />
+      <EDErrorDiv errorMsg={questionObj?.errors?.questionError} />
 
       <br />
       <EDGrid container direction="row" spacing={2}>
-        {optionArr?.map((item, optionIndex) => {
+        {SINGLE_QUESTION_ARRAY.OPTION_DESCRIPTION?.map((item, optionIndex) => {
           return (
             <EDGrid key={optionIndex} item xs={12} md={6}>
               <EDGrid container alignItems="center">
                 <EDGrid item xs={1}>
                   <EDRadio
                     {...{
-                      selectedOption: question?.answerIndex,
+                      selectedOption: questionObj?.answerIndex,
                       value: optionIndex,
                       handleChange: handleAddAnswer,
                     }}
@@ -56,7 +60,7 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
                       inputProps: {
                         ...item.inputProps,
                         sx: { width: "100%" },
-                        value: question?.options?.[optionIndex],
+                        value: questionObj?.options?.[optionIndex],
                         handleChange: (e) => handleAddOptions(e, optionIndex),
                       },
                     }}
@@ -65,19 +69,18 @@ export const EDQuestionForm = ({ question, index, onChange, questionsArr }) => {
               </EDGrid>
               <EDErrorDiv
                 errorMsg={
-                  question?.errors?.optionErrors?.[`${optionIndex}Option_Error`]
+                  questionObj?.errors?.optionErrors?.[
+                    `${optionIndex}Option_Error`
+                  ]
                 }
               />
             </EDGrid>
           );
         })}
-          <EDErrorDiv
-                errorMsg={
-                  question?.errors?.answerError
-                }
-              />
+        <EDStack direction="row" alignItems="center">
+          <EDErrorDiv errorMsg={questionObj?.errors?.answerError} />
+        </EDStack>
       </EDGrid>
-    
     </EDStack>
   );
 };

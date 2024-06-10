@@ -5,10 +5,10 @@ import EDLabeledInput from "./EDLabeledInput";
 import EDBox from "./EDBox";
 import { EDButton } from "./EDButton";
 import examCompMainContainer from "../container/teacher/examCompMain.container";
+import EDTypography from "./EDTypography";
 import { EDErrorDiv } from "./EDErrorDiv";
 
-
-const EDExamCompMain = () => {
+const EDExamCompMain = ({ examDetailsArr, questionsArr, action, formName }) => {
   const {
     examDetails,
     questions,
@@ -18,7 +18,7 @@ const EDExamCompMain = () => {
     handleNext,
     handlePrevious,
     handleSubmit,
-  } = examCompMainContainer();
+  } = examCompMainContainer({ examDetailsArr, questionsArr, action });
 
   return (
     <EDStack justifyContent="center" alignItems="center">
@@ -49,6 +49,7 @@ const EDExamCompMain = () => {
             }}
           >
             <form onSubmit={handleSubmit}>
+              <EDTypography variant={"h4"} align="center" value={formName} />
               <EDLabeledInput
                 {...{
                   labelProps: {
@@ -60,7 +61,7 @@ const EDExamCompMain = () => {
                     id: "subjectName",
                     type: "text",
                     name: "subjectName",
-                    value: examDetails.subjectName,
+                    value: examDetails?.subjectName,
                     onChange: handleExamDetailChange,
                   },
                 }}
@@ -79,7 +80,7 @@ const EDExamCompMain = () => {
                     id: "description",
                     type: "text",
                     name: "description",
-                    value: examDetails.description,
+                    value: examDetails?.description,
                     onChange: handleExamDetailChange,
                   },
                 }}
@@ -88,13 +89,13 @@ const EDExamCompMain = () => {
 
               <br />
               <EDQuestionForm
-                question={questions[currentQuestionIndex]}
+                questionObj={questions[currentQuestionIndex]}
                 index={currentQuestionIndex}
                 questionsArr={questions}
                 onChange={handleQuestionChange}
               />
-              
-              <EDErrorDiv  errorMsg={examDetails?.allQuestionValidError}/>
+
+              <EDErrorDiv errorMsg={examDetails?.allQuestionValidError} />
               <EDBox>
                 <EDButton
                   type="button"
@@ -106,12 +107,12 @@ const EDExamCompMain = () => {
                 <EDButton
                   type="button"
                   handleChange={handleNext}
-                  disabled={currentQuestionIndex === 13}
+                  disabled={currentQuestionIndex === questions.length - 1}
                   value="Next"
                 />
               </EDBox>
               <br />
-              <EDButton type="submit" value="Create Exam" variant="contained" />
+              <EDButton type="submit" value={formName} variant="contained" />
             </form>
           </EDStack>
         </EDStack>

@@ -1,26 +1,17 @@
 import { useState } from "react";
+import { validateFullQuestion, emptyValidation } from "../../utils/validation";
 import {
-  validateFullQuestion,
-  emptyValidation,
-  setOptionsErrors,
-  validateExamField,
-} from "../../utils/validation";
+  EXAMDETAILS_INIT_ARRAY,
+  QUESTIONS_INIT_ARRAY,
+} from "../../description/examForm.description";
+import { useDispatch } from "react-redux";
+import { addExamFormData } from "../../redux/slices/examForm.slice";
 
-const ExamCompMainContainer = () => {
-  const [examDetails, setExamDetails] = useState({
-    subjectName: "",
-    description: "",
-  });
+const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
+  const dispatch = useDispatch();
+  const [examDetails, setExamDetails] = useState(examDetailsArr);
 
-  const [questions, setQuestions] = useState(
-    Array(14).fill({
-      question: "",
-      answer: "",
-      options: ["", "", "", ""],
-      answerIndex: "",
-      errors: {},
-    })
-  );
+  const [questions, setQuestions] = useState(questionsArr);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -48,7 +39,7 @@ const ExamCompMainContainer = () => {
     } = validateFullQuestion(currentQuestion);
 
     if (isCurrentQuestionValid) {
-      if (currentQuestionIndex < 13) {
+      if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       }
     } else {
@@ -71,8 +62,6 @@ const ExamCompMainContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validate current question before submission
     const currentQuestion = questions[currentQuestionIndex];
     const {
       isCurrentQuestionValid,
@@ -83,7 +72,6 @@ const ExamCompMainContainer = () => {
     const subjectNameError = emptyValidation(examDetails.subjectName);
     const descriptionError = emptyValidation(examDetails.description);
 
-    // Validate all questions
     let areAllQuestionsValid = true;
     const allQuestionsErrors = questions.map((question, index) => {
       const {
@@ -105,11 +93,43 @@ const ExamCompMainContainer = () => {
     });
 
     if (!subjectNameError && !descriptionError && areAllQuestionsValid) {
-      // Submit the form if all validations pass
-      console.log("Exam Details:", examDetails);
-      console.log("Questions:", questions);
+      // dispatch(
+      //   fetchDataThunkFunc({
+      //     url: END_POINTS.CREATE_EXAM,
+      //     method: "Post",
+      //     bodyData: {
+      //       subjectName: examDetails?.subjectName.trim(),
+      //       questions: questions.map((item) => {
+      //         return {
+      //           question: item.question,
+      //           answer: item.answer,
+      //           options: item.options,
+      //         };
+      //       }),
+      //       notes: [examDetails?.description.trim()],
+      //     },
+      //     isToastMessage: true,
+      //   })
+      // );
+      dispatch(
+        addExamFormData({
+          name: action,
+          data: {
+            subjectName: examDetails?.subjectName.trim(),
+            questions: questions.map((item) => {
+              return {
+                question: item.question,
+                answer: item.answer,
+                options: item.options,
+              };
+            }),
+            notes: [examDetails?.description.trim()],
+          },
+        })
+      );
+      setQuestions(QUESTIONS_INIT_ARRAY);
+      setExamDetails(EXAMDETAILS_INIT_ARRAY);
     } else {
-      // Set errors if validation fails
       setExamDetails({
         ...examDetails,
         subjectNameError,
