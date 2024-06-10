@@ -16,6 +16,7 @@ import NewPassword from "../presentation/user/NewPassword";
 import ResetPassword from "../presentation/user/ResetPassword";
 import ActiveStudents from "../presentation/teacher/ActiveStudents";
 import CreateExam from "../presentation/teacher/CreateExam";
+import EditExam from "../presentation/teacher/EditExam";
 
 const studentRoutes = [
   {
@@ -45,6 +46,10 @@ const studentRoutes = [
           {
             path: "teacher/create-exam",
             element: <CreateExam />,
+          },
+          {
+            path: "teacher/edit-exam/*",
+            element: <EditExam />,
           },
         ],
       },

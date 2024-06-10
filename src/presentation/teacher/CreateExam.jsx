@@ -4,8 +4,10 @@ import {
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
 } from "../../description/examForm.description";
+import createExamContainer from "../../container/teacher/createExam.container";
 
 const CreateExam = () => {
+  const {} = createExamContainer();
   return (
     <>
       <EDExamCompMain

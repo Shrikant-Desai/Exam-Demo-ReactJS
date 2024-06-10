@@ -93,24 +93,6 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
     });
 
     if (!subjectNameError && !descriptionError && areAllQuestionsValid) {
-      // dispatch(
-      //   fetchDataThunkFunc({
-      //     url: END_POINTS.CREATE_EXAM,
-      //     method: "Post",
-      //     bodyData: {
-      //       subjectName: examDetails?.subjectName.trim(),
-      //       questions: questions.map((item) => {
-      //         return {
-      //           question: item.question,
-      //           answer: item.answer,
-      //           options: item.options,
-      //         };
-      //       }),
-      //       notes: [examDetails?.description.trim()],
-      //     },
-      //     isToastMessage: true,
-      //   })
-      // );
       dispatch(
         addExamFormData({
           name: action,

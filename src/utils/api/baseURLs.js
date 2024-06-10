@@ -5,7 +5,7 @@ export const END_POINTS = {
   GET_SINGLE_STUDENTS: "dashboard/Teachers/viewStudentDetail?id=",
   CREATE_EXAM: "dashboard/Teachers/Exam",
   VIEW_ALL_EXAM: "dashboard/Teachers/viewExam",
-  VIEW_SINGLE_EXAM: "dashboard/Teachers/viewExam?id=",
+  VIEW_SINGLE_EXAM: "dashboard/Teachers/examDetail?id=",
   EDIT_EXAM: "dashboard/Teachers/editExam?id=",
   DELETE_EXAM: "dashboard/Teachers/deleteExam?id=",
   ALL_EXAMS: "student/studentExam",

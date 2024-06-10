@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const examFormSlice = createSlice({
-  name: "DynamicFormData",
+  name: "ExamFormSlice",
   initialState: {},
   reducers: {
     addExamFormData: (state, action) => {
       return { ...state, [action?.payload?.name]: action.payload.data };
     },
 
-    deleteData: (state, action) => {
+    deleteExamFormData: (state, action) => {
       return {};
     },
   },
 });
 
-export const { addExamFormData, deleteData } = examFormSlice.actions;
+export const { addExamFormData, deleteExamFormData } = examFormSlice.actions;
 export default examFormSlice.reducer;

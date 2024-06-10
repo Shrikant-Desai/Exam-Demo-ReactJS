@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { useNavigate } from "react-router-dom";
 
 const HomepageTContainer = () => {
   const currentLoginUser = JSON.parse(localStorage.getItem("loginDetails"));
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
@@ -18,6 +20,7 @@ const HomepageTContainer = () => {
     );
   }, []);
   const handleEdit = (id) => {
+    navigate(`/dashboard/teacher/edit-exam/?id=${id}`);
     console.log("test id", id);
   };
 
