@@ -1,7 +1,7 @@
 import React from "react";
 import GenerateFormElements from "./GenerateFormElements";
-import { EDErrorDiv } from "../../shared/EDErrorDiv";
-import EDGrid from "../../shared/EDGrid";
+import { EDErrorDiv } from "../EDErrorDiv";
+import EDGrid from "../EDGrid";
 
 const GenerateForm = ({
   formArr,

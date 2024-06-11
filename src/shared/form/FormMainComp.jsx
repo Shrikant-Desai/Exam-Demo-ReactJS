@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import GenerateForm from "./GenerateForm";
 import { FORM_DATA, FORM_ERRORS } from "../../utils/constant";
 import { getStateValue } from "../../utils/javascript";
-import EDTypography from "../../shared/EDTypography";
-import EDStack from "../../shared/EDStack";
-import EDBox from "../../shared/EDBox";
-import EDGrid from "../../shared/EDGrid";
+import EDTypography from "../EDTypography";
+import EDStack from "../EDStack";
+import EDBox from "../EDBox";
+import EDGrid from "../EDGrid";
 import {
   createFormState,
   deleteFormState,

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import EDStack from "../../shared/EDStack";
 import signUpContainer from "../../container/user/signup.container";
 import { signUpFormArray } from "../../description/formsData.description";
-import FormMainComp from "../form/FormMainComp";
+import FormMainComp from "../../shared/form/FormMainComp";
 
 const SignUp = () => {
   const {

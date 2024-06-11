@@ -1,6 +1,6 @@
 import React from "react";
 import { signInFormArray } from "../../description/formsData.description";
-import FormMainComp from "../form/FormMainComp";
+import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import EDGrid from "../../shared/EDGrid";

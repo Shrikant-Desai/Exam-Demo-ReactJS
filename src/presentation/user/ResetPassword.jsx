@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormMainComp from "../form/FormMainComp";
+import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { resetPasswordArray } from "../../description/formsData.description";
 

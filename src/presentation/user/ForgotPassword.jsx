@@ -1,6 +1,6 @@
 import React from "react";
 import { forgotPasswordForm } from "../../description/formsData.description";
-import FormMainComp from "../form/FormMainComp";
+import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import forgotPasswordContainer from "../../container/user/forgotPassword.container";

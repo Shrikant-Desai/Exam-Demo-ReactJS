@@ -1,15 +1,15 @@
 import React from "react";
 
 import FormMainComp from "./FormMainComp";
-import { EDLabel } from "../../shared/EDLabel";
-import { EDInput } from "../../shared/EDInput";
-import { EDRadio } from "../../shared/EDRadioButton";
-import { EDCheckbox } from "../../shared/EDCheckbox";
-import { EDButton } from "../../shared/EDButton";
+import { EDLabel } from "../EDLabel";
+import { EDInput } from "../EDInput";
+import { EDRadio } from "../EDRadioButton";
+import { EDCheckbox } from "../EDCheckbox";
+import { EDButton } from "../EDButton";
 import { FormControl, RadioGroup } from "@mui/material";
-import EDStack from "../../shared/EDStack";
-import EDBox from "../../shared/EDBox";
-import EDSelect from "../../shared/EDSelect";
+import EDStack from "../EDStack";
+import EDBox from "../EDBox";
+import EDSelect from "../EDSelect";
 
 const GenerateFormElements = ({
   item,
