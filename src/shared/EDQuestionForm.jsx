@@ -30,6 +30,13 @@ export const EDQuestionForm = ({
             label: SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.labelProps,
           },
           inputProps: {
+            disabled: isGiveExam ? true : false,
+            sx: {
+              width: "100%",
+              "& .MuiInputBase-input.Mui-disabled": {
+                WebkitTextFillColor: "#000000",
+              },
+            },
             ...SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.inputProps,
             value: questionObj?.question,
             handleChange: handleInputChange,
