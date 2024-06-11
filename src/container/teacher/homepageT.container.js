@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
-import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
+import { API_DELETE, API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
+import { Slide } from "react-toastify";
 
 const HomepageTContainer = () => {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [deleteID, setDeleteID] = React.useState(false);
   const currentLoginUser = JSON.parse(
     localStorage.getItem(LOCAL_LOGIN_DETAILS)
   );
@@ -30,10 +33,34 @@ const HomepageTContainer = () => {
     });
   };
 
-  const handleDelete = (id) => {
-    console.log("test id", id);
+  const handleDelete = () => {
+    setIsDialogOpen(false);
+    const response = dispatch(
+      fetchDataThunkFunc({
+        url: `${END_POINTS.DELETE_EXAM}${deleteID}`,
+        method: API_DELETE,
+        isToastMessage: true,
+      })
+    );
+    response.then(() => {
+      dispatch(
+        fetchDataThunkFunc({
+          url: END_POINTS.VIEW_ALL_EXAM,
+          method: API_GET,
+          isToastMessage: false,
+        })
+      );
+    });
   };
 
+  const handleDialogClick = (id) => {
+    setIsDialogOpen(true);
+    setDeleteID(id);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
@@ -81,7 +108,7 @@ const HomepageTContainer = () => {
     },
   ];
   const tableHeight = 550;
-  const tableWidth = 1000;
+  const tableWidth = "100%";
   let updatedRowArr;
   if (Array.isArray(apiData?.data?.data) && apiData?.data?.data?.length !== 0) {
     updatedRowArr = apiData?.data?.data?.map((row) => {
@@ -89,7 +116,7 @@ const HomepageTContainer = () => {
         ...row,
         action: [
           { text: "Edit", handleChange: handleEdit },
-          { text: "Delete", handleChange: handleDelete },
+          { text: "Delete", handleChange: handleDialogClick },
         ],
       };
       return row;
@@ -107,6 +134,9 @@ const HomepageTContainer = () => {
     tableWidth,
     handleSearch,
     rowsPerPageArr,
+    isDialogOpen,
+    handleDialogClose,
+    handleDelete,
   };
 };
 export default HomepageTContainer;

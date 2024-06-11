@@ -2,7 +2,8 @@ export const FORM_DATA = "Data";
 export const FORM_ERRORS = "Errors";
 export const API_STATUS_SUCCESS = 200;
 export const API_STATUS_ERROR = 500;
-export const API_STATUS_UNAUTHORIZED = 401;
+export const API_STATUS_SESSION_END = 401;
+export const API_STATUS_UNAUTHORIZED = 404;
 export const LOCAL_LOGIN_DETAILS = "loginDetails";
 export const LOCAL_AUTH_TOKEN = "authToken";
 

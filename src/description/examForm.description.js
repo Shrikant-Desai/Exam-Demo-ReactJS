@@ -17,6 +17,7 @@ export const SINGLE_QUESTION_ARRAY = {
     inputProps: {
       size: "small",
       id: "question",
+      placeholder: "Enter Question.",
       type: "text",
       name: "question",
     },

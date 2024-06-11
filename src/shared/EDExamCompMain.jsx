@@ -8,7 +8,13 @@ import examCompMainContainer from "../container/examCompMain.container";
 import EDTypography from "./EDTypography";
 import { EDErrorDiv } from "./EDErrorDiv";
 
-const EDExamCompMain = ({ examDetailsArr, questionsArr, action, formName }) => {
+const EDExamCompMain = ({
+  examDetailsArr,
+  questionsArr,
+  action,
+  formName,
+  isGiveExam,
+}) => {
   const {
     examDetails,
     questions,
@@ -60,6 +66,7 @@ const EDExamCompMain = ({ examDetailsArr, questionsArr, action, formName }) => {
                     size: "small",
                     id: "subjectName",
                     type: "text",
+                    placeholder: "Enter Subject Name",
                     name: "subjectName",
                     value: examDetails?.subjectName,
                     onChange: handleExamDetailChange,
@@ -80,6 +87,7 @@ const EDExamCompMain = ({ examDetailsArr, questionsArr, action, formName }) => {
                     id: "description",
                     type: "text",
                     name: "description",
+                    placeholder: "Enter Description",
                     value: examDetails?.description,
                     onChange: handleExamDetailChange,
                   },
@@ -93,6 +101,7 @@ const EDExamCompMain = ({ examDetailsArr, questionsArr, action, formName }) => {
                 index={currentQuestionIndex}
                 questionsArr={questions}
                 onChange={handleQuestionChange}
+                isGiveExam={isGiveExam}
               />
 
               <EDErrorDiv errorMsg={examDetails?.allQuestionValidError} />

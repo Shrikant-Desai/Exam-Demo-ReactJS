@@ -5,9 +5,9 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { QUESTIONS_INIT_ARRAY } from "../../description/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
-import { API_GET, API_PUT, API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_GET, API_POST, API_STATUS_SUCCESS } from "../../utils/constant";
 
-const EditExamContainer = () => {
+const GiveExamContainer = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,13 +19,13 @@ const EditExamContainer = () => {
   const apiData = useSelector((state) => state.fetchData);
 
   useEffect(() => {
-    if (apiData.data?.data?.questions) {
-      const updatedData = apiData.data?.data?.questions.map((item) => {
+    if (apiData.data?.data) {
+      const updatedData = apiData.data?.data?.map((item) => {
         return {
           question: item.question,
-          answer: item.answer,
+          answerIndex: "",
+          answer: "",
           options: item.options,
-          answerIndex: item.options.indexOf(item.answer),
         };
       });
       setQuestionArr(updatedData);
@@ -35,7 +35,7 @@ const EditExamContainer = () => {
   useEffect(() => {
     dispatch(
       fetchDataThunkFunc({
-        url: `${END_POINTS.VIEW_SINGLE_EXAM}${id}`,
+        url: `${END_POINTS.EXAM_PAPER}${id}`,
         method: API_GET,
         isToastMessage: false,
       })
@@ -43,23 +43,29 @@ const EditExamContainer = () => {
   }, []);
 
   useEffect(() => {
-    if (examFormData?.editExam) {
+    if (examFormData?.giveExam) {
+      const tempDataArray = examFormData?.giveExam?.questions?.map((item) => {
+        return {
+          question: item.question,
+          answer: item.answer,
+        };
+      });
       const response = dispatch(
         fetchDataThunkFunc({
-          url: `${END_POINTS.EDIT_EXAM}${id}`,
-          method: API_PUT,
-          bodyData: examFormData?.editExam,
+          url: `${END_POINTS.GIVE_EXAM}${id}`,
+          method: API_POST,
+          bodyData: tempDataArray,
           isToastMessage: true,
         })
       );
       dispatch(deleteExamFormData());
       response.then(() => {
         if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
-          navigate("/dashboard/teacher");
+          navigate("/dashboard/student");
         }
       });
     }
-  }, [examFormData?.editExam]);
+  }, [examFormData?.giveExam]);
 
   const examDetailsObject = {
     subjectName: data?.subjectName,
@@ -70,4 +76,4 @@ const EditExamContainer = () => {
   return { examDetailsObject, questionArr, apiData };
 };
 
-export default EditExamContainer;
+export default GiveExamContainer;

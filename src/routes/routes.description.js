@@ -8,7 +8,6 @@ import HomePage from "../presentation/user/HomePage";
 import AllStudents from "../presentation/teacher/AllStudents";
 import HomePageS from "../presentation/student/HomepageS";
 import ProfileS from "../presentation/student/ProfileS";
-import AllExams from "../presentation/student/AllExams";
 import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
@@ -17,6 +16,7 @@ import ResetPassword from "../presentation/user/ResetPassword";
 import ActiveStudents from "../presentation/teacher/ActiveStudents";
 import CreateExam from "../presentation/teacher/CreateExam";
 import EditExam from "../presentation/teacher/EditExam";
+import GiveExam from "../presentation/student/GiveExam";
 
 const studentRoutes = [
   {
@@ -66,8 +66,8 @@ const studentRoutes = [
           },
 
           {
-            path: "student/all-exams",
-            element: <AllExams />,
+            path: "student/give-exam/*",
+            element: <GiveExam />,
           },
         ],
       },

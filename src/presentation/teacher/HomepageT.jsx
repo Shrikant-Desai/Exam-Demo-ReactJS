@@ -2,7 +2,14 @@ import React from "react";
 import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
 import EDTypography from "../../shared/EDTypography";
-import { Divider } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Divider,
+  Slide,
+} from "@mui/material";
 import homepageTContainer from "../../container/teacher/homepageT.container";
 import EDTable from "../../shared/EDTable";
 import { API_STATUS_SUCCESS } from "../../utils/constant";
@@ -19,6 +26,10 @@ const HomepageT = () => {
     handleSearch,
     tableWidth,
     rowsPerPageArr,
+
+    isDialogOpen,
+    handleDialogClose,
+    handleDelete,
   } = homepageTContainer();
 
   return (
@@ -74,6 +85,19 @@ const HomepageT = () => {
           )}
         </EDStack>
       </EDBox>
+      <Dialog
+        open={isDialogOpen}
+        keepMounted
+        onClose={handleDialogClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Please confirm to delete this exam ?"}</DialogTitle>
+
+        <DialogActions>
+          <Button onClick={handleDialogClose}>Disagree</Button>
+          <Button onClick={handleDelete}>Agree</Button>
+        </DialogActions>
+      </Dialog>
     </EDStack>
   );
 };

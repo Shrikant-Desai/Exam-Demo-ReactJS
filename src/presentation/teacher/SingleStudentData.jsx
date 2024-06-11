@@ -31,7 +31,8 @@ const SingleStudentData = () => {
         >
           {apiData?.loading ? (
             <EDTableSkeleton width={800} />
-          ) : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
+          ) : apiData?.data &&
+            apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
             <EDTypography value="Session expired please login." variant="h5" />
           ) : (
             <>

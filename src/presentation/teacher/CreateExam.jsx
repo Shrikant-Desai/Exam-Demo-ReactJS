@@ -5,18 +5,30 @@ import {
   QUESTIONS_INIT_ARRAY,
 } from "../../description/examForm.description";
 import createExamContainer from "../../container/teacher/createExam.container";
+import { EDButton } from "../../shared/EDButton";
+import EDGrid from "../../shared/EDGrid";
 
 const CreateExam = () => {
-  const {} = createExamContainer();
+  const { handleClickToPrevRoute } = createExamContainer();
   return (
-    <>
-      <EDExamCompMain
-        examDetailsArr={EXAMDETAILS_INIT_ARRAY}
-        questionsArr={QUESTIONS_INIT_ARRAY}
-        action="createExam"
-        formName="Create Exam"
-      />
-    </>
+    <EDGrid container direction="row">
+      <EDGrid item sx={{ ml: 3 }} xs={4} sm={3} md={2}>
+        <EDButton
+          size="medium"
+          handleChange={handleClickToPrevRoute}
+          value="Go Back"
+          variant="contained"
+        />
+      </EDGrid>
+      <EDGrid item xs={12}>
+        <EDExamCompMain
+          examDetailsArr={EXAMDETAILS_INIT_ARRAY}
+          questionsArr={QUESTIONS_INIT_ARRAY}
+          action="createExam"
+          formName="Create Exam"
+        />
+      </EDGrid>
+    </EDGrid>
   );
 };
 

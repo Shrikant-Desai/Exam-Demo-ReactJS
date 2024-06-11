@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchDataThunkFunc } from "../../utils/api/fetchData";
+import { fetchDataThunkFunc, source } from "../../utils/api/fetchData";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "../../utils/api/baseURLs";
@@ -22,6 +22,13 @@ const SingleStudentContainer = () => {
       })
     );
   }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("Successfully unmounted");
+  //     source.cancel("Active Student Component got unmounted");
+  //   };
+  // });
+
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };

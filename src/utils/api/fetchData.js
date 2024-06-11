@@ -3,12 +3,13 @@ import { EXAM_DEMO_BASE_ENDPOINT } from "./baseURLs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { showAPIToastMessage } from "../javascript";
 import {
-  API_STATUS_UNAUTHORIZED,
+  API_STATUS_SESSION_END,
   LOCAL_AUTH_TOKEN,
   LOCAL_LOGIN_DETAILS,
 } from "../constant";
 import { Navigate } from "react-router-dom";
 
+export const source = axios.CancelToken.source();
 const apiInstance = axios.create({
   baseURL: EXAM_DEMO_BASE_ENDPOINT,
   headers: {
@@ -21,6 +22,7 @@ apiInstance.interceptors.request.use(
     const token = JSON.parse(localStorage.getItem(LOCAL_AUTH_TOKEN));
     if (token) {
       config.headers["access-token"] = token;
+      config.cancelToken = source.token;
     }
     return config;
   },
@@ -43,15 +45,16 @@ export const fetchDataThunkFunc = createAsyncThunk(
       if (isToastMessage) {
         showAPIToastMessage(response);
       }
-      if (response.data.statusCode === API_STATUS_UNAUTHORIZED) {
+      if (response.data.statusCode === API_STATUS_SESSION_END) {
+        console.log("test");
         localStorage.removeItem(LOCAL_AUTH_TOKEN);
         localStorage.removeItem(LOCAL_LOGIN_DETAILS);
         showAPIToastMessage(response);
-        return <Navigate to={"/signin"} />;
+        <Navigate to={"/signin"} />;
       }
       return response;
     } catch (error) {
-      console.log(error.AxiosError);
+      console.log("errors in fetch", error.message);
     }
   }
 );

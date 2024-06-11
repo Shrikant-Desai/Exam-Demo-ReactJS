@@ -208,7 +208,6 @@ export const validateFullQuestion = (question) => {
     isCurrentQuestionValid = false;
   }
 
-  // console.log(errObjectForOptions, questionError, answerError);
   return {
     isCurrentQuestionValid,
     errObjectForOptions,

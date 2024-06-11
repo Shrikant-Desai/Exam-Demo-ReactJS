@@ -12,6 +12,7 @@ export const EDQuestionForm = ({
   index,
   onChange,
   questionsArr,
+  isGiveExam,
 }) => {
   const {
     handleInputChange,
@@ -58,8 +59,14 @@ export const EDQuestionForm = ({
                       containerDesign: containerDesign,
                       labelProps: item.labelProps,
                       inputProps: {
+                        disabled: isGiveExam ? true : false,
                         ...item.inputProps,
-                        sx: { width: "100%" },
+                        sx: {
+                          width: "100%",
+                          "& .MuiInputBase-input.Mui-disabled": {
+                            WebkitTextFillColor: "#000000",
+                          },
+                        },
                         value: questionObj?.options?.[optionIndex],
                         handleChange: (e) => handleAddOptions(e, optionIndex),
                       },
