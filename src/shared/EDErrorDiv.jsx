@@ -1,19 +1,12 @@
-import { Stack, Typography } from "@mui/material";
-import { styled } from "@mui/system";
+import { Typography } from "@mui/material";
 import React from "react";
 
-export const EDErrorDiv = ({ formErrors, item }) => {
-  const CustomDiv = styled(Typography)({
-    color: "red",
-  });
+export const EDErrorDiv = ({ errorMsg }) => {
   return (
-    <Stack
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-      spacing={1}
+    <Typography
+      sx={{ color: "red", height: { xl: 25, lg: 40, md: 50, sm: 50, xs: 55 } }}
     >
-      <CustomDiv>{formErrors?.[`${item?.fieldName}Error`]}</CustomDiv>
-    </Stack>
+      {errorMsg || ""}
+    </Typography>
   );
 };

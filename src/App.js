@@ -1,11 +1,18 @@
+import { Provider } from "react-redux";
 import "./App.css";
-import Login from "./presentation/pages/Login";
+import { store } from "./redux/store";
+import { BrowserRouter as Router } from "react-router-dom";
+import AllRoutes from "./routes";
 
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <Provider store={store}>
+      <Router>
+        <AllRoutes />
+      </Router>
+      <ToastContainer />
+    </Provider>
   );
 }
 
