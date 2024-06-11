@@ -24,7 +24,6 @@ const HomepageSContainer = () => {
   }, []);
   const handleGiveExam = (id) => {
     const data = apiData?.data?.data?.filter((data) => data?.["_id"] === id);
-
     navigate(`/dashboard/student/give-exam/?id=${id}`, {
       state: JSON.stringify(data),
     });
@@ -71,7 +70,7 @@ const HomepageSContainer = () => {
       align: "center",
     },
   ];
-  const tableHeight = 550;
+  const tableHeight = "100%";
   const tableWidth = "100%";
   let updatedRowArr;
   if (Array.isArray(apiData?.data?.data) && apiData?.data?.data?.length !== 0) {

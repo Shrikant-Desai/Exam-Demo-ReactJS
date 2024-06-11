@@ -50,9 +50,7 @@ const DashboardContainer = () => {
   };
 
   const studentDashboardDes = {
-    beforeDiv: [
-      { text: "All Exams", icon: <EditNote />, navigate: "student/all-exams" },
-    ],
+    beforeDiv: [{ text: "All Exams", icon: <EditNote />, navigate: "student" }],
     afterDiv: [
       { text: "Profile", icon: <AccountCircle />, navigate: "student/profile" },
     ],
