@@ -1,6 +1,7 @@
 import React from "react";
 import EDExamCompMain from "../../shared/EDExamCompMain";
 import {
+  ACTION,
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
 } from "../../description/examForm.description";
@@ -24,7 +25,7 @@ const CreateExam = () => {
         <EDExamCompMain
           examDetailsArr={EXAMDETAILS_INIT_ARRAY}
           questionsArr={QUESTIONS_INIT_ARRAY}
-          action="createExam"
+          action={ACTION.CREATE_EXAM}
           formName="Create Exam"
         />
       </EDGrid>

@@ -7,7 +7,6 @@ import {
   LOCAL_AUTH_TOKEN,
   LOCAL_LOGIN_DETAILS,
 } from "../constant";
-import { Navigate } from "react-router-dom";
 
 export const source = axios.CancelToken.source();
 const apiInstance = axios.create({
@@ -46,11 +45,9 @@ export const fetchDataThunkFunc = createAsyncThunk(
         showAPIToastMessage(response);
       }
       if (response.data.statusCode === API_STATUS_SESSION_END) {
-        console.log("test");
         localStorage.removeItem(LOCAL_AUTH_TOKEN);
         localStorage.removeItem(LOCAL_LOGIN_DETAILS);
         showAPIToastMessage(response);
-        <Navigate to={"/signin"} />;
       }
       return response;
     } catch (error) {

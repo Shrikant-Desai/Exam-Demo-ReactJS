@@ -7,6 +7,10 @@ import { EDButton } from "./EDButton";
 import examCompMainContainer from "../container/examCompMain.container";
 import EDTypography from "./EDTypography";
 import { EDErrorDiv } from "./EDErrorDiv";
+import {
+  DESC_FIELD_DATA,
+  SUBJECT_FIELD_DATA,
+} from "../description/examForm.description";
 
 const EDExamCompMain = ({
   examDetailsArr,
@@ -58,16 +62,10 @@ const EDExamCompMain = ({
               <EDTypography variant={"h4"} align="center" value={formName} />
               <EDLabeledInput
                 {...{
-                  labelProps: {
-                    htmlFor: "subjectName",
-                    value: "Subject Name :",
-                  },
+                  labelProps: { ...SUBJECT_FIELD_DATA.LABEL_PROPS },
                   inputProps: {
-                    size: "small",
-                    id: "subjectName",
-                    type: "text",
-                    placeholder: "Enter Subject Name",
-                    name: "subjectName",
+                    ...SUBJECT_FIELD_DATA.INPUT_PROPS,
+                    disabled: isGiveExam ? true : false,
                     value: examDetails?.subjectName,
                     onChange: handleExamDetailChange,
                   },
@@ -75,19 +73,12 @@ const EDExamCompMain = ({
               />
               <EDErrorDiv errorMsg={examDetails?.subjectNameError} />
 
-              <br />
               <EDLabeledInput
                 {...{
-                  labelProps: {
-                    htmlFor: "description",
-                    value: "Description :",
-                  },
+                  labelProps: { ...DESC_FIELD_DATA.LABEL_PROPS },
                   inputProps: {
-                    size: "small",
-                    id: "description",
-                    type: "text",
-                    name: "description",
-                    placeholder: "Enter Description",
+                    ...DESC_FIELD_DATA.INPUT_PROPS,
+                    disabled: isGiveExam ? true : false,
                     value: examDetails?.description,
                     onChange: handleExamDetailChange,
                   },

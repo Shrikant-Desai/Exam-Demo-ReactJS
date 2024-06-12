@@ -1,21 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
-import { QUESTIONS_INIT_ARRAY } from "../../description/examForm.description";
+import {
+  EXAMDETAILS_INIT_ARRAY,
+  QUESTIONS_INIT_ARRAY,
+} from "../../description/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_POST, API_STATUS_SUCCESS } from "../../utils/constant";
 
 const GiveExamContainer = () => {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = searchParams.get("id");
   const location = useLocation();
-  const data = JSON.parse(location.state)?.[0];
+  const data = JSON.parse(location.state);
+
   const examFormData = useSelector((state) => state.examFormData);
-  const [questionArr, setQuestionArr] = React.useState(QUESTIONS_INIT_ARRAY);
+  const [examDetailsObject, setExamDetailsObject] = useState(
+    EXAMDETAILS_INIT_ARRAY
+  );
+  const [questionArr, setQuestionArr] = useState(QUESTIONS_INIT_ARRAY);
   const apiData = useSelector((state) => state.fetchData);
 
   useEffect(() => {
@@ -28,10 +36,27 @@ const GiveExamContainer = () => {
           options: item.options,
         };
       });
+
       setQuestionArr(updatedData);
     }
   }, [apiData]);
+  useEffect(() => {
+    if (data) {
+      setExamDetailsObject({
+        subjectName: data?.[0]?.subjectName,
+        description: data?.[0]?.notes?.[0],
+        allQuestionValidError: "",
+      });
+    }
+  }, []);
 
+  const handleDialogClick = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
   useEffect(() => {
     dispatch(
       fetchDataThunkFunc({
@@ -67,13 +92,20 @@ const GiveExamContainer = () => {
     }
   }, [examFormData?.giveExam]);
 
-  const examDetailsObject = {
-    subjectName: data?.subjectName,
-    description: data?.notes?.[0],
-    allQuestionValidError: "",
+  const handleClickToPrevRoute = () => {
+    navigate(-1);
   };
 
-  return { examDetailsObject, questionArr, apiData };
+  return {
+    examDetailsObject,
+    questionArr,
+    apiData,
+    data,
+    isDialogOpen,
+    handleDialogClose,
+    handleDialogClick,
+    handleClickToPrevRoute,
+  };
 };
 
 export default GiveExamContainer;

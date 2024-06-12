@@ -25,7 +25,6 @@ const FormMainComp = ({
 }) => {
   const dispatch = useDispatch();
   const pathArr = path.split("/");
-
   const mainForm = useSelector((state) => state.dynamicForm);
   const mainFormData = mainForm?.[FORM_DATA];
   const mainFormErrors = mainForm?.[FORM_ERRORS];

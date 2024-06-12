@@ -71,12 +71,16 @@ const HomepageSContainer = () => {
     },
   ];
   const tableHeight = "100%";
-  const tableWidth = "100%";
+  const tableWidth = 1000;
   let updatedRowArr;
   if (Array.isArray(apiData?.data?.data) && apiData?.data?.data?.length !== 0) {
     updatedRowArr = apiData?.data?.data?.map((row) => {
       row = {
         ...row,
+        notes: row.notes?.reduce((acc, note) => {
+          acc = acc.length < 2 ? [...acc, note] : acc;
+          return acc;
+        }, []),
         action: [{ text: "Give Exam", handleChange: handleGiveExam }],
       };
       return row;

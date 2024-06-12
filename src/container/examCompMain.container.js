@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { validateFullQuestion, emptyValidation } from "../utils/validation";
 import {
+  ACTION,
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
 } from "../description/examForm.description";
@@ -96,13 +97,16 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
         answerError,
       };
     });
-
-    if (!subjectNameError && !descriptionError && areAllQuestionsValid) {
+    const isErrorInForm =
+      action === ACTION.GIVE_EXAM
+        ? areAllQuestionsValid
+        : !subjectNameError && !descriptionError && areAllQuestionsValid;
+    if (isErrorInForm) {
       dispatch(
         addExamFormData({
           name: action,
           data: {
-            subjectName: examDetails?.subjectName.trim(),
+            subjectName: examDetails?.subjectName?.trim(),
             questions: questions.map((item) => {
               return {
                 question: item.question,
@@ -110,7 +114,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
                 options: item.options,
               };
             }),
-            notes: [examDetails?.description.trim()],
+            notes: [examDetails?.description?.trim()],
           },
         })
       );

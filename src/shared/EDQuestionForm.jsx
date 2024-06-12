@@ -27,7 +27,7 @@ export const EDQuestionForm = ({
       <EDLabeledInput
         {...{
           labelProps: {
-            label: SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.labelProps,
+            label: SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.LABEL_PROPS,
           },
           inputProps: {
             disabled: isGiveExam ? true : false,
@@ -37,7 +37,7 @@ export const EDQuestionForm = ({
                 WebkitTextFillColor: "#000000",
               },
             },
-            ...SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.inputProps,
+            ...SINGLE_QUESTION_ARRAY.QUESTION_DESCRIPTION.INPUT_PROPS,
             value: questionObj?.question,
             handleChange: handleInputChange,
           },

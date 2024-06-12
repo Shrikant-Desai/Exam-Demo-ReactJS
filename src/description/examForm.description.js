@@ -13,8 +13,8 @@ export const EXAMDETAILS_INIT_ARRAY = {
 
 export const SINGLE_QUESTION_ARRAY = {
   QUESTION_DESCRIPTION: {
-    labelProps: { htmlFor: "question", value: "Question :" },
-    inputProps: {
+    LABEL_PROPS: { htmlFor: "question", value: "Question :" },
+    INPUT_PROPS: {
       size: "small",
       id: "question",
       placeholder: "Enter Question.",
@@ -72,4 +72,49 @@ export const SINGLE_QUESTION_ARRAY = {
       },
     },
   ],
+};
+
+export const SUBJECT_FIELD_DATA = {
+  LABEL_PROPS: {
+    htmlFor: "subjectName",
+    value: "Subject Name :",
+  },
+  INPUT_PROPS: {
+    size: "small",
+    id: "subjectName",
+    type: "text",
+    sx: {
+      width: "100%",
+      "& .MuiInputBase-input.Mui-disabled": {
+        WebkitTextFillColor: "#000000",
+      },
+    },
+    placeholder: "Enter Subject Name",
+    name: "subjectName",
+  },
+};
+
+export const ACTION = {
+  GIVE_EXAM: "giveExam",
+  CREATE_EXAM: "createExam",
+  EDIT_EXAM: "editExam",
+};
+export const DESC_FIELD_DATA = {
+  LABEL_PROPS: {
+    htmlFor: "description",
+    value: "Description :",
+  },
+  INPUT_PROPS: {
+    size: "small",
+    id: "description",
+    type: "text",
+    sx: {
+      width: "100%",
+      "& .MuiInputBase-input.Mui-disabled": {
+        WebkitTextFillColor: "#000000",
+      },
+    },
+    name: "description",
+    placeholder: "Enter Description",
+  },
 };
