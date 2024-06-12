@@ -1,13 +1,12 @@
 import React from "react";
 import EDStack from "../../shared/EDStack";
-import profilePageSContainer from "../../container/student/profilePageS.container";
 import EDGrid from "../../shared/EDGrid";
 import EDTypography from "../../shared/EDTypography";
 import { EDButton } from "../../shared/EDButton";
+import profilePageTContainer from "../../container/teacher/profileT.container";
 
-const ProfileS = () => {
-  const { apiData, profileData, handleResetPassword, handleChangeUserName } =
-    profilePageSContainer();
+const ProfileT = () => {
+  const { apiData, profileData, handleResetPassword } = profilePageTContainer();
 
   if (!apiData?.loading && profileData) {
     return (
@@ -37,12 +36,12 @@ const ProfileS = () => {
                       value={key === "_id" ? "id" : key}
                       variant="h6"
                     />
-                    <EDTypography value={` : ${value} `} variant="h6" />
+                    <EDTypography value={` : ${value}`} variant="h6" />
                   </EDStack>
                 );
               })}
             </EDGrid>
-            <EDButton value="Change Name" handleChange={handleChangeUserName} />
+
             <EDButton
               value="Reset Password"
               handleChange={handleResetPassword}
@@ -54,4 +53,4 @@ const ProfileS = () => {
   }
 };
 
-export default ProfileS;
+export default ProfileT;

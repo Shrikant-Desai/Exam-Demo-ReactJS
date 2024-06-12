@@ -21,6 +21,7 @@ export const USER_FORMS = {
   NEW_PASSWORD_PATH: "NewPassword",
   LOGIN_PATH: "SignInForm",
   SIGNUP_PATH: "Signup",
+  EDIT_PROFILE_PATH: "EditProfile",
 };
 
 export const ROLES = {

@@ -11,9 +11,11 @@ import {
   LOCAL_LOGIN_DETAILS,
   USER_FORMS,
 } from "../../utils/constant";
+
 const ResetPasswordContainer = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const isLoggedIn = !!localStorage.getItem(LOCAL_LOGIN_DETAILS);
     isLoggedIn ? setIsLogin(true) : navigate("/signin");

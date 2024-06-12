@@ -17,6 +17,8 @@ import ActiveStudents from "../presentation/teacher/ActiveStudents";
 import CreateExam from "../presentation/teacher/CreateExam";
 import EditExam from "../presentation/teacher/EditExam";
 import GiveExam from "../presentation/student/GiveExam";
+import EditProfile from "../presentation/student/EditProfile";
+import ProfileT from "../presentation/teacher/ProfileT";
 
 const studentRoutes = [
   {
@@ -51,6 +53,10 @@ const studentRoutes = [
             path: "teacher/edit-exam/*",
             element: <EditExam />,
           },
+          {
+            path: "teacher/profile",
+            element: <ProfileT />,
+          },
         ],
       },
       {
@@ -63,6 +69,10 @@ const studentRoutes = [
           {
             path: "student/profile",
             element: <ProfileS />,
+          },
+          {
+            path: "student/edit-student",
+            element: <EditProfile />,
           },
 
           {

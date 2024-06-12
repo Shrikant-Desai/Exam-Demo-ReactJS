@@ -46,7 +46,9 @@ const DashboardContainer = () => {
         navigate: "teacher/active-students",
       },
     ],
-    afterDiv: [],
+    afterDiv: [
+      { text: "Profile", icon: <AccountCircle />, navigate: "teacher/profile" },
+    ],
   };
 
   const studentDashboardDes = {

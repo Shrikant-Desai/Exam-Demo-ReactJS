@@ -301,7 +301,7 @@ export const signInFormArray = [
   // },
 ];
 
-export const forgotPasswordForm = [
+export const forgotPasswordFormArray = [
   {
     type: "labeledInput",
     fieldName: "email",
@@ -354,6 +354,61 @@ export const forgotPasswordForm = [
 
     variant: "contained",
     value: "Send Link to Email",
+    rulesData: [],
+    // endIcon: <SendIcon />,
+  },
+];
+export const editProfileFormArray = [
+  {
+    type: "labeledInput",
+    fieldName: "name",
+    labelProps: {
+      value: "Name",
+      className: "form-group",
+    },
+    inputProps: {
+      InputProps: {
+        startAdornment: (
+          <InputAdornment position="start">
+            <Person />
+          </InputAdornment>
+        ),
+      },
+      id: "name",
+      name: "name",
+      type: "text",
+      placeholder: "Enter name",
+    },
+    gridValues: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    },
+
+    isRequired: true,
+    rulesData: [
+      {
+        regEx: NAME_ADVANCE_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.NAME.SPACE_ERROR,
+      },
+    ],
+  },
+
+  {
+    identifier: "button",
+    type: "submit",
+    gridValues: {
+      xs: 12,
+      sm: 6,
+      md: 6,
+      lg: 6,
+      xl: 6,
+    },
+
+    variant: "contained",
+    value: "Submit",
     rulesData: [],
     // endIcon: <SendIcon />,
   },

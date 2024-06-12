@@ -1,11 +1,11 @@
 import React from "react";
-import { forgotPasswordFormArray } from "../../description/formsData.description";
+import { editProfileFormArray } from "../../description/formsData.description";
 import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
-import forgotPasswordContainer from "../../container/user/forgotPassword.container";
+import editProfileContainer from "../../container/student/editProfile.container";
 
-const ForgotPassword = () => {
+const EditProfile = () => {
   const {
     handleChange,
     handleSubmit,
@@ -13,21 +13,14 @@ const ForgotPassword = () => {
     sxObject,
     path,
     isAPILoading,
-  } = forgotPasswordContainer();
+  } = editProfileContainer();
 
   return (
-    <EDStack
-      sx={{
-        height: "100vh",
-      }}
-      justifyContent="center"
-      alignItems="center"
-    >
+    <EDStack justifyContent="center" alignItems="center">
       <EDStack
         sx={{
           boxShadow: 3,
           borderRadius: 3,
-          //   backgroundColor: "rgba(255, 255, 255,0.5)",
           backdropFilter: `blur(10px)`,
         }}
         direction="row"
@@ -47,14 +40,14 @@ const ForgotPassword = () => {
               resetForm,
               sxObject,
               isSubForm: false,
-              formArr: forgotPasswordFormArray,
-              formName: "Forgot Password",
+              formArr: editProfileFormArray,
+              formName: "Change Name",
               path,
               isAPILoading,
             }}
           />
           <EDStack direction="row" justifyContent="space-between">
-            <Link className="text-link" to="/signin">
+            <Link className="text-link" to={-1}>
               Go back
             </Link>
           </EDStack>
@@ -64,4 +57,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default EditProfile;

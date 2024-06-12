@@ -52,13 +52,13 @@ const ResetPassword = () => {
                 sxObject,
                 isSubForm: false,
                 formArr: resetPasswordArray,
-                formName: "Forgot Password",
+                formName: "Reset Password",
                 path,
                 isAPILoading,
               }}
             />
             <EDStack direction="row" justifyContent="space-between">
-              <Link className="text-link" to="/dashboard">
+              <Link className="text-link" to={-1}>
                 Go back
               </Link>
             </EDStack>

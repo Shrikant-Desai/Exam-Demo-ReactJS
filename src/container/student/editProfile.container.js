@@ -2,15 +2,22 @@ import { useEffect } from "react";
 import reduxFormActions from "../reduxFormActions.container";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
-import { API_POST, USER_FORMS } from "../../utils/constant";
+import {
+  API_POST,
+  API_PUT,
+  API_STATUS_SUCCESS,
+  USER_FORMS,
+} from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { useNavigate } from "react-router-dom";
 
-const ForgotPasswordContainer = () => {
+const EditProfileContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
 
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
@@ -21,16 +28,24 @@ const ForgotPasswordContainer = () => {
         return accum;
       }, {});
 
-      dispatch(
+      const response = dispatch(
         fetchDataThunkFunc({
-          url: END_POINTS.USER_FORGOT_PASSWORD,
-          method: API_POST,
+          url: END_POINTS.UPDATE_STUDENT_PROFILE,
+          method: API_PUT,
           bodyData: {
-            email: data?.email,
+            name: data?.name,
           },
           isToastMessage: true,
         })
       );
+      response.then(() => {
+        if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
+          const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
+          loginDetails.name = data?.name;
+          localStorage.setItem("loginDetails", JSON.stringify(loginDetails));
+          navigate(-1);
+        }
+      });
     }
   }, [formData]);
 
@@ -45,7 +60,6 @@ const ForgotPasswordContainer = () => {
     },
     sxFormname: {
       fontSize: "40px",
-      fontWeight: "bold",
       color: "black",
       textAlign: "center",
       marginBottom: "20px",
@@ -62,4 +76,4 @@ const ForgotPasswordContainer = () => {
   };
 };
 
-export default ForgotPasswordContainer;
+export default EditProfileContainer;
