@@ -61,7 +61,7 @@ const fetchDataSlice = createSlice({
   name: "fetchDataSlice",
   initialState: {},
   reducers: {
-    clearFetchData: (state, action) => {
+    clearFetchData: () => {
       return {};
     },
   },
