@@ -4,7 +4,6 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_DELETE, API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
-import { Slide } from "react-toastify";
 
 const HomepageTContainer = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -22,6 +21,7 @@ const HomepageTContainer = () => {
         url: END_POINTS.VIEW_ALL_EXAM,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
   }, []);
@@ -40,6 +40,7 @@ const HomepageTContainer = () => {
         url: `${END_POINTS.DELETE_EXAM}${deleteID}`,
         method: API_DELETE,
         isToastMessage: true,
+        navigate,
       })
     );
     response.then(() => {
@@ -48,6 +49,7 @@ const HomepageTContainer = () => {
           url: END_POINTS.VIEW_ALL_EXAM,
           method: API_GET,
           isToastMessage: false,
+          navigate,
         })
       );
     });

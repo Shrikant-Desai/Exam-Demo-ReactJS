@@ -63,6 +63,7 @@ const GiveExamContainer = () => {
         url: `${END_POINTS.EXAM_PAPER}${id}`,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
   }, []);
@@ -81,6 +82,7 @@ const GiveExamContainer = () => {
           method: API_POST,
           bodyData: tempDataArray,
           isToastMessage: true,
+          navigate,
         })
       );
       dispatch(deleteExamFormData());

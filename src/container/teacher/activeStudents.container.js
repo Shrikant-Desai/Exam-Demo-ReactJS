@@ -20,6 +20,7 @@ const ActiveStudentsContainer = () => {
         url: END_POINTS.GET_ACTIVE_STUDENTS,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
   }, []);

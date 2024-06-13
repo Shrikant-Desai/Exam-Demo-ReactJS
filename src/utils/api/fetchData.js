@@ -33,7 +33,7 @@ apiInstance.interceptors.request.use(
 
 export const fetchDataThunkFunc = createAsyncThunk(
   "fetchAPI",
-  async ({ url, method, bodyData, isToastMessage }) => {
+  async ({ url, method, bodyData, isToastMessage, navigate }) => {
     try {
       const response = await apiInstance({
         url: url,
@@ -48,6 +48,7 @@ export const fetchDataThunkFunc = createAsyncThunk(
         localStorage.removeItem(LOCAL_AUTH_TOKEN);
         localStorage.removeItem(LOCAL_LOGIN_DETAILS);
         showAPIToastMessage(response);
+        navigate("/signin");
       }
       return response;
     } catch (error) {

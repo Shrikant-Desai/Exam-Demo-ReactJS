@@ -38,6 +38,7 @@ const NewPasswordContainer = () => {
             ConfirmPassword: data?.confirmpassword,
           },
           isToastMessage: true,
+          navigate,
         })
       );
     }

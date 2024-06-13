@@ -27,6 +27,7 @@ export const USER_FORMS = {
 export const ROLES = {
   TEACHER: "teacher",
   STUDENT: "student",
+  USER: "user",
 };
 
 export const EXAM_FORM_ERRORS = {

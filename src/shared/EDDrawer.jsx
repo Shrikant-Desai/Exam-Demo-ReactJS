@@ -146,8 +146,8 @@ export default function EDDrawer({
             variant="h6"
             noWrap
             component="div"
-            // value={loginDetails?.role}
-            value={"Dashboard"}
+            value={loginDetails?.role}
+            // value={"Dashboard"}
           />
           <EDBox sx={{ flexGrow: 1 }} />
           <EDBox sx={{ display: { xs: "none", md: "flex" } }}>

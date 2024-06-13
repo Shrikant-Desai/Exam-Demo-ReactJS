@@ -19,6 +19,7 @@ import EditExam from "../presentation/teacher/EditExam";
 import GiveExam from "../presentation/student/GiveExam";
 import EditProfile from "../presentation/student/EditProfile";
 import ProfileT from "../presentation/teacher/ProfileT";
+import { ROLES } from "../utils/constant";
 
 const studentRoutes = [
   {
@@ -26,7 +27,7 @@ const studentRoutes = [
     element: <Dashboard />,
     children: [
       {
-        element: <ProtectedRoleRoute accessRole="teacher" />,
+        element: <ProtectedRoleRoute accessRole={ROLES.TEACHER} />,
         children: [
           {
             path: "teacher",
@@ -60,7 +61,7 @@ const studentRoutes = [
         ],
       },
       {
-        element: <ProtectedRoleRoute accessRole="student" />,
+        element: <ProtectedRoleRoute accessRole={ROLES.STUDENT} />,
         children: [
           {
             path: "student",
@@ -86,33 +87,39 @@ const studentRoutes = [
 ];
 const userRoutes = [
   {
-    element: <HomePage />,
-    path: "/",
-  },
-  {
     path: "reset-password",
     element: <ResetPassword />,
   },
   {
-    element: <LoginSidebar />,
+    element: <ProtectedRoleRoute accessRole={ROLES.USER} />,
     children: [
       {
-        path: "signin",
-        element: <SignIn />,
+        element: <HomePage />,
+        path: "/",
+      },
+
+      {
+        element: <LoginSidebar />,
+        children: [
+          {
+            path: "signin",
+            element: <SignIn />,
+          },
+          {
+            path: "signup",
+            element: <SignUp />,
+          },
+        ],
       },
       {
-        path: "signup",
-        element: <SignUp />,
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "newPassword/*",
+        element: <NewPassword />,
       },
     ],
-  },
-  {
-    path: "forgot-password",
-    element: <ForgotPassword />,
-  },
-  {
-    path: "newPassword/*",
-    element: <NewPassword />,
   },
 
   {

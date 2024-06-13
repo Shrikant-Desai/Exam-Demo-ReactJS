@@ -19,6 +19,7 @@ const HomepageSContainer = () => {
         url: END_POINTS.ALL_EXAMS,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
   }, []);
@@ -73,8 +74,9 @@ const HomepageSContainer = () => {
   const tableHeight = "100%";
   const tableWidth = 1000;
   let updatedRowArr;
-  if (Array.isArray(apiData?.data?.data) && apiData?.data?.data?.length !== 0) {
-    updatedRowArr = apiData?.data?.data?.map((row) => {
+  const data = apiData?.data?.data;
+  if (Array.isArray(data) && data?.length !== 0) {
+    updatedRowArr = data?.map((row) => {
       row = {
         ...row,
         notes: row.notes?.reduce((acc, note) => {

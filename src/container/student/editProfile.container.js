@@ -3,9 +3,9 @@ import reduxFormActions from "../reduxFormActions.container";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  API_POST,
   API_PUT,
   API_STATUS_SUCCESS,
+  LOCAL_LOGIN_DETAILS,
   USER_FORMS,
 } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
@@ -36,13 +36,19 @@ const EditProfileContainer = () => {
             name: data?.name,
           },
           isToastMessage: true,
+          navigate,
         })
       );
       response.then(() => {
         if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
-          const loginDetails = JSON.parse(localStorage.getItem("loginDetails"));
+          const loginDetails = JSON.parse(
+            localStorage.getItem(LOCAL_LOGIN_DETAILS)
+          );
           loginDetails.name = data?.name;
-          localStorage.setItem("loginDetails", JSON.stringify(loginDetails));
+          localStorage.setItem(
+            LOCAL_LOGIN_DETAILS,
+            JSON.stringify(loginDetails)
+          );
           navigate(-1);
         }
       });

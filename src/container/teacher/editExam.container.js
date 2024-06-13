@@ -38,6 +38,7 @@ const EditExamContainer = () => {
         url: `${END_POINTS.VIEW_SINGLE_EXAM}${id}`,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
   }, []);
@@ -50,6 +51,7 @@ const EditExamContainer = () => {
           method: API_PUT,
           bodyData: examFormData?.editExam,
           isToastMessage: true,
+          navigate,
         })
       );
       dispatch(deleteExamFormData());

@@ -4,6 +4,7 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import { API_POST, USER_FORMS } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
@@ -11,7 +12,7 @@ const ForgotPasswordContainer = () => {
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
   useEffect(() => {
@@ -29,6 +30,7 @@ const ForgotPasswordContainer = () => {
             email: data?.email,
           },
           isToastMessage: true,
+          navigate,
         })
       );
     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataThunkFunc, source } from "../../utils/api/fetchData";
+import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
@@ -21,6 +21,7 @@ const AllStudentDataContainer = () => {
         url: END_POINTS.GET_ALL_STUDENTS,
         method: API_GET,
         isToastMessage: false,
+        navigate,
       })
     );
     // return () => {

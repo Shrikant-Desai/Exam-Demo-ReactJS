@@ -40,6 +40,7 @@ const SignInContainer = () => {
             password: data?.password,
           },
           isToastMessage: true,
+          navigate,
         })
       );
     }

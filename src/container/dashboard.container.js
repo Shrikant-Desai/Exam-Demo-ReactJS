@@ -8,7 +8,7 @@ import {
   PeopleAltOutlined,
 } from "@mui/icons-material";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearFetchData } from "../utils/api/fetchData";
 import {
@@ -18,6 +18,7 @@ import {
 } from "../utils/constant";
 
 const DashboardContainer = () => {
+  const outlet = useOutlet();
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -81,6 +82,7 @@ const DashboardContainer = () => {
     profileMenuData,
     logoutFunction,
     isLogin,
+    outlet,
   };
 };
 

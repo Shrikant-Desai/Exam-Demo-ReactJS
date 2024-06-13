@@ -48,6 +48,7 @@ const ResetPasswordContainer = () => {
             ConfirmPassword: data?.confirmpassword,
           },
           isToastMessage: true,
+          navigate,
         })
       );
     }

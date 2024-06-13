@@ -21,6 +21,7 @@ const ProfilePageSContainer = () => {
           url: END_POINTS.GET_STUDENT_PROFILE,
           method: API_GET,
           isToastMessage: false,
+          navigate,
         })
       );
 
