@@ -4,7 +4,7 @@ import {
   ACTION,
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
-} from "../description/examForm.description";
+} from "../description/forms/examForm.description";
 import { useDispatch } from "react-redux";
 import { addExamFormData } from "../redux/slices/examForm.slice";
 import { EXAM_FORM_ERRORS } from "../utils/constant";

@@ -35,9 +35,9 @@ export const getFieldArr = (formArray, currentFormName, fieldValue) => {
 
 export const showAPIToastMessage = (apiData) => {
   if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
-    toast.success(apiData?.data?.message, { autoClose: 1000 });
+    toast.success(apiData?.data?.message, { autoClose: 500 });
   } else {
-    toast.error(apiData?.data?.message, { autoClose: 2000 });
+    toast.error(apiData?.data?.message, { autoClose: 1000 });
   }
 };
 

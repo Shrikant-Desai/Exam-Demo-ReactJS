@@ -4,6 +4,7 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
+import { EXAM_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
 
 const HomepageSContainer = () => {
   const currentLoginUser = JSON.parse(
@@ -48,29 +49,7 @@ const HomepageSContainer = () => {
     });
     return filteredArr;
   };
-  const columnsArr = [
-    { id: "_id", label: "ID", minWidth: 170 },
-    { id: "subjectName", label: "Subject Name", minWidth: 100 },
-    {
-      id: "notes",
-      label: "Notes",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "email",
-      label: "Email",
-      minWidth: 170,
-      align: "right",
-    },
 
-    {
-      id: "action",
-      label: "Actions",
-      minWidth: 170,
-      align: "center",
-    },
-  ];
   const tableHeight = "100%";
   const tableWidth = 1000;
   let updatedRowArr;
@@ -88,6 +67,7 @@ const HomepageSContainer = () => {
       return row;
     });
   }
+  const columnsArr = EXAM_TABLE_FIELDS.filter((item) => item.id !== "__v");
   const rowsPerPageArr = [20, 50, 100];
   const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
 

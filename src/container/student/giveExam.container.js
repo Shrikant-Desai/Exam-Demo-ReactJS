@@ -6,7 +6,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import {
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
-} from "../../description/examForm.description";
+} from "../../description/forms/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_POST, API_STATUS_SUCCESS } from "../../utils/constant";
 
@@ -27,20 +27,6 @@ const GiveExamContainer = () => {
   const apiData = useSelector((state) => state.fetchData);
 
   useEffect(() => {
-    if (apiData.data?.data) {
-      const updatedData = apiData.data?.data?.map((item) => {
-        return {
-          question: item.question,
-          answerIndex: "",
-          answer: "",
-          options: item.options,
-        };
-      });
-
-      setQuestionArr(updatedData);
-    }
-  }, [apiData]);
-  useEffect(() => {
     if (data) {
       setExamDetailsObject({
         subjectName: data?.[0]?.subjectName,
@@ -58,14 +44,26 @@ const GiveExamContainer = () => {
     setIsDialogOpen(false);
   };
   useEffect(() => {
-    dispatch(
-      fetchDataThunkFunc({
-        url: `${END_POINTS.EXAM_PAPER}${id}`,
-        method: API_GET,
-        isToastMessage: false,
-        navigate,
-      })
-    );
+    const dispatchFunc = async () => {
+      const response = await dispatch(
+        fetchDataThunkFunc({
+          url: `${END_POINTS.EXAM_PAPER}${id}`,
+          method: API_GET,
+          isToastMessage: false,
+          navigate,
+        })
+      );
+      const updatedData = response?.payload?.data?.data?.map((item) => {
+        return {
+          question: item.question,
+          answerIndex: "",
+          answer: "",
+          options: item.options,
+        };
+      });
+      setQuestionArr(updatedData);
+    };
+    dispatchFunc();
   }, []);
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import {
   USER_FORMS,
 } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
+import { formSXObject } from "../../description/forms/formsData.description";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
@@ -31,18 +32,24 @@ const SignInContainer = () => {
         return accum;
       }, {});
 
-      dispatch(
-        fetchDataThunkFunc({
-          url: END_POINTS.USER_LOGIN,
-          method: API_POST,
-          bodyData: {
-            email: data?.email,
-            password: data?.password,
-          },
-          isToastMessage: true,
-          navigate,
-        })
-      );
+      const dispatchFunc = async () => {
+        const response = await dispatch(
+          fetchDataThunkFunc({
+            url: END_POINTS.USER_LOGIN,
+            method: API_POST,
+            bodyData: {
+              email: data?.email,
+              password: data?.password,
+            },
+            isToastMessage: true,
+            navigate,
+          })
+        );
+        if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
+          resetForm(path, dispatch);
+        }
+      };
+      dispatchFunc();
     }
   }, [formData]);
 
@@ -65,23 +72,7 @@ const SignInContainer = () => {
 
   const isAPILoading = apiData?.loading;
 
-  const sxObject = {
-    sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "25vw" },
-      height: "100%",
-      padding: "10px",
-      borderRadius: "10px",
-      // boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-    },
-    sxFormname: {
-      fontSize: "40px",
-      fontWeight: "bold",
-      color: "black",
-      textAlign: "center",
-      marginBottom: "20px",
-    },
-  };
+  const sxObject = formSXObject;
 
   return {
     handleChange,

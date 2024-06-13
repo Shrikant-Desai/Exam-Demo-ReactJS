@@ -4,7 +4,7 @@ import {
   ACTION,
   EXAMDETAILS_INIT_ARRAY,
   QUESTIONS_INIT_ARRAY,
-} from "../../description/examForm.description";
+} from "../../description/forms/examForm.description";
 import createExamContainer from "../../container/teacher/createExam.container";
 import { EDButton } from "../../shared/EDButton";
 import EDGrid from "../../shared/EDGrid";

@@ -1,5 +1,5 @@
 import questionFormContainer from "../container/questionForm.container";
-import { SINGLE_QUESTION_ARRAY } from "../description/examForm.description";
+import { SINGLE_QUESTION_ARRAY } from "../description/forms/examForm.description";
 import { EDErrorDiv } from "./EDErrorDiv";
 import EDGrid from "./EDGrid";
 import EDLabeledInput from "./EDLabeledInput";

@@ -45,10 +45,10 @@ export const fetchDataThunkFunc = createAsyncThunk(
         showAPIToastMessage(response);
       }
       if (response.data.statusCode === API_STATUS_SESSION_END) {
+        navigate("/signin");
         localStorage.removeItem(LOCAL_AUTH_TOKEN);
         localStorage.removeItem(LOCAL_LOGIN_DETAILS);
         showAPIToastMessage(response);
-        navigate("/signin");
       }
       return response;
     } catch (error) {

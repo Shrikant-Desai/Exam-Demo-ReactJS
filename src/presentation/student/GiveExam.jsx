@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { EDButton } from "../../shared/EDButton";
 import EDBox from "../../shared/EDBox";
-import { ACTION } from "../../description/examForm.description";
+import { ACTION } from "../../description/forms/examForm.description";
 
 const GiveExam = () => {
   const {
@@ -26,7 +26,6 @@ const GiveExam = () => {
     handleDialogClick,
     handleClickToPrevRoute,
   } = giveExamContainer();
-
   const dialogVar = (
     <Dialog
       open={isDialogOpen}
@@ -89,7 +88,7 @@ const GiveExam = () => {
   );
 
   return !apiData?.loading ? (
-    <EDGrid container direction="row">
+    <EDGrid container direction="row" spacing={2}>
       <EDGrid item sx={{ ml: 3 }} xs={4} sm={3} md={2}>
         <EDButton
           size="medium"

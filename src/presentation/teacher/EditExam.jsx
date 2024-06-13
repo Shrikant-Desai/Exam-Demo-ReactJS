@@ -1,7 +1,7 @@
 import React from "react";
 import EDExamCompMain from "../../shared/EDExamCompMain";
 import editExamContainer from "../../container/teacher/editExam.container";
-import { ACTION } from "../../description/examForm.description";
+import { ACTION } from "../../description/forms/examForm.description";
 
 const EditExam = () => {
   const { examDetailsObject, questionArr, apiData } = editExamContainer();

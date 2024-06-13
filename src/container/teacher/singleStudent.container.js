@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { API_GET } from "../../utils/constant";
+import { SINGLE_STUDENT_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
 
 const SingleStudentContainer = () => {
   const dispatch = useDispatch();
@@ -51,41 +52,13 @@ const SingleStudentContainer = () => {
   const tableHeight = 550;
   const tableWidth = 1000;
   const rowsPerPageArr = [5, 10, 15];
-  const columnsArr = [
-    // { id: "_id", label: "ID", minWidth: 170 },
-    {
-      id: "studentId",
-      label: "StudentID",
-      minWidth: 170,
-    },
-
-    {
-      id: "subjectName",
-      label: "Subject Name",
-      minWidth: 170,
-    },
-    { id: "rank", label: "Rank", minWidth: 100 },
-    {
-      id: "score",
-      label: "Score",
-      minWidth: 100,
-      align: "right",
-    },
-
-    {
-      id: "resultStatus",
-      label: "Result Status",
-      minWidth: 170,
-      align: "right",
-    },
-  ];
 
   const updatedRowArr = apiData?.data?.data?.[0]?.Result;
 
   const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
   return {
     rowsArr,
-    columnsArr,
+    SINGLE_STUDENT_TABLE_FIELDS,
     tableHeight,
     apiData,
     tableWidth,

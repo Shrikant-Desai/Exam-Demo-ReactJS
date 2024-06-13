@@ -2,7 +2,7 @@ import React from "react";
 import newPasswordContainer from "../../container/user/newPassword.container";
 import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
-import { newPasswordArray } from "../../description/formsData.description";
+import { newPasswordArray } from "../../description/forms/formsData.description";
 
 const NewPassword = () => {
   const {

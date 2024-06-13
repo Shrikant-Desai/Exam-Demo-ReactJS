@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  AccountCircle,
-  Article,
-  EditNote,
-  Logout,
-  People,
-  PeopleAltOutlined,
-} from "@mui/icons-material";
+import { Logout } from "@mui/icons-material";
 
 import { useNavigate, useOutlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,8 +9,13 @@ import {
   LOCAL_LOGIN_DETAILS,
   ROLES,
 } from "../utils/constant";
+import {
+  studentDashboardDes,
+  teacherDashboardDes,
+} from "../description/user/dashboard.description";
 
 const DashboardContainer = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const outlet = useOutlet();
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
@@ -28,36 +26,6 @@ const DashboardContainer = () => {
 
   const dispatch = useDispatch();
 
-  const teacherDashboardDes = {
-    beforeDiv: [
-      {
-        text: "Create Exam",
-        icon: <EditNote />,
-        navigate: "teacher/create-exam",
-      },
-      { text: "Your Exams", icon: <Article />, navigate: "teacher" },
-      {
-        text: "All Students Data",
-        icon: <People />,
-        navigate: "teacher/all-students",
-      },
-      {
-        text: "Active Students Data",
-        icon: <PeopleAltOutlined />,
-        navigate: "teacher/active-students",
-      },
-    ],
-    afterDiv: [
-      { text: "Profile", icon: <AccountCircle />, navigate: "teacher/profile" },
-    ],
-  };
-
-  const studentDashboardDes = {
-    beforeDiv: [{ text: "All Exams", icon: <EditNote />, navigate: "student" }],
-    afterDiv: [
-      { text: "Profile", icon: <AccountCircle />, navigate: "student/profile" },
-    ],
-  };
   const logoutFunction = () => {
     localStorage.removeItem(LOCAL_AUTH_TOKEN);
     localStorage.removeItem(LOCAL_LOGIN_DETAILS);
@@ -83,6 +51,8 @@ const DashboardContainer = () => {
     logoutFunction,
     isLogin,
     outlet,
+    isDrawerOpen,
+    setIsDrawerOpen,
   };
 };
 

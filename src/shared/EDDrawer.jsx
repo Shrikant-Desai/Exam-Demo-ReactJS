@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
@@ -18,7 +18,7 @@ import EDTypography from "./EDTypography";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import EDBox from "./EDBox";
 import { stringAvatar } from "../utils/javascript";
-import { useNavigate } from "react-router-dom";
+import drawerContainer from "../container/drawer.contaner";
 
 const drawerWidth = 240;
 
@@ -70,33 +70,20 @@ export default function EDDrawer({
   drawerList,
   loginDetails,
   profileMenuData,
+  setIsDrawerOpen,
 }) {
-  const navigate = useNavigate();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const menuId = "primary-search-account-menu";
+  const {
+    navigate,
+    theme,
+    menuId,
+    handleProfileMenuOpen,
+    handleMenuClose,
+    handleDrawerClose,
+    isMenuOpen,
+    handleDrawerOpen,
+    open,
+    anchorEl,
+  } = drawerContainer(setIsDrawerOpen);
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}

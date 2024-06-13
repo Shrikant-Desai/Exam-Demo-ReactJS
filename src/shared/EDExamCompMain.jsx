@@ -10,7 +10,7 @@ import { EDErrorDiv } from "./EDErrorDiv";
 import {
   DESC_FIELD_DATA,
   SUBJECT_FIELD_DATA,
-} from "../description/examForm.description";
+} from "../description/forms/examForm.description";
 
 const EDExamCompMain = ({
   examDetailsArr,

@@ -4,30 +4,52 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
+import { ALL_STUDENT_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
+import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const AllStudentDataContainer = () => {
   const currentLoginUser = JSON.parse(
     localStorage.getItem(LOCAL_LOGIN_DETAILS)
   );
+  const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const apiData = useSelector((state) => state?.fetchData);
+  const allAPIsData = useSelector((state) => state.apisData);
+  useEffect(() => {
+    const dispatchFunc = async () => {
+      const response = await dispatch(
+        fetchDataThunkFunc({
+          url: END_POINTS.GET_ALL_STUDENTS,
+          method: API_GET,
+          isToastMessage: false,
+          navigate,
+        })
+      );
+      dispatch(
+        addAPIData({
+          name: "allStudents",
+          data: response?.payload?.data,
+        })
+      );
+    };
+    dispatchFunc();
+  }, []);
 
   useEffect(() => {
-    dispatch(
-      fetchDataThunkFunc({
-        url: END_POINTS.GET_ALL_STUDENTS,
-        method: API_GET,
-        isToastMessage: false,
-        navigate,
-      })
-    );
-    // return () => {
-    //   source.cancel("All Student Component got unmounted");
-    // };
-  }, []);
+    if (allAPIsData?.allStudents) {
+      const data = allAPIsData.allStudents?.data?.map((row) => {
+        row = {
+          ...row,
+          action: [{ text: "View", handleChange: viewStudentDetails }],
+        };
+        return row;
+      });
+      setData(data);
+    }
+  }, [allAPIsData]);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -49,38 +71,9 @@ const AllStudentDataContainer = () => {
   const tableHeight = 550;
   const tableWidth = 1000;
   const rowsPerPageArr = [10, 25, 50];
-  const columnsArr = [
-    { id: "_id", label: "ID", minWidth: 170 },
-    { id: "status", label: " Status", minWidth: 100 },
-    {
-      id: "name",
-      label: "Name",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "email",
-      label: "Email",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "action",
-      label: "Actions",
-      minWidth: 170,
-      align: "right",
-    },
-  ];
 
-  const updatedRowArr = apiData?.data?.data?.map((row) => {
-    row = {
-      ...row,
-      action: [{ text: "View", handleChange: viewStudentDetails }],
-    };
-    return row;
-  });
-
-  const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
+  const columnsArr = ALL_STUDENT_TABLE_FIELDS;
+  const rowsArr = searchValue ? filterData(data) : data;
   return {
     tableHeight,
     currentLoginUser,

@@ -39,6 +39,7 @@ export default function EDTable({
                   key={`header-cell-${column.id}`}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
+                  sx={{ fontWeight: "bold" }}
                 >
                   {column.label}
                 </TableCell>

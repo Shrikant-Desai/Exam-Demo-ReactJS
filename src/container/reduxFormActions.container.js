@@ -110,14 +110,7 @@ const ReduxFormActions = (props) => {
     );
     return { isFormValid, mainFormDataObject };
   };
-  const resetForm = (path, dispatch) => {
-    dispatch(
-      resetFormStates({
-        path: path,
-        data: {},
-      })
-    );
-  };
+
   const handleSubmit = (e, formArr, path, formDataState, dispatch) => {
     e.preventDefault();
     const { isFormValid, mainFormDataObject } = checkFormErrors(
@@ -152,7 +145,7 @@ const ReduxFormActions = (props) => {
           })
         );
       }
-      resetForm(path, dispatch);
+      // resetForm(path, dispatch);
     } else {
       console.error("There was an error", mainFormDataObject.errors);
     }
@@ -200,3 +193,11 @@ const ReduxFormActions = (props) => {
   };
 };
 export default ReduxFormActions;
+export const resetForm = (path, dispatch) => {
+  dispatch(
+    resetFormStates({
+      path: path,
+      data: {},
+    })
+  );
+};

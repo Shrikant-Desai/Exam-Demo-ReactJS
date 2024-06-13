@@ -1,5 +1,5 @@
 import React from "react";
-import { forgotPasswordFormArray } from "../../description/formsData.description";
+import { forgotPasswordFormArray } from "../../description/forms/formsData.description";
 import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";

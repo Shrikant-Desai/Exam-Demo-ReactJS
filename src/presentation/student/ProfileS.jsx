@@ -23,7 +23,12 @@ const ProfileS = () => {
           alignItems="center"
         >
           <EDStack direction="column" alignItems="center" sx={{ p: 5 }}>
-            <EDTypography align="center" variant="h4" value="Profile" />
+            <EDTypography
+              align="center"
+              sx={{ fontWeight: "bold" }}
+              variant="h4"
+              value="Profile"
+            />
             <EDGrid container direction="column">
               {profileData?.map(([key, value]) => {
                 return (

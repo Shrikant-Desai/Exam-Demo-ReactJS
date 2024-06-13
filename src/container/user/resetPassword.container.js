@@ -8,9 +8,11 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import {
   API_POST,
+  API_STATUS_SUCCESS,
   LOCAL_LOGIN_DETAILS,
   USER_FORMS,
 } from "../../utils/constant";
+import { formSXObject } from "../../description/forms/formsData.description";
 
 const ResetPasswordContainer = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -38,39 +40,29 @@ const ResetPasswordContainer = () => {
         return accum;
       }, {});
 
-      dispatch(
-        fetchDataThunkFunc({
-          url: `${END_POINTS.RESET_PASSWORD}`,
-          method: API_POST,
-          bodyData: {
-            oldPassword: data?.oldpassword,
-            Password: data?.password,
-            ConfirmPassword: data?.confirmpassword,
-          },
-          isToastMessage: true,
-          navigate,
-        })
-      );
+      const dispatchFunc = async () => {
+        const response = await dispatch(
+          fetchDataThunkFunc({
+            url: `${END_POINTS.RESET_PASSWORD}`,
+            method: API_POST,
+            bodyData: {
+              oldPassword: data?.oldpassword,
+              Password: data?.password,
+              ConfirmPassword: data?.confirmpassword,
+            },
+            isToastMessage: true,
+            navigate,
+          })
+        );
+        if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
+          navigate(-1);
+        }
+      };
+      dispatchFunc();
     }
   }, [formData]);
 
-  const sxObject = {
-    sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "30vw" },
-      height: "100%",
-      padding: "10px",
-      borderRadius: "10px",
-      // boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-    },
-    sxFormname: {
-      fontSize: "40px",
-      fontWeight: "bold",
-      color: "black",
-      textAlign: "center",
-      marginBottom: "20px",
-    },
-  };
+  const sxObject = formSXObject;
 
   return {
     handleChange,

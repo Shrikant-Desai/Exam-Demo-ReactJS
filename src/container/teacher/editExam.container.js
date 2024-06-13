@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
-import { QUESTIONS_INIT_ARRAY } from "../../description/examForm.description";
+import { QUESTIONS_INIT_ARRAY } from "../../description/forms/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_PUT, API_STATUS_SUCCESS } from "../../utils/constant";
 

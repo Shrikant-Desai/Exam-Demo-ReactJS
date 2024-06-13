@@ -3,7 +3,7 @@ import {
   EMAIL_REGEX,
   NAME_ADVANCE_REGEX,
   PASSWORD_REGEX,
-} from "../utils/regEx";
+} from "../../utils/regEx";
 import { Email, Lock, Person } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
 export const ERRORS_MSG_USERFORM = {
@@ -272,7 +272,12 @@ export const signInFormArray = [
     },
 
     isRequired: true,
-    rulesData: [],
+    rulesData: [
+      {
+        regEx: PASSWORD_REGEX,
+        errorMessage: ERRORS_MSG_USERFORM.PASSWORD.NOT_VALID,
+      },
+    ],
   },
 
   {
@@ -952,3 +957,20 @@ export const questionFormArray = [
     // endIcon: <SendIcon />,
   },
 ];
+export const formSXObject = {
+  sxMainForm: {
+    width: { xs: "70vw", sm: "50vw", md: "35vw", lg: "30vw" },
+    height: "100%",
+    padding: "10px",
+    borderRadius: "10px",
+    // boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+  },
+  sxFormname: {
+    fontSize: "40px",
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+    marginBottom: "20px",
+  },
+};

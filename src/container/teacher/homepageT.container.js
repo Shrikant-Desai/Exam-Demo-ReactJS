@@ -4,19 +4,26 @@ import { fetchDataThunkFunc } from "../../utils/api/fetchData";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_DELETE, API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
+import { EXAM_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
+import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const HomepageTContainer = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [data, setData] = useState([]);
   const [deleteID, setDeleteID] = React.useState(false);
   const currentLoginUser = JSON.parse(
     localStorage.getItem(LOCAL_LOGIN_DETAILS)
   );
+
+  const allAPIsData = useSelector((state) => state.apisData);
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
-  useEffect(() => {
-    dispatch(
+
+  const dispatchFunc = async () => {
+    const response = await dispatch(
       fetchDataThunkFunc({
         url: END_POINTS.VIEW_ALL_EXAM,
         method: API_GET,
@@ -24,7 +31,33 @@ const HomepageTContainer = () => {
         navigate,
       })
     );
+    dispatch(
+      addAPIData({
+        name: "examsCreated",
+        data: response?.payload?.data,
+      })
+    );
+  };
+  useEffect(() => {
+    dispatchFunc();
   }, []);
+
+  useEffect(() => {
+    if (allAPIsData?.examsCreated) {
+      const data = allAPIsData.examsCreated?.data?.map((row) => {
+        row = {
+          ...row,
+          action: [
+            { text: "Edit", handleChange: handleEdit },
+            { text: "Delete", handleChange: handleDialogClick },
+          ],
+        };
+        return row;
+      });
+      setData(data);
+    }
+  }, [allAPIsData]);
+
   const handleEdit = (id) => {
     const data = apiData?.data?.data?.filter((data) => data?.["_id"] === id);
 
@@ -44,14 +77,7 @@ const HomepageTContainer = () => {
       })
     );
     response.then(() => {
-      dispatch(
-        fetchDataThunkFunc({
-          url: END_POINTS.VIEW_ALL_EXAM,
-          method: API_GET,
-          isToastMessage: false,
-          navigate,
-        })
-      );
+      dispatchFunc();
     });
   };
 
@@ -81,52 +107,13 @@ const HomepageTContainer = () => {
     });
     return filteredArr;
   };
-  const columnsArr = [
-    { id: "_id", label: "ID", minWidth: 170 },
-    { id: "subjectName", label: "Subject Name", minWidth: 100 },
-    {
-      id: "notes",
-      label: "Notes",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "email",
-      label: "Email",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "__v",
-      label: "__V",
-      minWidth: 170,
-      align: "right",
-    },
-    {
-      id: "action",
-      label: "Actions",
-      minWidth: 170,
-      align: "center",
-    },
-  ];
+
   const tableHeight = 550;
   const tableWidth = "100%";
-  let updatedRowArr;
-  if (Array.isArray(apiData?.data?.data) && apiData?.data?.data?.length !== 0) {
-    updatedRowArr = apiData?.data?.data?.map((row) => {
-      row = {
-        ...row,
-        action: [
-          { text: "Edit", handleChange: handleEdit },
-          { text: "Delete", handleChange: handleDialogClick },
-        ],
-      };
-      return row;
-    });
-  }
-  const rowsPerPageArr = [5, 10, 20];
-  const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
 
+  const rowsPerPageArr = [5, 10, 20];
+  const rowsArr = searchValue ? filterData(data) : data;
+  const columnsArr = EXAM_TABLE_FIELDS;
   return {
     tableHeight,
     currentLoginUser,

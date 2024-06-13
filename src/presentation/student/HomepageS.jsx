@@ -18,9 +18,6 @@ const HomepageS = () => {
     handleSearch,
     tableWidth,
     rowsPerPageArr,
-    isDialogOpen,
-    handleDialogClose,
-    handleDialogClick,
   } = homepageSContainer();
 
   return (

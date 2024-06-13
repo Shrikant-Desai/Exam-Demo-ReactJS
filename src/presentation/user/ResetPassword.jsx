@@ -2,7 +2,7 @@ import React from "react";
 
 import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
-import { resetPasswordArray } from "../../description/formsData.description";
+import { resetPasswordArray } from "../../description/forms/formsData.description";
 
 import { Link } from "react-router-dom";
 import resetPasswordContainer from "../../container/user/resetPassword.container";

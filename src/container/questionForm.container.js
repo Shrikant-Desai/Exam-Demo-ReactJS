@@ -1,3 +1,4 @@
+import { OPTION_FIELDS_ARRAY } from "../description/forms/examForm.description";
 import { EXAM_FORM_ERRORS } from "../utils/constant";
 import { setOptionsErrors, validateExamField } from "../utils/validation";
 
@@ -68,60 +69,10 @@ const QuestionFormContainer = (question, index, onChange, questionsArr) => {
     onChange(index, newQuestion);
   };
 
-  const optionArr = [
-    {
-      labelProps: {
-        value: "A",
-      },
-      inputProps: {
-        size: "small",
-        id: "option1",
-        type: "text",
-        name: "option1",
-        placeholder: "Option 1",
-      },
-    },
-    {
-      labelProps: {
-        value: "B",
-      },
-      inputProps: {
-        size: "small",
-        id: "option2",
-        type: "text",
-        name: "option2",
-        placeholder: "Option 2",
-      },
-    },
-    {
-      labelProps: {
-        value: "C",
-      },
-      inputProps: {
-        size: "small",
-        id: "option3",
-        type: "text",
-        name: "option3",
-        placeholder: "Option 3",
-      },
-    },
-    {
-      labelProps: {
-        value: "D",
-      },
-      inputProps: {
-        size: "small",
-        id: "option4",
-        type: "text",
-        name: "option4",
-        placeholder: "Option 4",
-      },
-    },
-  ];
+  const optionArr = OPTION_FIELDS_ARRAY;
   const containerDesign = {
     direction: "row",
     alignItems: "center",
-
     spacing: 2,
   };
   return {

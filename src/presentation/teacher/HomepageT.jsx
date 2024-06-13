@@ -8,13 +8,13 @@ import {
   DialogActions,
   DialogTitle,
   Divider,
-  Slide,
 } from "@mui/material";
 import homepageTContainer from "../../container/teacher/homepageT.container";
 import EDTable from "../../shared/EDTable";
 import { API_STATUS_SUCCESS } from "../../utils/constant";
 import { EDInput } from "../../shared/EDInput";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
+import { deleteAlert } from "../../description/teacher/teacherModule.description";
 
 const HomepageT = () => {
   const {
@@ -26,7 +26,6 @@ const HomepageT = () => {
     handleSearch,
     tableWidth,
     rowsPerPageArr,
-
     isDialogOpen,
     handleDialogClose,
     handleDelete,
@@ -91,7 +90,7 @@ const HomepageT = () => {
         onClose={handleDialogClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Please confirm to delete this exam ?"}</DialogTitle>
+        <DialogTitle>{deleteAlert}</DialogTitle>
 
         <DialogActions>
           <Button onClick={handleDialogClose}>Disagree</Button>

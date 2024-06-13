@@ -1,5 +1,5 @@
 import React from "react";
-import { editProfileFormArray } from "../../description/formsData.description";
+import { editProfileFormArray } from "../../description/forms/formsData.description";
 import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
