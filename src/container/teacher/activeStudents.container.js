@@ -11,7 +11,7 @@ const ActiveStudentsContainer = () => {
   const currentLoginUser = JSON.parse(
     localStorage.getItem(LOCAL_LOGIN_DETAILS)
   );
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();

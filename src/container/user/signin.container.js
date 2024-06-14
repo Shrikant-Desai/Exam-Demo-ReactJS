@@ -72,7 +72,7 @@ const SignInContainer = () => {
         LOCAL_LOGIN_DETAILS,
         JSON.stringify(apiData?.data?.data)
       );
-      navigate(`/dashboard/${apiData?.data?.data?.role}`);
+      navigate(`/dashboard`);
     }
   }, [apiData]);
 

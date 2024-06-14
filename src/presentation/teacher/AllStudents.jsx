@@ -1,7 +1,7 @@
 import React from "react";
 import EDBox from "../../shared/EDBox";
 import EDStack from "../../shared/EDStack";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_STATUS_SUCCESS, SESSION_EXPIRED_MSG } from "../../utils/constant";
 import EDTypography from "../../shared/EDTypography";
 import EDTable from "../../shared/EDTable";
 import { EDInput } from "../../shared/EDInput";
@@ -35,7 +35,7 @@ const AllStudents = () => {
           ) : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
             <EDTypography
               sx={{ color: "red" }}
-              value="Session expired please login."
+              value={SESSION_EXPIRED_MSG}
               variant="h5"
             />
           ) : (

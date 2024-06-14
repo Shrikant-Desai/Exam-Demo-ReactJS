@@ -3,6 +3,9 @@ import EDDrawer from "../../shared/EDDrawer";
 import dashboardContainer from "../../container/dashboard.container";
 import EDTypography from "../../shared/EDTypography";
 import EDBox from "../../shared/EDBox";
+import { ROLES } from "../../utils/constant";
+import HomepageT from "../teacher/HomepageT";
+import HomepageS from "../student/HomepageS";
 
 const Dashboard = () => {
   const {
@@ -22,8 +25,12 @@ const Dashboard = () => {
           {...{ drawerList, loginDetails, profileMenuData, setIsDrawerOpen }}
         />
         <EDBox sx={{ ml: isDrawerOpen ? 31 : 0 }}>
-          {outlet || (
-            <EDTypography align="center" variant="h2" value="Dashboard page" />
+          {outlet ? (
+            outlet
+          ) : loginDetails?.role === ROLES.TEACHER ? (
+            <HomepageT />
+          ) : (
+            <HomepageS />
           )}
         </EDBox>
       </>

@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import homepageTContainer from "../../container/teacher/homepageT.container";
 import EDTable from "../../shared/EDTable";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
 import { EDInput } from "../../shared/EDInput";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
 import { deleteAlert } from "../../description/teacher/teacherModule.description";

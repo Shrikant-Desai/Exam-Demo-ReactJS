@@ -64,10 +64,6 @@ const studentRoutes = [
         element: <ProtectedRoleRoute accessRole={ROLES.STUDENT} />,
         children: [
           {
-            path: "student",
-            element: <HomePageS />,
-          },
-          {
             path: "student/profile",
             element: <ProfileS />,
           },

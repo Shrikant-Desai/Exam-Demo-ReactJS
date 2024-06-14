@@ -1,6 +1,6 @@
 import {
   AccountCircle,
-  Article,
+  Dashboard,
   EditNote,
   People,
   PeopleAltOutlined,
@@ -8,12 +8,12 @@ import {
 
 export const teacherDashboardDes = {
   beforeDiv: [
+    { text: "Dashboard", icon: <Dashboard />, navigate: "/dashboard" },
     {
       text: "Create Exam",
       icon: <EditNote />,
       navigate: "teacher/create-exam",
     },
-    { text: "Your Exams", icon: <Article />, navigate: "teacher" },
     {
       text: "All Students Data",
       icon: <People />,
@@ -31,7 +31,9 @@ export const teacherDashboardDes = {
 };
 
 export const studentDashboardDes = {
-  beforeDiv: [{ text: "All Exams", icon: <EditNote />, navigate: "student" }],
+  beforeDiv: [
+    { text: "Dashboard", icon: <Dashboard />, navigate: "/dashboard" },
+  ],
   afterDiv: [
     { text: "Profile", icon: <AccountCircle />, navigate: "student/profile" },
   ],
