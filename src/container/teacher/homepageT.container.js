@@ -9,7 +9,7 @@ import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const HomepageTContainer = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [deleteID, setDeleteID] = React.useState(false);
   const currentLoginUser = JSON.parse(
     localStorage.getItem(LOCAL_LOGIN_DETAILS)
@@ -59,10 +59,12 @@ const HomepageTContainer = () => {
   }, [allAPIsData]);
 
   const handleEdit = (id) => {
-    const data = apiData?.data?.data?.filter((data) => data?.["_id"] === id);
+    const editExamData = allAPIsData?.examsCreated?.data?.filter(
+      (data) => data?.["_id"] === id
+    );
 
     navigate(`/dashboard/teacher/edit-exam/?id=${id}`, {
-      state: JSON.stringify(data),
+      state: JSON.stringify(editExamData),
     });
   };
 
@@ -118,6 +120,7 @@ const HomepageTContainer = () => {
     tableHeight,
     currentLoginUser,
     apiData,
+    allAPIsData,
     columnsArr,
     rowsArr,
     tableWidth,

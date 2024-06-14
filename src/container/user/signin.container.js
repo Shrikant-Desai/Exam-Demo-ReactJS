@@ -54,6 +54,12 @@ const SignInContainer = () => {
   }, [formData]);
 
   useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+    };
+  }, []);
+
+  useEffect(() => {
     if (
       apiData?.data?.data?.token &&
       apiData?.data?.statusCode === API_STATUS_SUCCESS

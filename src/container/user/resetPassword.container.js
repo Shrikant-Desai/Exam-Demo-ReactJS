@@ -56,11 +56,19 @@ const ResetPasswordContainer = () => {
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
           navigate(-1);
+
+          resetForm(path, dispatch);
         }
       };
       dispatchFunc();
     }
   }, [formData]);
+
+  useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+    };
+  }, []);
 
   const sxObject = formSXObject;
 

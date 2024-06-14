@@ -7,6 +7,7 @@ import EDBox from "../../shared/EDBox";
 
 const HomePage = () => {
   const { startFunction, btnProps } = HomePageContainer();
+
   return (
     <EDStack direction="column" alignItems="center">
       <EDTypography value="Exam Demo" align="center" variant="h2" />

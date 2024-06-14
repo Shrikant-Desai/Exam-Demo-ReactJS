@@ -8,16 +8,17 @@ import {
 import createExamContainer from "../../container/teacher/createExam.container";
 import { EDButton } from "../../shared/EDButton";
 import EDGrid from "../../shared/EDGrid";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const CreateExam = () => {
   const { handleClickToPrevRoute } = createExamContainer();
   return (
     <EDGrid container direction="row">
-      <EDGrid item sx={{ ml: 3 }} xs={4} sm={3} md={2}>
+      <EDGrid item sx={{ ml: 3 }}>
         <EDButton
           size="medium"
           handleChange={handleClickToPrevRoute}
-          value="Go Back"
+          value={<KeyboardBackspace />}
           variant="contained"
         />
       </EDGrid>

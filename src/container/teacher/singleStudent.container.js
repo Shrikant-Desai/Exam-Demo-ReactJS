@@ -24,12 +24,6 @@ const SingleStudentContainer = () => {
       })
     );
   }, []);
-  // useEffect(() => {
-  //   return () => {
-  //     console.log("Successfully unmounted");
-  //     source.cancel("Active Student Component got unmounted");
-  //   };
-  // });
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -48,7 +42,7 @@ const SingleStudentContainer = () => {
     });
     return filteredArr;
   };
-
+  const columnsArr = SINGLE_STUDENT_TABLE_FIELDS;
   const tableHeight = 550;
   const tableWidth = 1000;
   const rowsPerPageArr = [5, 10, 15];
@@ -58,7 +52,7 @@ const SingleStudentContainer = () => {
   const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
   return {
     rowsArr,
-    SINGLE_STUDENT_TABLE_FIELDS,
+    columnsArr,
     tableHeight,
     apiData,
     tableWidth,

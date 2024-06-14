@@ -4,14 +4,15 @@ import profilePageSContainer from "../../container/student/profilePageS.containe
 import EDGrid from "../../shared/EDGrid";
 import EDTypography from "../../shared/EDTypography";
 import { EDButton } from "../../shared/EDButton";
+import EDTableSkeleton from "../../shared/EDTableSkeleton";
 
 const ProfileS = () => {
   const { apiData, profileData, handleResetPassword, handleChangeUserName } =
     profilePageSContainer();
 
-  if (!apiData?.loading && profileData) {
-    return (
-      <EDStack justifyContent="center" alignItems="center">
+  return (
+    <EDStack justifyContent="center" alignItems="center">
+      {!apiData?.loading && profileData ? (
         <EDStack
           sx={{
             boxShadow: 2,
@@ -54,9 +55,11 @@ const ProfileS = () => {
             />
           </EDStack>
         </EDStack>
-      </EDStack>
-    );
-  }
+      ) : (
+        <EDTableSkeleton width={400} />
+      )}
+    </EDStack>
+  );
 };
 
 export default ProfileS;

@@ -4,6 +4,7 @@ import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import editProfileContainer from "../../container/student/editProfile.container";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const EditProfile = () => {
   const {
@@ -48,7 +49,7 @@ const EditProfile = () => {
           />
           <EDStack direction="row" justifyContent="space-between">
             <Link className="text-link" to={-1}>
-              Go back
+              <KeyboardBackspace />
             </Link>
           </EDStack>
         </EDStack>

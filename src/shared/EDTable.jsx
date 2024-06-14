@@ -34,7 +34,7 @@ export default function EDTable({
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow key="header-row">
-              {columnsArr.map((column) => (
+              {columnsArr?.map((column) => (
                 <TableCell
                   key={`header-cell-${column.id}`}
                   align={column.align}
@@ -51,7 +51,7 @@ export default function EDTable({
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
-                  {columnsArr.map((column) => {
+                  {columnsArr?.map((column) => {
                     const value = row[column.id];
                     return (
                       <TableCell

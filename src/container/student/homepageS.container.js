@@ -5,6 +5,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 import { EXAM_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
+import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const HomepageSContainer = () => {
   const currentLoginUser = JSON.parse(
@@ -12,20 +13,49 @@ const HomepageSContainer = () => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const allAPIsData = useSelector((state) => state.apisData);
+  const [examData, setExamData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
   useEffect(() => {
-    dispatch(
-      fetchDataThunkFunc({
-        url: END_POINTS.ALL_EXAMS,
-        method: API_GET,
-        isToastMessage: false,
-        navigate,
-      })
-    );
+    const dispatchFunc = async () => {
+      const response = await dispatch(
+        fetchDataThunkFunc({
+          url: END_POINTS.ALL_EXAMS,
+          method: API_GET,
+          isToastMessage: false,
+          navigate,
+        })
+      );
+      dispatch(
+        addAPIData({
+          name: "allExamsForStudent",
+          data: response?.payload?.data,
+        })
+      );
+    };
+    dispatchFunc();
   }, []);
+  useEffect(() => {
+    if (allAPIsData?.allExamsForStudent) {
+      const data = allAPIsData.allExamsForStudent?.data?.map((row) => {
+        row = {
+          ...row,
+          notes: row?.notes?.reduce((acc, note) => {
+            acc = acc.length < 2 ? [...acc, note] : acc;
+            return acc;
+          }, []),
+          action: [{ text: "Give Exam", handleChange: handleGiveExam }],
+        };
+        return row;
+      });
+      setExamData(data);
+    }
+  }, [allAPIsData]);
   const handleGiveExam = (id) => {
-    const data = apiData?.data?.data?.filter((data) => data?.["_id"] === id);
+    const data = allAPIsData?.allExamsForStudent?.data?.filter(
+      (data) => data?.["_id"] === id
+    );
     navigate(`/dashboard/student/give-exam/?id=${id}`, {
       state: JSON.stringify(data),
     });
@@ -52,29 +82,16 @@ const HomepageSContainer = () => {
 
   const tableHeight = "100%";
   const tableWidth = 1000;
-  let updatedRowArr;
-  const data = apiData?.data?.data;
-  if (Array.isArray(data) && data?.length !== 0) {
-    updatedRowArr = data?.map((row) => {
-      row = {
-        ...row,
-        notes: row.notes?.reduce((acc, note) => {
-          acc = acc.length < 2 ? [...acc, note] : acc;
-          return acc;
-        }, []),
-        action: [{ text: "Give Exam", handleChange: handleGiveExam }],
-      };
-      return row;
-    });
-  }
-  const columnsArr = EXAM_TABLE_FIELDS.filter((item) => item.id !== "__v");
+
+  const columnsArr = EXAM_TABLE_FIELDS;
   const rowsPerPageArr = [20, 50, 100];
-  const rowsArr = searchValue ? filterData(updatedRowArr) : updatedRowArr;
+  const rowsArr = searchValue ? filterData(examData) : examData;
 
   return {
     tableHeight,
     currentLoginUser,
     apiData,
+    allAPIsData,
     columnsArr,
     rowsArr,
     tableWidth,

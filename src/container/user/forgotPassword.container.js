@@ -42,6 +42,11 @@ const ForgotPasswordContainer = () => {
       dispatchFunc();
     }
   }, [formData]);
+  useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+    };
+  }, []);
 
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
   const sxObject = formSXObject;

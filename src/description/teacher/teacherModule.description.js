@@ -85,12 +85,12 @@ export const EXAM_TABLE_FIELDS = [
     minWidth: 170,
     align: "right",
   },
-  {
-    id: "__v",
-    label: "__V",
-    minWidth: 170,
-    align: "right",
-  },
+  // {
+  //   id: "__v",
+  //   label: "__V",
+  //   minWidth: 170,
+  //   align: "right",
+  // },
   {
     id: "action",
     label: "Actions",
@@ -99,4 +99,4 @@ export const EXAM_TABLE_FIELDS = [
   },
 ];
 
-export const deleteAlert = "Please confirm to delete this exam ?";
+export const deleteAlert = "Are you sure you want to delete this exam?";

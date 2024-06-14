@@ -28,6 +28,7 @@ const EDExamCompMain = ({
     handleNext,
     handlePrevious,
     handleSubmit,
+    areAllQuestionsValid,
   } = examCompMainContainer({ examDetailsArr, questionsArr, action });
 
   return (
@@ -112,7 +113,12 @@ const EDExamCompMain = ({
                 />
               </EDBox>
               <br />
-              <EDButton type="submit" value={formName} variant="contained" />
+              <EDButton
+                type="submit"
+                disabled={!areAllQuestionsValid}
+                value={formName}
+                variant="contained"
+              />
             </form>
           </EDStack>
         </EDStack>

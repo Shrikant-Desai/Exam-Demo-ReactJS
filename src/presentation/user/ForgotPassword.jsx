@@ -4,6 +4,7 @@ import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import forgotPasswordContainer from "../../container/user/forgotPassword.container";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const ForgotPassword = () => {
   const {
@@ -55,7 +56,7 @@ const ForgotPassword = () => {
           />
           <EDStack direction="row" justifyContent="space-between">
             <Link className="text-link" to="/signin">
-              Go back
+              <KeyboardBackspace />
             </Link>
           </EDStack>
         </EDStack>

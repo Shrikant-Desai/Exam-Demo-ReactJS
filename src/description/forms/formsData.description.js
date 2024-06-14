@@ -11,13 +11,13 @@ export const ERRORS_MSG_USERFORM = {
     LAST_NAME_EMPTY: "Please enter last name.",
     NOT_VALID:
       "Name is not valid.(Use only characters or May be entered name is too long)",
-    SPACE_ERROR: "Use only letters and Avoid extra spaces",
+    SPACE_ERROR: "Use only letters and avoid extra spaces.",
   },
   PASSWORD: {
-    NOT_VALID: "Password is valid between [6-30] characters.",
+    NOT_VALID: "Password must be between 6 and 30 characters long.",
   },
   EMAIL: {
-    NOT_VALID: "Email is Not Valid. (Kindly follow this format abc@xyz.com)",
+    NOT_VALID: "Invalid email address. Please use the format: abc@xyz.com.",
   },
   ADDRESS: {
     LENGTH_ERROR: "Enter your address in [5-100]characters range.",

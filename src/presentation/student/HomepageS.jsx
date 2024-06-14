@@ -12,6 +12,7 @@ const HomepageS = () => {
   const {
     currentLoginUser,
     apiData,
+    allAPIsData,
     columnsArr,
     rowsArr,
     tableHeight,
@@ -31,17 +32,8 @@ const HomepageS = () => {
         <Divider />
 
         <EDStack direction="column" alignItems="center" justifyContent="center">
-          {apiData?.loading ? (
+          {!allAPIsData?.allExamsForStudent ? (
             <EDTableSkeleton width={800} />
-          ) : apiData?.data?.statusCode === API_STATUS_SESSION_END ? (
-            <EDTypography
-              sx={{ color: "red" }}
-              value="Session expired please login."
-              variant="h5"
-            />
-          ) : !Array.isArray(apiData?.data?.data) ||
-            apiData?.data?.data?.length === 0 ? (
-            <></>
           ) : (
             <EDStack direction="column">
               <EDTypography

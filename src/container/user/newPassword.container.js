@@ -52,6 +52,12 @@ const NewPasswordContainer = () => {
     }
   }, [formData]);
 
+  useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+    };
+  }, []);
+
   const sxObject = formSXObject;
   return {
     handleChange,

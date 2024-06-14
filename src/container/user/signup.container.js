@@ -49,6 +49,11 @@ const SignUpContainer = () => {
     }
   }, [formData]);
 
+  useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+    };
+  }, []);
   const sxObject = formSXObject;
 
   return {

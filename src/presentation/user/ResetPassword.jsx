@@ -6,6 +6,7 @@ import { resetPasswordArray } from "../../description/forms/formsData.descriptio
 
 import { Link } from "react-router-dom";
 import resetPasswordContainer from "../../container/user/resetPassword.container";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const ResetPassword = () => {
   const {
@@ -59,7 +60,7 @@ const ResetPassword = () => {
             />
             <EDStack direction="row" justifyContent="space-between">
               <Link className="text-link" to={-1}>
-                Go back
+                <KeyboardBackspace />
               </Link>
             </EDStack>
           </EDStack>

@@ -7,14 +7,34 @@ import {
 } from "../description/forms/examForm.description";
 import { useDispatch } from "react-redux";
 import { addExamFormData } from "../redux/slices/examForm.slice";
-import { EXAM_FORM_ERRORS } from "../utils/constant";
 
 const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
   const dispatch = useDispatch();
   const [examDetails, setExamDetails] = useState(examDetailsArr);
+  const [allQuestionsErrors, setAllQuestionsErrors] = useState(true);
+  const [areAllQuestionsValid, setAreAllQuestionsValid] = useState(true);
 
   const [questions, setQuestions] = useState(questionsArr);
 
+  useEffect(() => {
+    const validationData = questions.map((question, index) => {
+      const {
+        isCurrentQuestionValid,
+        errObjectForOptions,
+        questionError,
+        answerError,
+      } = validateFullQuestion(question);
+
+      setAreAllQuestionsValid(isCurrentQuestionValid);
+
+      return {
+        optionErrors: errObjectForOptions,
+        questionError,
+        answerError,
+      };
+    });
+    setAllQuestionsErrors(validationData);
+  }, [examDetails, questions]);
   useEffect(() => {
     setQuestions(questionsArr);
   }, [questionsArr]);
@@ -45,7 +65,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
     } = validateFullQuestion(currentQuestion);
 
     if (isCurrentQuestionValid) {
-      if (currentQuestionIndex < questions.length - 1) {
+      if (currentQuestionIndex < questions?.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       }
     } else {
@@ -78,25 +98,6 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
     const subjectNameError = emptyValidation(examDetails.subjectName);
     const descriptionError = emptyValidation(examDetails.description);
 
-    let areAllQuestionsValid = true;
-    const allQuestionsErrors = questions.map((question, index) => {
-      const {
-        isCurrentQuestionValid,
-        errObjectForOptions,
-        questionError,
-        answerError,
-      } = validateFullQuestion(question);
-
-      if (!isCurrentQuestionValid) {
-        areAllQuestionsValid = false;
-      }
-
-      return {
-        optionErrors: errObjectForOptions,
-        questionError,
-        answerError,
-      };
-    });
     const isErrorInForm =
       action === ACTION.GIVE_EXAM
         ? areAllQuestionsValid
@@ -125,13 +126,16 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
         ...examDetails,
         subjectNameError,
         descriptionError,
-        allQuestionValidError: EXAM_FORM_ERRORS.ALL_QUESTIONS_ERROR,
       });
 
-      const updatedQuestions = questions.map((question, index) => ({
-        ...question,
-        errors: allQuestionsErrors[index],
-      }));
+      const updatedQuestions = questions.map((question, index) =>
+        index === currentQuestionIndex
+          ? {
+              ...question,
+              errors: allQuestionsErrors[index],
+            }
+          : { ...question }
+      );
 
       setQuestions(updatedQuestions);
 
@@ -157,6 +161,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
     handleNext,
     handlePrevious,
     handleSubmit,
+    areAllQuestionsValid,
   };
 };
 

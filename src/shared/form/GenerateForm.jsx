@@ -18,6 +18,7 @@ const GenerateForm = ({
     return (
       <EDGrid
         key={index}
+        sx={{ pt: 2 }}
         item
         xs={grid?.xs}
         sm={grid?.sm}

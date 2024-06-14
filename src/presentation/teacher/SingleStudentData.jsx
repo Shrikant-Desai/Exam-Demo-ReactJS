@@ -8,6 +8,7 @@ import EDBox from "../../shared/EDBox";
 import { API_STATUS_SUCCESS } from "../../utils/constant";
 import { EDButton } from "../../shared/EDButton";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const SingleStudentData = () => {
   const {
@@ -40,18 +41,18 @@ const SingleStudentData = () => {
                 <EDButton
                   handleChange={handleClickToPrevRoute}
                   size="medium"
-                  value="Go Back"
+                  value={<KeyboardBackspace />}
                   variant="contained"
                 />
               </EDBox>
               <EDStack sx={{ pl: 5 }} spacing={2}>
                 <EDTypography
                   value={`Name : ${apiData?.data?.data?.[0]?.name}`}
-                  variant="h5"
+                  variant="h6"
                 />
                 <EDTypography
                   value={`Email : ${apiData?.data?.data?.[0]?.email}`}
-                  variant="h5"
+                  variant="h6"
                 />
               </EDStack>
               {apiData?.data?.data?.[0]?.Result?.length === 0 ? (

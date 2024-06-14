@@ -14,6 +14,7 @@ import {
 import { EDButton } from "../../shared/EDButton";
 import EDBox from "../../shared/EDBox";
 import { ACTION } from "../../description/forms/examForm.description";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 const GiveExam = () => {
   const {
@@ -89,15 +90,14 @@ const GiveExam = () => {
 
   return !apiData?.loading ? (
     <EDGrid container direction="row" spacing={2}>
-      <EDGrid item sx={{ ml: 3 }} xs={4} sm={3} md={2}>
+      <EDGrid item sx={{ ml: 3 }}>
         <EDButton
           size="medium"
           handleChange={handleClickToPrevRoute}
-          value="Go Back"
+          value={<KeyboardBackspace />}
           variant="contained"
         />
       </EDGrid>
-
       <EDGrid item xs={12}>
         {apiData?.data?.statusCode !== API_STATUS_GENERATION_FAILED ? (
           <>
