@@ -8,7 +8,7 @@ import { KeyboardBackspace } from "@mui/icons-material";
 
 const EditProfile = () => {
   const {
-    handleChange,
+    customHandleChange,
     handleSubmit,
     resetForm,
     sxObject,
@@ -36,7 +36,7 @@ const EditProfile = () => {
         >
           <FormMainComp
             {...{
-              handleChange,
+              handleChange: customHandleChange,
               handleSubmit,
               resetForm,
               sxObject,

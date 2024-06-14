@@ -12,6 +12,7 @@ import {
 } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { formSXObject } from "../../description/forms/formsData.description";
+import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
@@ -73,6 +74,12 @@ const SignInContainer = () => {
         JSON.stringify(apiData?.data?.data)
       );
       navigate(`/dashboard`);
+      dispatch(
+        addAPIData({
+          name: "Username",
+          data: [apiData?.data?.data?.name],
+        })
+      );
     }
   }, [apiData]);
 

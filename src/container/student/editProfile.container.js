@@ -10,6 +10,8 @@ import {
 } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
+import { formSXObject } from "../../description/forms/formsData.description";
+import { addAPIData } from "../../redux/slices/apisData.slice";
 
 const EditProfileContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
@@ -49,31 +51,45 @@ const EditProfileContainer = () => {
             LOCAL_LOGIN_DETAILS,
             JSON.stringify(loginDetails)
           );
+          resetForm(path, dispatch);
           navigate(-1);
         }
       });
     }
   }, [formData]);
 
+  useEffect(() => {
+    return () => {
+      resetForm(path, dispatch);
+      dispatch(
+        addAPIData({
+          name: "Username",
+          data: [JSON.parse(localStorage.getItem(LOCAL_LOGIN_DETAILS))?.name],
+        })
+      );
+    };
+  }, []);
+
   const { handleChange, handleSubmit, resetForm } = reduxFormActions({ path });
-  const sxObject = {
-    sxMainForm: {
-      width: { xs: "70vw", sm: "50vw", md: "35vw" },
-      height: "100%",
-      padding: "10px",
-      borderRadius: "10px",
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-    },
-    sxFormname: {
-      fontSize: "40px",
-      color: "black",
-      textAlign: "center",
-      marginBottom: "20px",
-    },
-    //sx to center a box in mui
+  const customHandleChange = (
+    e,
+    path,
+    formArray,
+    formErrorsState,
+    formDataState,
+    dispatch
+  ) => {
+    dispatch(
+      addAPIData({
+        name: "Username",
+        data: [e.target.value],
+      })
+    );
+    handleChange(e, path, formArray, formErrorsState, formDataState, dispatch);
   };
+  const sxObject = formSXObject;
   return {
-    handleChange,
+    customHandleChange,
     handleSubmit,
     resetForm,
     sxObject,

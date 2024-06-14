@@ -83,6 +83,7 @@ export default function EDDrawer({
     handleDrawerOpen,
     open,
     anchorEl,
+    username,
   } = drawerContainer(setIsDrawerOpen);
   const renderMenu = (
     <Menu
@@ -147,7 +148,7 @@ export default function EDDrawer({
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Avatar {...stringAvatar(loginDetails?.name)} />
+              <Avatar {...stringAvatar(username)} />
             </IconButton>
           </EDBox>
         </Toolbar>
