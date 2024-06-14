@@ -32,7 +32,7 @@ const HomepageS = () => {
         <Divider />
 
         <EDStack direction="column" alignItems="center" justifyContent="center">
-          {!allAPIsData?.allExamsForStudent ? (
+          {!allAPIsData?.allExamsForStudent || apiData?.loading || !rowsArr ? (
             <EDTableSkeleton width={800} />
           ) : (
             <EDStack direction="column">

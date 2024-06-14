@@ -33,14 +33,20 @@ const EditExamContainer = () => {
   }, [apiData]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.VIEW_SINGLE_EXAM}${id}`,
         method: API_GET,
         isToastMessage: false,
         navigate,
+        signal,
       })
     );
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {

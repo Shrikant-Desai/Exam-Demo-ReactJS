@@ -44,6 +44,8 @@ const GiveExamContainer = () => {
     setIsDialogOpen(false);
   };
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -51,6 +53,7 @@ const GiveExamContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
+          signal,
         })
       );
       const updatedData = response?.payload?.data?.data?.map((item) => {
@@ -64,6 +67,9 @@ const GiveExamContainer = () => {
       setQuestionArr(updatedData);
     };
     dispatchFunc();
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {

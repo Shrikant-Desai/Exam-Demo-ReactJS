@@ -3,7 +3,7 @@ import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
 import EDTypography from "../../shared/EDTypography";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
-import { API_STATUS_SUCCESS, SESSION_EXPIRED_MSG } from "../../utils/constant";
+import { API_ERRORS, API_STATUS_SUCCESS } from "../../utils/constant";
 import { EDInput } from "../../shared/EDInput";
 import EDTable from "../../shared/EDTable";
 import activeStudentsContainer from "../../container/teacher/activeStudents.container";
@@ -30,15 +30,17 @@ const ActiveStudents = () => {
         />
 
         <EDStack direction="column" alignItems="center" justifyContent="center">
-          {apiData?.loading ? (
+          {apiData?.loading ||
+          apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
             <EDTableSkeleton width={800} />
-          ) : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
-            <EDTypography
-              sx={{ color: "red" }}
-              value={SESSION_EXPIRED_MSG}
-              variant="h5"
-            />
           ) : (
+            // ) : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
+            //   <EDTypography
+            //     sx={{ color: "red" }}
+            //     value={API_ERRORS.GENERATION_FAILDED}
+            //     variant="h5"
+            //   />
+            // )
             <EDStack direction="column" spacing={3}>
               <EDInput
                 size="small"

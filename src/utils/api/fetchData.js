@@ -3,12 +3,12 @@ import { EXAM_DEMO_BASE_ENDPOINT } from "./baseURLs";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { showAPIToastMessage } from "../javascript";
 import {
+  API_ERRORS,
   API_STATUS_SESSION_END,
   LOCAL_AUTH_TOKEN,
   LOCAL_LOGIN_DETAILS,
 } from "../constant";
 
-export const source = axios.CancelToken.source();
 const apiInstance = axios.create({
   baseURL: EXAM_DEMO_BASE_ENDPOINT,
   headers: {
@@ -21,8 +21,8 @@ apiInstance.interceptors.request.use(
     const token = JSON.parse(localStorage.getItem(LOCAL_AUTH_TOKEN));
     if (token) {
       config.headers["access-token"] = token;
-      config.cancelToken = source.token;
     }
+
     return config;
   },
 
@@ -33,12 +33,13 @@ apiInstance.interceptors.request.use(
 
 export const fetchDataThunkFunc = createAsyncThunk(
   "fetchAPI",
-  async ({ url, method, bodyData, isToastMessage, navigate }) => {
+  async ({ url, method, bodyData, isToastMessage, navigate, signal }) => {
     try {
       const response = await apiInstance({
         url: url,
         method: method,
         data: bodyData,
+        signal,
       });
 
       if (isToastMessage) {
@@ -52,7 +53,11 @@ export const fetchDataThunkFunc = createAsyncThunk(
       }
       return response;
     } catch (error) {
-      console.log("errors in fetch", error.message);
+      if (error.name === API_ERRORS.ABORT_ERROR) {
+        console.log(API_ERRORS.REQUEST_CANCELED, error.message);
+      } else {
+        console.error(API_ERRORS.REQUEST_FAILDED, error);
+      }
     }
   }
 );

@@ -22,7 +22,8 @@ const ForgotPasswordContainer = () => {
         accum = item;
         return accum;
       }, {});
-
+      const controller = new AbortController();
+      const signal = controller.signal;
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -33,6 +34,7 @@ const ForgotPasswordContainer = () => {
             },
             isToastMessage: true,
             navigate,
+            signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -40,6 +42,9 @@ const ForgotPasswordContainer = () => {
         }
       };
       dispatchFunc();
+      return () => {
+        controller.abort();
+      };
     }
   }, [formData]);
   useEffect(() => {

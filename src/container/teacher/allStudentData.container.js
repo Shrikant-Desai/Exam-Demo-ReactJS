@@ -19,6 +19,9 @@ const AllStudentDataContainer = () => {
   const apiData = useSelector((state) => state?.fetchData);
   const allAPIsData = useSelector((state) => state.apisData);
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -26,6 +29,7 @@ const AllStudentDataContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
+          signal,
         })
       );
       dispatch(
@@ -36,6 +40,9 @@ const AllStudentDataContainer = () => {
       );
     };
     dispatchFunc();
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {

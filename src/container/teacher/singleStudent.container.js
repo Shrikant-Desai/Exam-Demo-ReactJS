@@ -15,14 +15,21 @@ const SingleStudentContainer = () => {
   const studentID = searchParams.get("id");
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.GET_SINGLE_STUDENTS}${studentID}`,
         method: API_GET,
         isToastMessage: false,
         navigate,
+        signal,
       })
     );
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   const handleSearch = (e) => {

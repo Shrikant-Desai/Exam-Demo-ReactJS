@@ -22,13 +22,14 @@ const HomepageTContainer = () => {
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
 
-  const dispatchFunc = async () => {
+  const dispatchFunc = async (signal) => {
     const response = await dispatch(
       fetchDataThunkFunc({
         url: END_POINTS.VIEW_ALL_EXAM,
         method: API_GET,
         isToastMessage: false,
         navigate,
+        signal,
       })
     );
     dispatch(
@@ -39,7 +40,12 @@ const HomepageTContainer = () => {
     );
   };
   useEffect(() => {
-    dispatchFunc();
+    const controller = new AbortController();
+    const signal = controller.signal;
+    dispatchFunc(signal);
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {

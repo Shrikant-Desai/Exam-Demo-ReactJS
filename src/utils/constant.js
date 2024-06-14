@@ -39,4 +39,10 @@ export const EXAM_FORM_ERRORS = {
   ALL_QUESTIONS_ERROR: "Please enter details for all questions",
 };
 
-export const SESSION_EXPIRED_MSG = "Session expired please login.";
+export const API_ERRORS = {
+  ABORT_ERROR: "AbortError",
+  REQUEST_CANCELED: "Request canceled",
+  REQUEST_FAILDED: "Request failed",
+  GENERATION_FAILDED: "Generation failed",
+  GENERATION_SUCCESS: "Generation success",
+};

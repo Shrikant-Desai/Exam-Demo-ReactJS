@@ -18,6 +18,8 @@ const HomepageSContainer = () => {
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -25,6 +27,7 @@ const HomepageSContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
+          signal,
         })
       );
       dispatch(
@@ -35,6 +38,9 @@ const HomepageSContainer = () => {
       );
     };
     dispatchFunc();
+    return () => {
+      controller.abort();
+    };
   }, []);
   useEffect(() => {
     if (allAPIsData?.allExamsForStudent) {

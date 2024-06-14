@@ -42,7 +42,7 @@ const HomepageT = () => {
         <Divider />
 
         <EDStack direction="column" alignItems="center" justifyContent="center">
-          {!allAPIsData.examsCreated ? (
+          {!allAPIsData.examsCreated || !rowsArr ? (
             <EDTableSkeleton width={800} />
           ) : rowsArr?.length === 0 ? (
             <EDTypography

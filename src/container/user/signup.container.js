@@ -25,7 +25,8 @@ const SignUpContainer = () => {
         accum = item;
         return accum;
       }, {});
-
+      const controller = new AbortController();
+      const signal = controller.signal;
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -39,6 +40,7 @@ const SignUpContainer = () => {
             },
             isToastMessage: true,
             navigate,
+            signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -46,6 +48,10 @@ const SignUpContainer = () => {
         }
       };
       dispatchFunc();
+      return () => {
+        resetForm(path, dispatch);
+        controller.abort();
+      };
     }
   }, [formData]);
 

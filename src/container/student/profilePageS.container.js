@@ -15,6 +15,8 @@ const ProfilePageSContainer = () => {
   const apiData = useSelector((state) => state?.fetchData);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -22,6 +24,7 @@ const ProfilePageSContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
+          signal,
         })
       );
 
@@ -33,11 +36,16 @@ const ProfilePageSContainer = () => {
       );
     };
     dispatchFunc();
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {
     if (allAPIsData?.profile) {
-      const data = Object.entries(allAPIsData.profile?.data);
+      const data =
+        allAPIsData?.profile?.data &&
+        Object.entries(allAPIsData?.profile?.data);
       setProfileData(data);
     }
   }, [allAPIsData]);

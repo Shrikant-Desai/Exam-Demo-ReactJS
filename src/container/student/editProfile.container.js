@@ -24,6 +24,8 @@ const EditProfileContainer = () => {
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {
         accum = item;
@@ -39,6 +41,7 @@ const EditProfileContainer = () => {
           },
           isToastMessage: true,
           navigate,
+          signal,
         })
       );
       response.then(() => {
@@ -55,6 +58,9 @@ const EditProfileContainer = () => {
           navigate(-1);
         }
       });
+      return () => {
+        controller.abort();
+      };
     }
   }, [formData]);
 
