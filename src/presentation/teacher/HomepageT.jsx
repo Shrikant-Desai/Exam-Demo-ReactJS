@@ -13,7 +13,12 @@ import homepageTContainer from "../../container/teacher/homepageT.container";
 import EDTable from "../../shared/EDTable";
 import { EDInput } from "../../shared/EDInput";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
-import { deleteAlert } from "../../description/teacher/teacherModule.description";
+import {
+  MESSAGES,
+  deleteAlert,
+} from "../../description/teacher/teacherModule.description";
+import { DNF_TABLE_PROPS } from "../../description/forms/formsData.description";
+import { EDButton } from "../../shared/EDButton";
 
 const HomepageT = () => {
   const {
@@ -29,6 +34,7 @@ const HomepageT = () => {
     isDialogOpen,
     handleDialogClose,
     handleDelete,
+    searchValue,
   } = homepageTContainer();
 
   return (
@@ -44,17 +50,17 @@ const HomepageT = () => {
         <EDStack direction="column" alignItems="center" justifyContent="center">
           {!allAPIsData.examsCreated || !rowsArr ? (
             <EDTableSkeleton width={800} />
-          ) : rowsArr?.length === 0 ? (
+          ) : !searchValue && rowsArr?.length === 0 ? (
             <EDTypography
               sx={{ color: "red", p: 4 }}
-              value="You have not created any exam till now."
+              value={MESSAGES.EXAM_NOT_CREATED}
               variant="h5"
             />
           ) : (
             <EDStack direction="column">
               <EDTypography
                 sx={{ p: 2 }}
-                value="Exams Created By You"
+                value={MESSAGES.EXAMS_CREATED}
                 align="center"
                 variant="h5"
               />
@@ -64,15 +70,21 @@ const HomepageT = () => {
                 variant="standard"
                 handleChange={handleSearch}
               />
-              <EDTable
-                {...{
-                  columnsArr,
-                  rowsArr,
-                  tableHeight,
-                  tableWidth,
-                  rowsPerPageArr,
-                }}
-              />
+              {rowsArr?.length === 0 ? (
+                <>
+                  <EDTable {...DNF_TABLE_PROPS} />
+                </>
+              ) : (
+                <EDTable
+                  {...{
+                    columnsArr,
+                    rowsArr,
+                    tableHeight,
+                    tableWidth,
+                    rowsPerPageArr,
+                  }}
+                />
+              )}
             </EDStack>
           )}
         </EDStack>
@@ -86,8 +98,16 @@ const HomepageT = () => {
         <DialogTitle>{deleteAlert}</DialogTitle>
 
         <DialogActions>
-          <Button onClick={handleDialogClose}>Disagree</Button>
-          <Button onClick={handleDelete}>Agree</Button>
+          <EDButton
+            disabled={apiData.loading}
+            value="Cancel"
+            handleChange={handleDialogClose}
+          />
+          <EDButton
+            isAPILoading={apiData.loading}
+            value="Delete"
+            handleChange={handleDelete}
+          />
         </DialogActions>
       </Dialog>
     </EDStack>

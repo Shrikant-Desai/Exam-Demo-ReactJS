@@ -9,6 +9,8 @@ import { API_STATUS_SUCCESS } from "../../utils/constant";
 import { EDButton } from "../../shared/EDButton";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
 import { KeyboardBackspace } from "@mui/icons-material";
+import { MESSAGES } from "../../description/teacher/teacherModule.description";
+import { DNF_TABLE_PROPS } from "../../description/forms/formsData.description";
 
 const SingleStudentData = () => {
   const {
@@ -58,7 +60,7 @@ const SingleStudentData = () => {
               {apiData?.data?.data?.[0]?.Result?.length === 0 ? (
                 <EDTypography
                   sx={{ pl: 5, pt: 2, color: "red" }}
-                  value="Student hasn't give any exam till now."
+                  value={MESSAGES.STUDENT_EXAMS}
                   variant="h5"
                 />
               ) : (
@@ -75,15 +77,21 @@ const SingleStudentData = () => {
                   />
 
                   <EDStack alignItems="center">
-                    <EDTable
-                      {...{
-                        columnsArr,
-                        rowsArr,
-                        tableHeight,
-                        tableWidth,
-                        rowsPerPageArr,
-                      }}
-                    />
+                    {rowsArr?.length === 0 ? (
+                      <>
+                        <EDTable {...DNF_TABLE_PROPS} />
+                      </>
+                    ) : (
+                      <EDTable
+                        {...{
+                          columnsArr,
+                          rowsArr,
+                          tableHeight,
+                          tableWidth,
+                          rowsPerPageArr,
+                        }}
+                      />
+                    )}
                   </EDStack>
                 </EDStack>
               )}

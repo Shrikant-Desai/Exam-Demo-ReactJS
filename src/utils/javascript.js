@@ -69,3 +69,7 @@ export function stringAvatar(name) {
       }
     : "";
 }
+
+export const trim = (str) => {
+  return str.replace(/^\s+|\s+$/g, "");
+};

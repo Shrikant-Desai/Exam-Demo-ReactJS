@@ -13,6 +13,7 @@ import {
   USER_FORMS,
 } from "../../utils/constant";
 import { formSXObject } from "../../description/forms/formsData.description";
+import { trim } from "../../utils/javascript";
 
 const ResetPasswordContainer = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -47,9 +48,9 @@ const ResetPasswordContainer = () => {
             url: `${END_POINTS.RESET_PASSWORD}`,
             method: API_POST,
             bodyData: {
-              oldPassword: data?.oldpassword,
-              Password: data?.password,
-              ConfirmPassword: data?.confirmpassword,
+              oldPassword: trim(data?.oldpassword),
+              Password: trim(data?.password),
+              ConfirmPassword: trim(data?.confirmpassword),
             },
             isToastMessage: true,
             navigate,

@@ -17,15 +17,18 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
   const [questions, setQuestions] = useState(questionsArr);
 
   useEffect(() => {
+    let allQuestionsAreValid = true;
     const validationData = questions.map((question, index) => {
       const {
         isCurrentQuestionValid,
         errObjectForOptions,
         questionError,
         answerError,
-      } = validateFullQuestion(question);
+      } = validateFullQuestion(question, questions, index);
 
-      setAreAllQuestionsValid(isCurrentQuestionValid);
+      if (!isCurrentQuestionValid) {
+        allQuestionsAreValid = false;
+      }
 
       return {
         optionErrors: errObjectForOptions,
@@ -33,6 +36,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
         answerError,
       };
     });
+    setAreAllQuestionsValid(allQuestionsAreValid);
     setAllQuestionsErrors(validationData);
   }, [examDetails, questions]);
   useEffect(() => {
@@ -45,7 +49,8 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
     setExamDetails({
       ...examDetails,
       [e.target.name]: e.target.value,
-      [`${e.target.name}Error`]: emptyValidation(e.target.value),
+
+      [`${e.target.name}Error`]: emptyValidation(e.target.value, e.target.name),
     });
   };
 
@@ -95,13 +100,20 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
       questionError,
       answerError,
     } = validateFullQuestion(currentQuestion);
-    const subjectNameError = emptyValidation(examDetails.subjectName);
-    const descriptionError = emptyValidation(examDetails.description);
+    const subjectNameError = emptyValidation(
+      examDetails.subjectName,
+      "Subject Name"
+    );
+    const descriptionError = emptyValidation(
+      examDetails.description,
+      "Description"
+    );
 
     const isErrorInForm =
       action === ACTION.GIVE_EXAM
         ? areAllQuestionsValid
         : !subjectNameError && !descriptionError && areAllQuestionsValid;
+    console.log("isErrorInForm", isErrorInForm);
     if (isErrorInForm) {
       dispatch(
         addExamFormData({

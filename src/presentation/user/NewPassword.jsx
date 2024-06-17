@@ -1,8 +1,8 @@
 import React from "react";
 import newPasswordContainer from "../../container/user/newPassword.container";
-import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { newPasswordArray } from "../../description/forms/formsData.description";
+import EDForm from "../../shared/form/EDForm";
 
 const NewPassword = () => {
   const {
@@ -39,7 +39,7 @@ const NewPassword = () => {
           alignItems="flex-start"
           sx={{ p: 4 }}
         >
-          <FormMainComp
+          <EDForm
             {...{
               handleChange,
               handleSubmit,

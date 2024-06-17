@@ -37,6 +37,8 @@ export const EXAM_FORM_ERRORS = {
   SUBJECT_NAME_ERROR: "Please enter subject name",
   DESCRIPTION_ERROR: "Please enter description",
   ALL_QUESTIONS_ERROR: "Please enter details for all questions",
+  SAME_OPTION_ERROR: "Two same options exist",
+  QUESTION_EXIST: "Question already exists.",
 };
 
 export const API_ERRORS = {
@@ -45,4 +47,16 @@ export const API_ERRORS = {
   REQUEST_FAILDED: "Request failed",
   GENERATION_FAILDED: "Generation failed",
   GENERATION_SUCCESS: "Generation success",
+};
+export const FORMS = {
+  LOGIN_FORM: "Login ",
+  SIGNUP_FORM: "Sign up ",
+  FORGOT_PASSWORD_FORM: "Forgot Password ",
+  RESET_PASSWORD_FORM: "Reset Password ",
+  NEW_PASSWORD_FORM: "New Password ",
+  EDIT_PROFILE_FORM: "Edit Profile ",
+  EXAM_FORM: "ExamForm",
+  CREATE_EXAM: "Create Exam",
+  GIVE_EXAM: "Give Exam",
+  EDIT_EXAM: "Edit Exam",
 };

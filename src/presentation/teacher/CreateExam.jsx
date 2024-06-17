@@ -9,6 +9,7 @@ import createExamContainer from "../../container/teacher/createExam.container";
 import { EDButton } from "../../shared/EDButton";
 import EDGrid from "../../shared/EDGrid";
 import { KeyboardBackspace } from "@mui/icons-material";
+import { FORMS } from "../../utils/constant";
 
 const CreateExam = () => {
   const { handleClickToPrevRoute } = createExamContainer();
@@ -27,7 +28,7 @@ const CreateExam = () => {
           examDetailsArr={EXAMDETAILS_INIT_ARRAY}
           questionsArr={QUESTIONS_INIT_ARRAY}
           action={ACTION.CREATE_EXAM}
-          formName="Create Exam"
+          formName={FORMS.CREATE_EXAM}
         />
       </EDGrid>
     </EDGrid>

@@ -92,7 +92,7 @@ const GiveExamContainer = () => {
       dispatch(deleteExamFormData());
       response.then(() => {
         if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
-          navigate("/dashboard/student");
+          navigate("/dashboard");
         }
       });
     }

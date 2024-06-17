@@ -151,7 +151,7 @@ export const signUpFormArray = [
     type: "select",
     fieldName: "userrole",
     labelProps: {
-      value: "Select Role",
+      value: "Role",
       className: "form-group",
     },
     inputProps: {
@@ -973,4 +973,21 @@ export const formSXObject = {
     textAlign: "center",
     marginBottom: "20px",
   },
+};
+export const FORM_ERROR_MESSAGE = "There was an error. Please try again";
+export const FORM_SUBMIT_MESSAGE = "Form Submitted.";
+
+export const DNF_TABLE_PROPS = {
+  columnsArr: [
+    {
+      id: "data_not_found",
+      label: "Data not found",
+      minWidth: 170,
+      align: "center",
+    },
+  ],
+  rowsArr: [],
+  tableHeight: 400,
+  tableWidth: 1000,
+  isEmpty: true,
 };

@@ -75,7 +75,6 @@ const HomepageTContainer = () => {
   };
 
   const handleDelete = () => {
-    setIsDialogOpen(false);
     const response = dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.DELETE_EXAM}${deleteID}`,
@@ -85,6 +84,7 @@ const HomepageTContainer = () => {
       })
     );
     response.then(() => {
+      setIsDialogOpen(false);
       dispatchFunc();
     });
   };
@@ -117,7 +117,7 @@ const HomepageTContainer = () => {
   };
 
   const tableHeight = 550;
-  const tableWidth = "100%";
+  const tableWidth = 1000;
 
   const rowsPerPageArr = [5, 10, 20];
   const rowsArr = searchValue ? filterData(data) : data;
@@ -135,6 +135,7 @@ const HomepageTContainer = () => {
     isDialogOpen,
     handleDialogClose,
     handleDelete,
+    searchValue,
   };
 };
 export default HomepageTContainer;

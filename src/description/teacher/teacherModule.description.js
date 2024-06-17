@@ -72,19 +72,19 @@ export const SINGLE_STUDENT_TABLE_FIELDS = [
 ];
 export const EXAM_TABLE_FIELDS = [
   { id: "_id", label: "ID", minWidth: 170 },
-  { id: "subjectName", label: "Subject Name", minWidth: 100 },
+  { id: "subjectName", label: "Subject Name", minWidth: 70 },
   {
     id: "notes",
     label: "Notes",
-    minWidth: 170,
-    align: "right",
+    width: 170,
+    align: "left",
   },
-  {
-    id: "email",
-    label: "Email",
-    minWidth: 170,
-    align: "right",
-  },
+  // {
+  //   id: "email",
+  //   label: "Email",
+  //   minWidth: 170,
+  //   align: "right",
+  // },
   // {
   //   id: "__v",
   //   label: "__V",
@@ -94,9 +94,18 @@ export const EXAM_TABLE_FIELDS = [
   {
     id: "action",
     label: "Actions",
-    minWidth: 170,
+    minWidth: 120,
     align: "center",
   },
 ];
 
 export const deleteAlert = "Are you sure you want to delete this exam?";
+
+export const MESSAGES = {
+  ACTIVE_STUDENTS: "Active Students",
+  ALL_STUDENT: "All Students",
+  EXAM_NOT_CREATED: "You have not created any exam till now.",
+  SEARCH_DATA_ERROR: "Data not found",
+  EXAMS_CREATED: "Exams Created By You",
+  STUDENT_EXAMS: "The student has not taken any exams yet.",
+};

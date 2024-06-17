@@ -1,7 +1,7 @@
 import React from "react";
 import EDExamCompMain from "../../shared/EDExamCompMain";
 import giveExamContainer from "../../container/student/giveExam.container";
-import { API_STATUS_GENERATION_FAILED } from "../../utils/constant";
+import { API_STATUS_GENERATION_FAILED, FORMS } from "../../utils/constant";
 import EDTypography from "../../shared/EDTypography";
 import EDStack from "../../shared/EDStack";
 import EDGrid from "../../shared/EDGrid";
@@ -15,6 +15,7 @@ import { EDButton } from "../../shared/EDButton";
 import EDBox from "../../shared/EDBox";
 import { ACTION } from "../../description/forms/examForm.description";
 import { KeyboardBackspace } from "@mui/icons-material";
+import { MESSAGES } from "../../description/student/studentModule.description";
 
 const GiveExam = () => {
   const {
@@ -105,20 +106,17 @@ const GiveExam = () => {
               examDetailsArr={examDetailsObject}
               questionsArr={questionArr}
               action={ACTION.GIVE_EXAM}
-              formName="Give Exam"
+              formName={FORMS.GIVE_EXAM}
               isGiveExam={true}
             />
           </>
         ) : (
           <EDStack alignItems="center">
-            <EDTypography
-              value="You have already attempted the exam."
-              variant={"h5"}
-            />
+            <EDTypography value={MESSAGES.EXAM_ATTEMPTED} variant={"h5"} />
             <EDBox>
               <EDButton
                 variant="outlined"
-                value="See Result"
+                value={MESSAGES.RESULT_DIALOG_BUTTON}
                 handleChange={handleDialogClick}
               />
             </EDBox>

@@ -1,12 +1,12 @@
 import React from "react";
-
-import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { resetPasswordArray } from "../../description/forms/formsData.description";
 
 import { Link } from "react-router-dom";
 import resetPasswordContainer from "../../container/user/resetPassword.container";
 import { KeyboardBackspace } from "@mui/icons-material";
+import EDForm from "../../shared/form/EDForm";
+import { FORMS } from "../../utils/constant";
 
 const ResetPassword = () => {
   const {
@@ -32,7 +32,6 @@ const ResetPassword = () => {
           sx={{
             boxShadow: 3,
             borderRadius: 3,
-            //   backgroundColor: "rgba(255, 255, 255,0.5)",
             backdropFilter: `blur(10px)`,
           }}
           direction="row"
@@ -45,7 +44,7 @@ const ResetPassword = () => {
             alignItems="flex-start"
             sx={{ p: 4 }}
           >
-            <FormMainComp
+            <EDForm
               {...{
                 handleChange,
                 handleSubmit,
@@ -53,7 +52,7 @@ const ResetPassword = () => {
                 sxObject,
                 isSubForm: false,
                 formArr: resetPasswordArray,
-                formName: "Reset Password",
+                formName: FORMS.RESET_PASSWORD_FORM,
                 path,
                 isAPILoading,
               }}

@@ -12,7 +12,7 @@ import {
   deleteFormState,
 } from "../../redux/slices/form.slice";
 
-const FormMainComp = ({
+const EDForm = ({
   formArr,
   path,
   formName,
@@ -109,4 +109,4 @@ const FormMainComp = ({
   );
 };
 
-export default FormMainComp;
+export default EDForm;

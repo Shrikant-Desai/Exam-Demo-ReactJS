@@ -1,10 +1,11 @@
 import React from "react";
 import { editProfileFormArray } from "../../description/forms/formsData.description";
-import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import editProfileContainer from "../../container/student/editProfile.container";
 import { KeyboardBackspace } from "@mui/icons-material";
+import EDForm from "../../shared/form/EDForm";
+import { FORMS } from "../../utils/constant";
 
 const EditProfile = () => {
   const {
@@ -34,7 +35,7 @@ const EditProfile = () => {
           alignItems="flex-start"
           sx={{ p: 4 }}
         >
-          <FormMainComp
+          <EDForm
             {...{
               handleChange: customHandleChange,
               handleSubmit,
@@ -42,7 +43,7 @@ const EditProfile = () => {
               sxObject,
               isSubForm: false,
               formArr: editProfileFormArray,
-              formName: "Change Name",
+              formName: FORMS.EDIT_PROFILE_FORM,
               path,
               isAPILoading,
             }}

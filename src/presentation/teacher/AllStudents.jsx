@@ -1,12 +1,14 @@
 import React from "react";
 import EDBox from "../../shared/EDBox";
 import EDStack from "../../shared/EDStack";
-import { API_ERRORS, API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_STATUS_SUCCESS } from "../../utils/constant";
 import EDTypography from "../../shared/EDTypography";
 import EDTable from "../../shared/EDTable";
 import { EDInput } from "../../shared/EDInput";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
 import allStudentDataContainer from "../../container/teacher/allStudentData.container";
+import { MESSAGES } from "../../description/teacher/teacherModule.description";
+import { DNF_TABLE_PROPS } from "../../description/forms/formsData.description";
 
 const AllStudents = () => {
   const {
@@ -24,7 +26,7 @@ const AllStudents = () => {
       <EDBox>
         <EDTypography
           sx={{ p: 4 }}
-          value="All Students"
+          value={MESSAGES.ALL_STUDENT}
           align="center"
           variant="h4"
         />
@@ -34,12 +36,6 @@ const AllStudents = () => {
           apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
             <EDTableSkeleton width={800} />
           ) : (
-            // : apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
-            //   <EDTypography
-            //     sx={{ color: "red" }}
-            //     value={API_ERRORS.GENERATION_FAILDED}
-            //     variant="h5"
-            //   />
             <EDStack direction="column" spacing={3}>
               <EDInput
                 size="small"
@@ -47,15 +43,21 @@ const AllStudents = () => {
                 variant="standard"
                 handleChange={handleSearch}
               />
-              <EDTable
-                {...{
-                  columnsArr,
-                  rowsArr,
-                  tableHeight,
-                  tableWidth,
-                  rowsPerPageArr,
-                }}
-              />
+              {rowsArr?.length === 0 ? (
+                <>
+                  <EDTable {...DNF_TABLE_PROPS} />
+                </>
+              ) : (
+                <EDTable
+                  {...{
+                    columnsArr,
+                    rowsArr,
+                    tableHeight,
+                    tableWidth,
+                    rowsPerPageArr,
+                  }}
+                />
+              )}
             </EDStack>
           )}
         </EDStack>

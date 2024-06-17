@@ -1,4 +1,3 @@
-// CRUDLabel.js
 import React from "react";
 
 export const EDLabel = (props) => {

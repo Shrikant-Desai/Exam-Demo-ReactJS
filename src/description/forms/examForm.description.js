@@ -1,4 +1,6 @@
-export const QUESTIONS_INIT_ARRAY = Array(2).fill({
+const TOTAL_QUESTIONS = 2;
+
+export const QUESTIONS_INIT_ARRAY = Array(TOTAL_QUESTIONS).fill({
   question: "",
   answer: "",
   options: ["", "", "", ""],

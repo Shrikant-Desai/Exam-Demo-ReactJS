@@ -13,6 +13,7 @@ import {
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import { trim } from "../../utils/javascript";
 
 const SignInContainer = () => {
   const navigate = useNavigate();
@@ -42,8 +43,8 @@ const SignInContainer = () => {
             url: END_POINTS.USER_LOGIN,
             method: API_POST,
             bodyData: {
-              email: data?.email,
-              password: data?.password,
+              email: trim(data?.email),
+              password: trim(data?.password),
             },
             isToastMessage: true,
             navigate,

@@ -15,6 +15,10 @@ import {
   deleteData,
   updateData,
 } from "../redux/slices/formData.slice";
+import {
+  FORM_ERROR_MESSAGE,
+  FORM_SUBMIT_MESSAGE,
+} from "../description/forms/formsData.description";
 
 const ReduxFormActions = (props) => {
   const mainForm = useSelector((state) => state.dynamicForm);
@@ -128,7 +132,7 @@ const ReduxFormActions = (props) => {
       dispatch
     );
     if (isFormValid) {
-      console.log("Submitted Data", mainFormDataObject.data);
+      console.log(FORM_SUBMIT_MESSAGE, mainFormDataObject.data);
       dispatch(createFormDataState(path));
       const isUpdate = mainForm?.[path]?.updateId;
 
@@ -155,7 +159,7 @@ const ReduxFormActions = (props) => {
       }
       // resetForm(path, dispatch);
     } else {
-      console.error("There was an error", mainFormDataObject.errors);
+      console.error(FORM_ERROR_MESSAGE, mainFormDataObject.errors);
     }
     dispatch(
       setIsFormValid({
@@ -164,40 +168,12 @@ const ReduxFormActions = (props) => {
       })
     );
   };
-  const setDataIntoForm = (formDataArr, formName, id, dispatch) => {
-    const formEditData = formDataArr.find((item) => item.id === id);
-    dispatch(
-      setFormData({
-        path: formName,
-        data: formEditData,
-      })
-    );
-  };
-
-  const handleDelete = (formName, id, dispatch) => {
-    if (window.confirm("Are you sure you want to delete this data")) {
-      dispatch(deleteData({ name: formName, data: id }));
-      resetForm(formName, dispatch);
-    }
-  };
-
-  const handlePrevious = () => {
-    console.log("previous clicked");
-  };
-
-  const handleNext = () => {
-    console.log("next clicked");
-  };
 
   return {
     handleChange,
     handleSubmit,
     resetForm,
-    handleDelete,
-    setDataIntoForm,
     isFormSuccess,
-    handlePrevious,
-    handleNext,
   };
 };
 export default ReduxFormActions;

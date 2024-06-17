@@ -1,10 +1,11 @@
 import React from "react";
 import { forgotPasswordFormArray } from "../../description/forms/formsData.description";
-import FormMainComp from "../../shared/form/FormMainComp";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import forgotPasswordContainer from "../../container/user/forgotPassword.container";
 import { KeyboardBackspace } from "@mui/icons-material";
+import EDForm from "../../shared/form/EDForm";
+import { FORMS } from "../../utils/constant";
 
 const ForgotPassword = () => {
   const {
@@ -41,7 +42,7 @@ const ForgotPassword = () => {
           alignItems="flex-start"
           sx={{ p: 4 }}
         >
-          <FormMainComp
+          <EDForm
             {...{
               handleChange,
               handleSubmit,
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
               sxObject,
               isSubForm: false,
               formArr: forgotPasswordFormArray,
-              formName: "Forgot Password",
+              formName: FORMS.FORGOT_PASSWORD_FORM,
               path,
               isAPILoading,
             }}

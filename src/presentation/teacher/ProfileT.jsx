@@ -4,6 +4,7 @@ import EDGrid from "../../shared/EDGrid";
 import EDTypography from "../../shared/EDTypography";
 import { EDButton } from "../../shared/EDButton";
 import profilePageTContainer from "../../container/teacher/profileT.container";
+import { MESSAGES } from "../../description/student/studentModule.description";
 
 const ProfileT = () => {
   const { apiData, profileData, handleResetPassword } = profilePageTContainer();
@@ -48,7 +49,7 @@ const ProfileT = () => {
             </EDGrid>
 
             <EDButton
-              value="Reset Password"
+              value={MESSAGES.RESET_PASSWORD}
               handleChange={handleResetPassword}
             />
           </EDStack>

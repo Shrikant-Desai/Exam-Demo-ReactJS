@@ -6,6 +6,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { useNavigate } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
+import { trim } from "../../utils/javascript";
 
 const SignUpContainer = () => {
   const path = USER_FORMS.SIGNUP_PATH;
@@ -33,10 +34,10 @@ const SignUpContainer = () => {
             url: END_POINTS.USER_SIGNUP,
             method: API_POST,
             bodyData: {
-              name: data?.name,
-              email: data?.email,
-              password: data?.password,
-              role: data?.userrole,
+              name: trim(data?.name),
+              email: trim(data?.email),
+              password: trim(data?.password),
+              role: trim(data?.userrole),
             },
             isToastMessage: true,
             navigate,

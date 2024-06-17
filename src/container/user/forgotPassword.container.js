@@ -6,6 +6,7 @@ import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
+import { trim } from "../../utils/javascript";
 
 const ForgotPasswordContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
@@ -30,7 +31,7 @@ const ForgotPasswordContainer = () => {
             url: END_POINTS.USER_FORGOT_PASSWORD,
             method: API_POST,
             bodyData: {
-              email: data?.email,
+              email: trim(data?.email),
             },
             isToastMessage: true,
             navigate,

@@ -5,6 +5,7 @@ import EDGrid from "../../shared/EDGrid";
 import EDTypography from "../../shared/EDTypography";
 import { EDButton } from "../../shared/EDButton";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
+import { MESSAGES } from "../../description/student/studentModule.description";
 
 const ProfileS = () => {
   const { apiData, profileData, handleResetPassword, handleChangeUserName } =
@@ -48,9 +49,12 @@ const ProfileS = () => {
                 );
               })}
             </EDGrid>
-            <EDButton value="Change Name" handleChange={handleChangeUserName} />
             <EDButton
-              value="Reset Password"
+              value={MESSAGES.CHANGE_NAME}
+              handleChange={handleChangeUserName}
+            />
+            <EDButton
+              value={MESSAGES.RESET_PASSWORD}
               handleChange={handleResetPassword}
             />
           </EDStack>

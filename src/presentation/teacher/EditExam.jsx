@@ -2,6 +2,7 @@ import React from "react";
 import EDExamCompMain from "../../shared/EDExamCompMain";
 import editExamContainer from "../../container/teacher/editExam.container";
 import { ACTION } from "../../description/forms/examForm.description";
+import { FORMS } from "../../utils/constant";
 
 const EditExam = () => {
   const { examDetailsObject, questionArr, apiData } = editExamContainer();
@@ -13,7 +14,7 @@ const EditExam = () => {
           examDetailsArr={examDetailsObject}
           questionsArr={questionArr}
           action={ACTION.EDIT_EXAM}
-          formName="Edit Exam"
+          formName={FORMS.EDIT_EXAM}
         />
       </>
     );

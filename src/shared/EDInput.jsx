@@ -1,5 +1,3 @@
-// CRUDInput.js
-
 import { TextField } from "@mui/material";
 import React from "react";
 

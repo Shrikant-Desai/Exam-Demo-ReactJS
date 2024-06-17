@@ -1,4 +1,3 @@
-// CRUDSelect.js
 import { FormControl, MenuItem, Select } from "@mui/material";
 import React from "react";
 import { EDLabel } from "./EDLabel";

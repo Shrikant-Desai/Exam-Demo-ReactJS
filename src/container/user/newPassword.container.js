@@ -6,6 +6,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
+import { trim } from "../../utils/javascript";
 
 const NewPasswordContainer = () => {
   const [searchParams] = useSearchParams();
@@ -37,8 +38,8 @@ const NewPasswordContainer = () => {
             url: `${END_POINTS.NEW_PASSWORD}${token}`,
             method: API_POST,
             bodyData: {
-              Password: data?.password,
-              ConfirmPassword: data?.confirmpassword,
+              Password: trim(data?.password),
+              ConfirmPassword: trim(data?.confirmpassword),
             },
             isToastMessage: true,
             navigate,

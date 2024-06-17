@@ -1,6 +1,4 @@
 import React from "react";
-
-import FormMainComp from "./FormMainComp";
 import { EDLabel } from "../EDLabel";
 import { EDInput } from "../EDInput";
 import { EDRadio } from "../EDRadioButton";
@@ -10,6 +8,7 @@ import { FormControl, RadioGroup } from "@mui/material";
 import EDStack from "../EDStack";
 import EDBox from "../EDBox";
 import EDSelect from "../EDSelect";
+import EDForm from "./EDForm";
 
 const GenerateFormElements = ({
   item,
@@ -89,17 +88,6 @@ const GenerateFormElements = ({
             </EDBox>
           ))}
         </EDBox>
-      );
-    case "subForm":
-      return (
-        <FormMainComp
-          formArr={item.subFormArr}
-          className={item.className}
-          path={`${path}/${item.path}`}
-          formName={item.formName}
-          isSubForm={true}
-          {...{ handleChange, handleSubmit, resetForm }}
-        />
       );
 
     case "reset":

@@ -1,4 +1,3 @@
-// CRUDCheckbox.js
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React from "react";
 

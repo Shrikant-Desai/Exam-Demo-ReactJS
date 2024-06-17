@@ -1,4 +1,3 @@
-// CRUDButton.js
 import { LoadingButton } from "@mui/lab";
 import { Button } from "@mui/material";
 import React from "react";

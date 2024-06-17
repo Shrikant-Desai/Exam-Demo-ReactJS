@@ -16,9 +16,10 @@ export default function EDTable({
   tableHeight,
   tableWidth,
   rowsPerPageArr,
+  isEmpty,
 }) {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageArr[0]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageArr?.[0]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -73,7 +74,7 @@ export default function EDTable({
                             ))}
                           </EDStack>
                         ) : (
-                          value
+                          value.toString().slice(0, 50)
                         )}
                       </TableCell>
                     );
@@ -83,15 +84,19 @@ export default function EDTable({
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={rowsPerPageArr}
-        component="div"
-        count={rowsArr?.length || 1}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      {!isEmpty ? (
+        <TablePagination
+          rowsPerPageOptions={rowsPerPageArr}
+          component="div"
+          count={rowsArr?.length || 1}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      ) : (
+        <></>
+      )}
     </Paper>
   );
 }

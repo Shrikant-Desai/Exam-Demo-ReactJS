@@ -1,4 +1,5 @@
 import { setFormErrors } from "../redux/slices/form.slice";
+import { EXAM_FORM_ERRORS } from "./constant";
 
 const checkSingleField = (value, fieldArr) => {
   if (!value && fieldArr?.isRequired) {
@@ -138,26 +139,29 @@ const showDupPos = (arr) => {
   return values;
 };
 
-export const validateExamField = (value, arr, isFormSubmit) => {
+export const validateExamField = (value, arr, i, isFormSubmit) => {
   const isRepeat = isFormSubmit
     ? false
-    : arr?.some((item) => item.question === value);
+    : arr?.some((item, index) => item.question === value && index !== i);
 
   let errMsg;
   if (!value) {
-    errMsg = `Please Enter any value for the field`;
+    errMsg = EXAM_FORM_ERRORS.QUESTION_ERROR;
   } else if (isRepeat) {
-    errMsg = `Question already exists.`;
+    errMsg = EXAM_FORM_ERRORS.QUESTION_EXIST;
   } else {
     errMsg = "";
   }
   return errMsg;
 };
 
-export const emptyValidation = (value) => {
+export const emptyValidation = (value, name) => {
+  name = name === "subjectName" ? "Subject Name" : name;
+  name = name === "description" ? "Description" : name;
+
   let errMsg;
   if (!value) {
-    errMsg = `Please enter value.`;
+    errMsg = `${name} is Required.`;
   } else {
     errMsg = "";
   }
@@ -171,7 +175,7 @@ export const setOptionsErrors = (arr, isFormSubmit) => {
       if (dupIndexArr.includes(index)) {
         accum = {
           ...accum,
-          [`${index}Option_Error`]: "Two same options exist",
+          [`${index}Option_Error`]: EXAM_FORM_ERRORS.SAME_OPTION_ERROR,
         };
       } else {
         accum = {
@@ -182,7 +186,7 @@ export const setOptionsErrors = (arr, isFormSubmit) => {
     } else if (isFormSubmit) {
       accum = {
         ...accum,
-        [`${index}Option_Error`]: "Enter value for option",
+        [`${index}Option_Error`]: EXAM_FORM_ERRORS.OPTION_ERROR,
       };
     }
 
@@ -192,10 +196,15 @@ export const setOptionsErrors = (arr, isFormSubmit) => {
   return errObject;
 };
 
-export const validateFullQuestion = (question) => {
+export const validateFullQuestion = (question, questionsArr, i) => {
   let isCurrentQuestionValid = true;
   const errObjectForOptions = setOptionsErrors(question, true);
-  const questionError = validateExamField(question.question, [], false);
+  const questionError = validateExamField(
+    question.question,
+    questionsArr,
+    i,
+    false
+  );
 
   // Check if an answer is selected
   const answerError = question.answerIndex === "" ? "Select an answer" : "";

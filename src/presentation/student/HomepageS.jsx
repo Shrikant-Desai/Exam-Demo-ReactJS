@@ -4,10 +4,11 @@ import EDBox from "../../shared/EDBox";
 import EDTypography from "../../shared/EDTypography";
 import { Divider } from "@mui/material";
 import EDTable from "../../shared/EDTable";
-import { API_STATUS_SESSION_END } from "../../utils/constant";
 import { EDInput } from "../../shared/EDInput";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
 import homepageSContainer from "../../container/student/homepageS.container";
+import { MESSAGES } from "../../description/student/studentModule.description";
+import { DNF_TABLE_PROPS } from "../../description/forms/formsData.description";
 const HomepageS = () => {
   const {
     currentLoginUser,
@@ -38,7 +39,7 @@ const HomepageS = () => {
             <EDStack direction="column">
               <EDTypography
                 sx={{ p: 2 }}
-                value="All Exams Details"
+                value={MESSAGES.ALL_EXAM_DETAILS}
                 align="center"
                 variant="h5"
               />
@@ -48,15 +49,21 @@ const HomepageS = () => {
                 variant="standard"
                 handleChange={handleSearch}
               />
-              <EDTable
-                {...{
-                  columnsArr,
-                  rowsArr,
-                  tableHeight,
-                  tableWidth,
-                  rowsPerPageArr,
-                }}
-              />
+              {rowsArr?.length === 0 ? (
+                <>
+                  <EDTable {...DNF_TABLE_PROPS} />
+                </>
+              ) : (
+                <EDTable
+                  {...{
+                    columnsArr,
+                    rowsArr,
+                    tableHeight,
+                    tableWidth,
+                    rowsPerPageArr,
+                  }}
+                />
+              )}
             </EDStack>
           )}
         </EDStack>

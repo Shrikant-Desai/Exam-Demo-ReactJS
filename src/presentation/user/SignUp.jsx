@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import EDStack from "../../shared/EDStack";
 import signUpContainer from "../../container/user/signup.container";
 import { signUpFormArray } from "../../description/forms/formsData.description";
-import FormMainComp from "../../shared/form/FormMainComp";
+import EDForm from "../../shared/form/EDForm";
+import { FORMS } from "../../utils/constant";
 
 const SignUp = () => {
   const {
@@ -24,7 +25,7 @@ const SignUp = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        <FormMainComp
+        <EDForm
           {...{
             handleChange,
             handleSubmit,
@@ -32,7 +33,7 @@ const SignUp = () => {
             sxObject,
             isSubForm: false,
             formArr: signUpFormArray,
-            formName: "Sign Up",
+            formName: FORMS.SIGNUP_FORM,
             path,
             isAPILoading,
           }}

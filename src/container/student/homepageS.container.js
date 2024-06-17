@@ -86,7 +86,7 @@ const HomepageSContainer = () => {
     return filteredArr;
   };
 
-  const tableHeight = "100%";
+  const tableHeight = 550;
   const tableWidth = 1000;
 
   const columnsArr = EXAM_TABLE_FIELDS;

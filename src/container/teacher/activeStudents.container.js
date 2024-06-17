@@ -79,7 +79,6 @@ const ActiveStudentsContainer = () => {
   const tableWidth = 1000;
   const rowsPerPageArr = [10, 25, 50];
 
-  // const updatedRowArr = apiData?.data;
   const columnsArr = ACTIVE_STUDENT_TABLE_FIELDS;
   const rowsArr = searchValue ? filterData(data) : data;
   return {
