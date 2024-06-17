@@ -56,7 +56,7 @@ const ForgotPassword = () => {
             }}
           />
           <EDStack direction="row" justifyContent="space-between">
-            <Link className="text-link" to="/signin">
+            <Link className="text-link" to="/login">
               <KeyboardBackspace />
             </Link>
           </EDStack>

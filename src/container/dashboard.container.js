@@ -21,7 +21,7 @@ const DashboardContainer = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const isLoggedIn = !!localStorage.getItem(LOCAL_LOGIN_DETAILS);
-    isLoggedIn ? setIsLogin(true) : navigate("/signin");
+    isLoggedIn ? setIsLogin(true) : navigate("/login");
   }, []);
 
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const DashboardContainer = () => {
     localStorage.removeItem(LOCAL_AUTH_TOKEN);
     localStorage.removeItem(LOCAL_LOGIN_DETAILS);
     dispatch(clearFetchData());
-    navigate("/signin");
+    navigate("/login");
   };
   const profileMenuData = [
     { text: "Log Out", icon: <Logout />, handleChange: logoutFunction },

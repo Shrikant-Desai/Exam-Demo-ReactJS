@@ -1,4 +1,4 @@
-const TOTAL_QUESTIONS = 2;
+const TOTAL_QUESTIONS = 15;
 
 export const QUESTIONS_INIT_ARRAY = Array(TOTAL_QUESTIONS).fill({
   question: "",
@@ -9,7 +9,7 @@ export const QUESTIONS_INIT_ARRAY = Array(TOTAL_QUESTIONS).fill({
 });
 export const EXAMDETAILS_INIT_ARRAY = {
   subjectName: "",
-  description: "",
+  notes: "",
   allQuestionValidError: "",
 };
 
@@ -151,14 +151,14 @@ export const ACTION = {
   CREATE_EXAM: "createExam",
   EDIT_EXAM: "editExam",
 };
-export const DESC_FIELD_DATA = {
+export const NOTES_FIELD_DATA = {
   LABEL_PROPS: {
-    htmlFor: "description",
-    value: "Description :",
+    htmlFor: "notes",
+    value: "Notes :",
   },
   INPUT_PROPS: {
     size: "small",
-    id: "description",
+    id: "notes",
     type: "text",
     sx: {
       width: "100%",
@@ -166,7 +166,7 @@ export const DESC_FIELD_DATA = {
         WebkitTextFillColor: "#000000",
       },
     },
-    name: "description",
-    placeholder: "Enter Description",
+    name: "notes",
+    placeholder: "Enter Notes",
   },
 };

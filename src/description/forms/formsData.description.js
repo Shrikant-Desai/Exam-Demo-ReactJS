@@ -200,7 +200,7 @@ export const signUpFormArray = [
   //   rulesData: [],
   // },
 ];
-export const signInFormArray = [
+export const loginFormArray = [
   {
     type: "labeledInput",
     fieldName: "email",
@@ -292,7 +292,7 @@ export const signInFormArray = [
     },
 
     variant: "contained",
-    value: "Sign In",
+    value: "Log in",
     rulesData: [],
   },
   // {

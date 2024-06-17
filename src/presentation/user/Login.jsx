@@ -1,13 +1,13 @@
 import React from "react";
-import { signInFormArray } from "../../description/forms/formsData.description";
+import { loginFormArray } from "../../description/forms/formsData.description";
 import EDStack from "../../shared/EDStack";
 import { Link } from "react-router-dom";
 import EDGrid from "../../shared/EDGrid";
-import signInContainer from "../../container/user/signin.container";
 import EDForm from "../../shared/form/EDForm";
 import { FORMS } from "../../utils/constant";
+import loginContainer from "../../container/user/login.container";
 
-const SignIn = () => {
+const Login = () => {
   const {
     handleChange,
     handleSubmit,
@@ -15,7 +15,7 @@ const SignIn = () => {
     sxObject,
     path,
     isAPILoading,
-  } = signInContainer();
+  } = loginContainer();
   return (
     <>
       <EDStack
@@ -31,7 +31,7 @@ const SignIn = () => {
             resetForm,
             sxObject,
             isSubForm: false,
-            formArr: signInFormArray,
+            formArr: loginFormArray,
             formName: FORMS.LOGIN_FORM,
             path,
             isAPILoading,
@@ -54,4 +54,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

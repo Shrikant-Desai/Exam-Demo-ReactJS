@@ -24,7 +24,7 @@ const CreateExamContainer = () => {
       );
       response.then(() => {
         if (apiData?.data?.statusCode === API_STATUS_SUCCESS) {
-          navigate("/dashboard/teacher");
+          navigate("/dashboard");
         }
       });
 

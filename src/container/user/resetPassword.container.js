@@ -21,7 +21,7 @@ const ResetPasswordContainer = () => {
 
   useEffect(() => {
     const isLoggedIn = !!localStorage.getItem(LOCAL_LOGIN_DETAILS);
-    isLoggedIn ? setIsLogin(true) : navigate("/signin");
+    isLoggedIn ? setIsLogin(true) : navigate("/login");
   }, []);
 
   const path = USER_FORMS.RESET_PASSWORD_PATH;

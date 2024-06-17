@@ -16,6 +16,7 @@ export default function EDTable({
   tableHeight,
   tableWidth,
   rowsPerPageArr,
+  handleResult,
   isEmpty,
 }) {
   const [page, setPage] = React.useState(0);
@@ -60,19 +61,31 @@ export default function EDTable({
                         align={column.align}
                       >
                         {column.id === "action" ? (
-                          <EDStack spacing={1}>
-                            {value.map((item, index) => (
+                          row?.Result && row?.Result?.length !== 0 ? (
+                            <>
                               <EDButton
                                 size="small"
-                                key={`button-${row._id}-${item.id}-${index}`}
-                                handleChange={() =>
-                                  item.handleChange(row["_id"])
-                                }
-                                value={item.text}
-                                variant="contained"
+                                key={`button-${row._id}-${row?.Result} `}
+                                handleChange={() => handleResult(row["_id"])}
+                                value="View Result"
+                                variant="outlined"
                               />
-                            ))}
-                          </EDStack>
+                            </>
+                          ) : (
+                            <EDStack spacing={1}>
+                              {value.map((item, index) => (
+                                <EDButton
+                                  size="small"
+                                  key={`button-${row._id}-${item.id}-${index}`}
+                                  handleChange={() =>
+                                    item.handleChange(row["_id"])
+                                  }
+                                  value={item.text}
+                                  variant="contained"
+                                />
+                              ))}
+                            </EDStack>
+                          )
                         ) : (
                           value.toString().slice(0, 50)
                         )}

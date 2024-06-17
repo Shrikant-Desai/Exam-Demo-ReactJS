@@ -48,7 +48,7 @@ const NewPasswordContainer = () => {
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
           resetForm(path, dispatch);
-          navigate(`/signin`);
+          navigate(`/login`);
         }
       };
       dispatchFunc();

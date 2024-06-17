@@ -14,6 +14,8 @@ const HomepageSContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allAPIsData = useSelector((state) => state.apisData);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [resultData, setResultData] = useState({});
   const [examData, setExamData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
@@ -62,11 +64,20 @@ const HomepageSContainer = () => {
     const data = allAPIsData?.allExamsForStudent?.data?.filter(
       (data) => data?.["_id"] === id
     );
-    navigate(`/dashboard/student/give-exam/?id=${id}`, {
+    navigate(`/give-exam/?id=${id}`, {
       state: JSON.stringify(data),
     });
   };
 
+  const handleDialogClick = (id) => {
+    const data = rowsArr.find((row) => row?.["_id"] === id);
+    setResultData(data);
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
   };
@@ -103,6 +114,10 @@ const HomepageSContainer = () => {
     tableWidth,
     handleSearch,
     rowsPerPageArr,
+    isDialogOpen,
+    handleDialogClick,
+    handleDialogClose,
+    resultData,
   };
 };
 export default HomepageSContainer;

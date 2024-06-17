@@ -8,7 +8,7 @@ import examCompMainContainer from "../container/examCompMain.container";
 import EDTypography from "./EDTypography";
 import { EDErrorDiv } from "./EDErrorDiv";
 import {
-  DESC_FIELD_DATA,
+  NOTES_FIELD_DATA,
   SUBJECT_FIELD_DATA,
 } from "../description/forms/examForm.description";
 
@@ -76,16 +76,16 @@ const EDExamCompMain = ({
 
               <EDLabeledInput
                 {...{
-                  labelProps: { ...DESC_FIELD_DATA.LABEL_PROPS },
+                  labelProps: { ...NOTES_FIELD_DATA.LABEL_PROPS },
                   inputProps: {
-                    ...DESC_FIELD_DATA.INPUT_PROPS,
+                    ...NOTES_FIELD_DATA.INPUT_PROPS,
                     disabled: isGiveExam ? true : false,
                     value: examDetails?.description,
                     onChange: handleExamDetailChange,
                   },
                 }}
               />
-              <EDErrorDiv errorMsg={examDetails?.descriptionError} />
+              <EDErrorDiv errorMsg={examDetails?.notesError} />
 
               <br />
               <EDQuestionForm

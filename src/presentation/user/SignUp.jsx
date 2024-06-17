@@ -40,7 +40,7 @@ const SignUp = () => {
         />
         <EDGrid container direction="row" justifyContent="space-around">
           <EDGrid item>
-            <Link className="text-link" to="/signin">
+            <Link className="text-link" to="/login">
               Sign In
             </Link>
           </EDGrid>

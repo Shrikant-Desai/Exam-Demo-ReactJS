@@ -1,14 +1,11 @@
 import { Typography } from "@mui/material";
-import SignIn from "../presentation/user/SignIn";
 import SignUp from "../presentation/user/SignUp";
 import LoginSidebar from "../presentation/user/CommonLayout";
 import ForgotPassword from "../presentation/user/ForgotPassword";
 import Dashboard from "../presentation/pages/Dashboard";
 import HomePage from "../presentation/user/HomePage";
 import AllStudents from "../presentation/teacher/AllStudents";
-import HomePageS from "../presentation/student/HomepageS";
 import ProfileS from "../presentation/student/ProfileS";
-import HomepageT from "../presentation/teacher/HomepageT";
 import ProtectedRoleRoute from "./protectedRoleRoute";
 import SingleStudentData from "../presentation/teacher/SingleStudentData";
 import NewPassword from "../presentation/user/NewPassword";
@@ -20,38 +17,37 @@ import GiveExam from "../presentation/student/GiveExam";
 import EditProfile from "../presentation/student/EditProfile";
 import ProfileT from "../presentation/teacher/ProfileT";
 import { ROLES } from "../utils/constant";
+import Login from "../presentation/user/Login";
 
 const studentRoutes = [
   {
-    path: "/dashboard",
     element: <Dashboard />,
     children: [
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
+      },
       {
         element: <ProtectedRoleRoute accessRole={ROLES.TEACHER} />,
         children: [
           {
-            path: "teacher",
-            element: <HomepageT />,
-          },
-
-          {
-            path: "teacher/all-students",
+            path: "all-students",
             element: <AllStudents />,
           },
           {
-            path: "teacher/active-students",
+            path: "active-students",
             element: <ActiveStudents />,
           },
           {
-            path: "teacher/viewStudentDetail/*",
+            path: "viewStudentDetail/*",
             element: <SingleStudentData />,
           },
           {
-            path: "teacher/create-exam",
+            path: "create-exam",
             element: <CreateExam />,
           },
           {
-            path: "teacher/edit-exam/*",
+            path: "edit-exam/*",
             element: <EditExam />,
           },
           {
@@ -68,24 +64,24 @@ const studentRoutes = [
             element: <ProfileS />,
           },
           {
-            path: "student/edit-student",
+            path: "edit-student",
             element: <EditProfile />,
           },
 
           {
-            path: "student/give-exam/*",
+            path: "give-exam/*",
             element: <GiveExam />,
           },
         ],
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
 ];
 const userRoutes = [
-  {
-    path: "reset-password",
-    element: <ResetPassword />,
-  },
   {
     element: <ProtectedRoleRoute accessRole={ROLES.USER} />,
     children: [
@@ -98,8 +94,8 @@ const userRoutes = [
         element: <LoginSidebar />,
         children: [
           {
-            path: "signin",
-            element: <SignIn />,
+            path: "login",
+            element: <Login />,
           },
           {
             path: "signup",

@@ -21,13 +21,7 @@ const ResetPassword = () => {
 
   if (isLogin) {
     return (
-      <EDStack
-        sx={{
-          height: "100vh",
-        }}
-        justifyContent="center"
-        alignItems="center"
-      >
+      <EDStack justifyContent="center" alignItems="center">
         <EDStack
           sx={{
             boxShadow: 3,

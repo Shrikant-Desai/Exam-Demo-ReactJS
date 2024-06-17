@@ -54,7 +54,7 @@ const ProfilePageSContainer = () => {
     navigate(`/reset-password`);
   };
   const handleChangeUserName = () => {
-    navigate(`/dashboard/student/edit-student`);
+    navigate(`/edit-student`);
   };
 
   return {

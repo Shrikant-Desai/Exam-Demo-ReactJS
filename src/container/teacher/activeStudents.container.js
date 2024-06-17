@@ -62,7 +62,7 @@ const ActiveStudentsContainer = () => {
     setSearchValue(e.target.value);
   };
   const viewStudentDetails = (id) => {
-    navigate(`/dashboard/teacher/viewStudentDetail?id=${id} `);
+    navigate(`/viewStudentDetail?id=${id} `);
   };
 
   const filterData = (arr) => {

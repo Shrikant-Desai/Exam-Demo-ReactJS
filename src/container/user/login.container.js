@@ -15,7 +15,7 @@ import { formSXObject } from "../../description/forms/formsData.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
 import { trim } from "../../utils/javascript";
 
-const SignInContainer = () => {
+const LoginContainer = () => {
   const navigate = useNavigate();
   const path = USER_FORMS.LOGIN_PATH;
 
@@ -107,4 +107,4 @@ const SignInContainer = () => {
   };
 };
 
-export default SignInContainer;
+export default LoginContainer;

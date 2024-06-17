@@ -12,21 +12,21 @@ export const teacherDashboardDes = {
     {
       text: "Create Exam",
       icon: <EditNote />,
-      navigate: "teacher/create-exam",
+      navigate: "/create-exam",
     },
     {
       text: "All Students Data",
       icon: <People />,
-      navigate: "teacher/all-students",
+      navigate: "/all-students",
     },
     {
       text: "Active Students Data",
       icon: <PeopleAltOutlined />,
-      navigate: "teacher/active-students",
+      navigate: "/active-students",
     },
   ],
   afterDiv: [
-    { text: "Profile", icon: <AccountCircle />, navigate: "teacher/profile" },
+    { text: "Profile", icon: <AccountCircle />, navigate: "/teacher/profile" },
   ],
 };
 
@@ -35,6 +35,6 @@ export const studentDashboardDes = {
     { text: "Dashboard", icon: <Dashboard />, navigate: "/dashboard" },
   ],
   afterDiv: [
-    { text: "Profile", icon: <AccountCircle />, navigate: "student/profile" },
+    { text: "Profile", icon: <AccountCircle />, navigate: "/student/profile" },
   ],
 };

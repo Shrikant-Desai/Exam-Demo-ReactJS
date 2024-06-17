@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
@@ -11,7 +11,7 @@ import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_POST, API_STATUS_SUCCESS } from "../../utils/constant";
 
 const GiveExamContainer = () => {
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  // const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,13 +36,13 @@ const GiveExamContainer = () => {
     }
   }, []);
 
-  const handleDialogClick = () => {
-    setIsDialogOpen(true);
-  };
+  // const handleDialogClick = () => {
+  //   setIsDialogOpen(true);
+  // };
 
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-  };
+  // const handleDialogClose = () => {
+  //   setIsDialogOpen(false);
+  // };
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -107,9 +107,9 @@ const GiveExamContainer = () => {
     questionArr,
     apiData,
     data,
-    isDialogOpen,
-    handleDialogClose,
-    handleDialogClick,
+    // isDialogOpen,
+    // handleDialogClose,
+    // handleDialogClick,
     handleClickToPrevRoute,
   };
 };

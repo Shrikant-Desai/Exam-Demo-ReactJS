@@ -104,15 +104,12 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
       examDetails.subjectName,
       "Subject Name"
     );
-    const descriptionError = emptyValidation(
-      examDetails.description,
-      "Description"
-    );
+    const notesError = emptyValidation(examDetails.description, "Description");
 
     const isErrorInForm =
       action === ACTION.GIVE_EXAM
         ? areAllQuestionsValid
-        : !subjectNameError && !descriptionError && areAllQuestionsValid;
+        : !subjectNameError && !notesError && areAllQuestionsValid;
     console.log("isErrorInForm", isErrorInForm);
     if (isErrorInForm) {
       dispatch(
@@ -137,7 +134,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
       setExamDetails({
         ...examDetails,
         subjectNameError,
-        descriptionError,
+        notesError,
       });
 
       const updatedQuestions = questions.map((question, index) =>

@@ -1,93 +1,16 @@
 import React from "react";
 import EDExamCompMain from "../../shared/EDExamCompMain";
 import giveExamContainer from "../../container/student/giveExam.container";
-import { API_STATUS_GENERATION_FAILED, FORMS } from "../../utils/constant";
-import EDTypography from "../../shared/EDTypography";
-import EDStack from "../../shared/EDStack";
+import { FORMS } from "../../utils/constant";
 import EDGrid from "../../shared/EDGrid";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
 import { EDButton } from "../../shared/EDButton";
-import EDBox from "../../shared/EDBox";
 import { ACTION } from "../../description/forms/examForm.description";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { MESSAGES } from "../../description/student/studentModule.description";
+// import { MESSAGES } from "../../description/student/studentModule.description";
 
 const GiveExam = () => {
-  const {
-    examDetailsObject,
-    questionArr,
-    apiData,
-    data,
-    isDialogOpen,
-    handleDialogClose,
-    handleDialogClick,
-    handleClickToPrevRoute,
-  } = giveExamContainer();
-  const dialogVar = (
-    <Dialog
-      open={isDialogOpen}
-      keepMounted
-      onClose={handleDialogClose}
-      aria-describedby="alert-dialog-slide-description"
-    >
-      <DialogTitle color={"#1976d2"} align="center">
-        {"Result"}
-      </DialogTitle>
-      <DialogContent>
-        <EDGrid container direction="column" spacing={2}>
-          <EDGrid item>
-            <EDStack direction="row" spacing={1}>
-              <EDTypography value="Result Status : " variant={"h6"} />
-              <EDTypography
-                value={data?.[0]?.Result?.[0]?.resultStatus}
-                variant={"h6"}
-              />
-            </EDStack>
-          </EDGrid>
-          <EDGrid item>
-            <EDStack direction="row" spacing={1}>
-              <EDTypography value="Email : " variant={"h6"} />
-              <EDTypography value={data?.[0]?.email} variant={"h6"} />
-            </EDStack>
-          </EDGrid>
-          <EDGrid item>
-            <EDStack direction="row" spacing={1}>
-              <EDTypography value="Subject : " variant={"h6"} />
-              <EDTypography value={data?.[0]?.subjectName} variant={"h6"} />
-            </EDStack>
-          </EDGrid>
-          <EDGrid item>
-            <EDStack direction="row" spacing={1}>
-              <EDTypography value="Rank : " variant={"h6"} />
-              <EDTypography
-                value={data?.[0]?.Result?.[0]?.rank}
-                variant={"h6"}
-              />
-            </EDStack>
-          </EDGrid>
-          <EDGrid item>
-            <EDStack direction="row" spacing={1}>
-              <EDTypography value="Score : " variant={"h6"} />
-              <EDTypography
-                value={data?.[0]?.Result?.[0]?.score}
-                variant={"h6"}
-              />
-            </EDStack>
-          </EDGrid>
-        </EDGrid>
-      </DialogContent>
-      <DialogActions>
-        <EDBox sx={{ maxWidth: 200 }}>
-          <EDButton value="Close" handleChange={handleDialogClose} />
-        </EDBox>
-      </DialogActions>
-    </Dialog>
-  );
+  const { examDetailsObject, questionArr, apiData, handleClickToPrevRoute } =
+    giveExamContainer();
 
   return !apiData?.loading ? (
     <EDGrid container direction="row" spacing={2}>
@@ -100,30 +23,16 @@ const GiveExam = () => {
         />
       </EDGrid>
       <EDGrid item xs={12}>
-        {apiData?.data?.statusCode !== API_STATUS_GENERATION_FAILED ? (
-          <>
-            <EDExamCompMain
-              examDetailsArr={examDetailsObject}
-              questionsArr={questionArr}
-              action={ACTION.GIVE_EXAM}
-              formName={FORMS.GIVE_EXAM}
-              isGiveExam={true}
-            />
-          </>
-        ) : (
-          <EDStack alignItems="center">
-            <EDTypography value={MESSAGES.EXAM_ATTEMPTED} variant={"h5"} />
-            <EDBox>
-              <EDButton
-                variant="outlined"
-                value={MESSAGES.RESULT_DIALOG_BUTTON}
-                handleChange={handleDialogClick}
-              />
-            </EDBox>
-          </EDStack>
-        )}
+        <>
+          <EDExamCompMain
+            examDetailsArr={examDetailsObject}
+            questionsArr={questionArr}
+            action={ACTION.GIVE_EXAM}
+            formName={FORMS.GIVE_EXAM}
+            isGiveExam={true}
+          />
+        </>
       </EDGrid>
-      {dialogVar}
     </EDGrid>
   ) : (
     <></>
@@ -131,3 +40,60 @@ const GiveExam = () => {
 };
 
 export default GiveExam;
+// return !apiData?.loading ? (
+//   <EDGrid container direction="row" spacing={2}>
+//     <EDGrid item sx={{ ml: 3 }}>
+//       <EDButton
+//         size="medium"
+//         handleChange={handleClickToPrevRoute}
+//         value={<KeyboardBackspace />}
+//         variant="contained"
+//       />
+//     </EDGrid>
+//     <EDGrid item xs={12}>
+//       {apiData?.data?.statusCode !== API_STATUS_GENERATION_FAILED ? (
+//         <>
+//           <EDExamCompMain
+//             examDetailsArr={examDetailsObject}
+//             questionsArr={questionArr}
+//             action={ACTION.GIVE_EXAM}
+//             formName={FORMS.GIVE_EXAM}
+//             isGiveExam={true}
+//           />
+//         </>
+//       ) : (
+//         <EDStack alignItems="center">
+//           <EDTypography value={MESSAGES.EXAM_ATTEMPTED} variant={"h5"} />
+//           <EDBox>
+//             <EDButton
+//               variant="outlined"
+//               value={MESSAGES.RESULT_DIALOG_BUTTON}
+//               handleChange={handleDialogClick}
+//             />
+//           </EDBox>
+//         </EDStack>
+//       )}
+//     </EDGrid>
+//     {dialogVar}
+//   </EDGrid>
+// ) : (
+//   <></>
+// );
+/* 
+
+- Delay the navigation from login page to check behaviour of button and form [not urgent].✅
+- Same options Error message. ✅
+- See Result. [dialog box] ✅
+- Direct usage of numbers ✅
+- Alert when leaving the page✅
+- Loader in delete exam ✅
+- Dashboard Route ✅
+- Show dashboard and reset password together.✅
+- Change description to notes  
+Bugs: 
+- Submitted even if errors Are there. ✅
+- Search data are not showed properly ✅
+- Trim the data before api request ✅
+make schedule of 3 to 4 lines from above points that i have done today
+
+*/

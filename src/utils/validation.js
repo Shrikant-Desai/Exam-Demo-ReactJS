@@ -157,7 +157,7 @@ export const validateExamField = (value, arr, i, isFormSubmit) => {
 
 export const emptyValidation = (value, name) => {
   name = name === "subjectName" ? "Subject Name" : name;
-  name = name === "description" ? "Description" : name;
+  name = name === "notes" ? "Notes" : name;
 
   let errMsg;
   if (!value) {
@@ -170,12 +170,19 @@ export const emptyValidation = (value, name) => {
 
 export const setOptionsErrors = (arr, isFormSubmit) => {
   const dupIndexArr = showDupPos(arr?.options);
+  const indexToLetter = ["A", "B", "C", "D"];
   let errObject = arr.options.reduce((accum, item, index) => {
     if (item) {
       if (dupIndexArr.includes(index)) {
+        const duplicateIndices = dupIndexArr.filter(
+          (i) => arr.options[i] === item
+        );
+        const duplicateLetters = duplicateIndices
+          .map((i) => indexToLetter[i])
+          .join(", ");
         accum = {
           ...accum,
-          [`${index}Option_Error`]: EXAM_FORM_ERRORS.SAME_OPTION_ERROR,
+          [`${index}Option_Error`]: `${EXAM_FORM_ERRORS.SAME_OPTION_ERROR} ${duplicateLetters}`,
         };
       } else {
         accum = {
@@ -192,7 +199,6 @@ export const setOptionsErrors = (arr, isFormSubmit) => {
 
     return accum;
   }, {});
-  // console.log("in setoption", errObject);
   return errObject;
 };
 

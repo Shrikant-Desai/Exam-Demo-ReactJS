@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const HomePageContainer = () => {
   const navigate = useNavigate();
   const startFunction = () => {
-    navigate("/signin");
+    navigate("/login");
   };
 
   const btnProps = {

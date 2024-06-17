@@ -69,7 +69,7 @@ const HomepageTContainer = () => {
       (data) => data?.["_id"] === id
     );
 
-    navigate(`/dashboard/teacher/edit-exam/?id=${id}`, {
+    navigate(`/edit-exam/?id=${id}`, {
       state: JSON.stringify(editExamData),
     });
   };

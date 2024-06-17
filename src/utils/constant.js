@@ -19,7 +19,7 @@ export const USER_FORMS = {
   FORGOT_PASSWORD_PATH: "ForgotPassword",
   RESET_PASSWORD_PATH: "ResetPassword",
   NEW_PASSWORD_PATH: "NewPassword",
-  LOGIN_PATH: "SignInForm",
+  LOGIN_PATH: "Login",
   SIGNUP_PATH: "Signup",
   EDIT_PROFILE_PATH: "EditProfile",
 };
@@ -32,13 +32,13 @@ export const ROLES = {
 
 export const EXAM_FORM_ERRORS = {
   ANSWER_ERROR: "Please enter answer",
-  OPTION_ERROR: "Please enter option",
   QUESTION_ERROR: "Please enter question",
   SUBJECT_NAME_ERROR: "Please enter subject name",
   DESCRIPTION_ERROR: "Please enter description",
   ALL_QUESTIONS_ERROR: "Please enter details for all questions",
-  SAME_OPTION_ERROR: "Two same options exist",
   QUESTION_EXIST: "Question already exists.",
+  SAME_OPTION_ERROR: "These options have the same value: ",
+  OPTION_ERROR: "Option cannot be empty.",
 };
 
 export const API_ERRORS = {

@@ -11,7 +11,7 @@ const ProtectedRoleRoute = ({ accessRole }) => {
     return <>{currentRole ? <Navigate to="/dashboard" /> : <Outlet />}</>;
   } else {
     return (
-      <>{currentRole === accessRole ? <Outlet /> : <Navigate to="/signin" />}</>
+      <>{currentRole === accessRole ? <Outlet /> : <Navigate to="/login" />}</>
     );
   }
 };
