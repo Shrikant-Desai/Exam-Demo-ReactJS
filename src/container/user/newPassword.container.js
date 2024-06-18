@@ -7,6 +7,7 @@ import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { trim } from "../../utils/javascript";
+import useAbortController from "../../hooks/useAbortController";
 
 const NewPasswordContainer = () => {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,7 @@ const NewPasswordContainer = () => {
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
-
+  const abortController = useAbortController();
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
 
@@ -30,8 +31,6 @@ const NewPasswordContainer = () => {
         accum = item;
         return accum;
       }, {});
-      const controller = new AbortController();
-      const signal = controller.signal;
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -43,7 +42,7 @@ const NewPasswordContainer = () => {
             },
             isToastMessage: true,
             navigate,
-            signal,
+            signal: abortController.signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -52,9 +51,6 @@ const NewPasswordContainer = () => {
         }
       };
       dispatchFunc();
-      return () => {
-        controller.abort();
-      };
     }
   }, [formData]);
 

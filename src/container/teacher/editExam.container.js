@@ -6,6 +6,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { QUESTIONS_INIT_ARRAY } from "../../description/forms/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_PUT, API_STATUS_SUCCESS } from "../../utils/constant";
+import useAbortController from "../../hooks/useAbortController";
 
 const EditExamContainer = () => {
   const [searchParams] = useSearchParams();
@@ -17,7 +18,7 @@ const EditExamContainer = () => {
   const examFormData = useSelector((state) => state.examFormData);
   const [questionArr, setQuestionArr] = React.useState(QUESTIONS_INIT_ARRAY);
   const apiData = useSelector((state) => state.fetchData);
-
+  const abortController = useAbortController();
   useEffect(() => {
     if (apiData.data?.data?.questions) {
       const updatedData = apiData.data?.data?.questions.map((item) => {
@@ -33,20 +34,15 @@ const EditExamContainer = () => {
   }, [apiData]);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.VIEW_SINGLE_EXAM}${id}`,
         method: API_GET,
         isToastMessage: false,
         navigate,
-        signal,
+        signal: abortController.signal,
       })
     );
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { API_DELETE, API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 import { EXAM_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import useAbortController from "../../hooks/useAbortController";
 
 const HomepageTContainer = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -17,6 +18,7 @@ const HomepageTContainer = () => {
 
   const allAPIsData = useSelector((state) => state.apisData);
   const navigate = useNavigate();
+  const abortController = useAbortController();
 
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
@@ -40,12 +42,7 @@ const HomepageTContainer = () => {
     );
   };
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    dispatchFunc(signal);
-    return () => {
-      controller.abort();
-    };
+    dispatchFunc(abortController.signal);
   }, []);
 
   useEffect(() => {

@@ -7,6 +7,7 @@ import { API_POST, API_STATUS_SUCCESS, USER_FORMS } from "../../utils/constant";
 import { useNavigate } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { trim } from "../../utils/javascript";
+import useAbortController from "../../hooks/useAbortController";
 
 const SignUpContainer = () => {
   const path = USER_FORMS.SIGNUP_PATH;
@@ -18,6 +19,7 @@ const SignUpContainer = () => {
   const dispatch = useDispatch();
   const apiData = useSelector((state) => state.fetchData);
   const navigate = useNavigate();
+  const abortController = useAbortController();
   const isAPILoading = apiData?.loading;
 
   useEffect(() => {
@@ -26,8 +28,7 @@ const SignUpContainer = () => {
         accum = item;
         return accum;
       }, {});
-      const controller = new AbortController();
-      const signal = controller.signal;
+
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -41,7 +42,7 @@ const SignUpContainer = () => {
             },
             isToastMessage: true,
             navigate,
-            signal,
+            signal: abortController.signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -51,7 +52,6 @@ const SignUpContainer = () => {
       dispatchFunc();
       return () => {
         resetForm(path, dispatch);
-        controller.abort();
       };
     }
   }, [formData]);

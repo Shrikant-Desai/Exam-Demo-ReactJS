@@ -9,6 +9,7 @@ import {
 } from "../../description/forms/examForm.description";
 import { deleteExamFormData } from "../../redux/slices/examForm.slice";
 import { API_GET, API_POST, API_STATUS_SUCCESS } from "../../utils/constant";
+import useAbortController from "../../hooks/useAbortController";
 
 const GiveExamContainer = () => {
   // const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -25,6 +26,7 @@ const GiveExamContainer = () => {
   );
   const [questionArr, setQuestionArr] = useState(QUESTIONS_INIT_ARRAY);
   const apiData = useSelector((state) => state.fetchData);
+  const abortController = useAbortController();
 
   useEffect(() => {
     if (data) {
@@ -44,8 +46,6 @@ const GiveExamContainer = () => {
   //   setIsDialogOpen(false);
   // };
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -53,7 +53,7 @@ const GiveExamContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
-          signal,
+          signal: abortController.signal,
         })
       );
       const updatedData = response?.payload?.data?.data?.map((item) => {
@@ -67,9 +67,6 @@ const GiveExamContainer = () => {
       setQuestionArr(updatedData);
     };
     dispatchFunc();
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   useEffect(() => {

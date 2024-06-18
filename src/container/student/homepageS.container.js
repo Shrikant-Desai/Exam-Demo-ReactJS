@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 import { EXAM_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import useAbortController from "../../hooks/useAbortController";
 
 const HomepageSContainer = () => {
   const currentLoginUser = JSON.parse(
@@ -19,9 +20,9 @@ const HomepageSContainer = () => {
   const [examData, setExamData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const apiData = useSelector((state) => state?.fetchData);
+  const abortController = useAbortController();
+
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -29,7 +30,7 @@ const HomepageSContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
-          signal,
+          signal: abortController.signal,
         })
       );
       dispatch(
@@ -40,9 +41,6 @@ const HomepageSContainer = () => {
       );
     };
     dispatchFunc();
-    return () => {
-      controller.abort();
-    };
   }, []);
   useEffect(() => {
     if (allAPIsData?.allExamsForStudent) {

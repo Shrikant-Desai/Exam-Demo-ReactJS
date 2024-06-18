@@ -5,6 +5,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { API_GET } from "../../utils/constant";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import useAbortController from "../../hooks/useAbortController";
 
 const ProfilePageSContainer = () => {
   const [profileData, setProfileData] = useState([]);
@@ -13,10 +14,9 @@ const ProfilePageSContainer = () => {
   const navigate = useNavigate();
   const allAPIsData = useSelector((state) => state.apisData);
   const apiData = useSelector((state) => state?.fetchData);
+  const abortController = useAbortController();
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -24,7 +24,7 @@ const ProfilePageSContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
-          signal,
+          signal: abortController.signal,
         })
       );
 
@@ -36,9 +36,6 @@ const ProfilePageSContainer = () => {
       );
     };
     dispatchFunc();
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   useEffect(() => {

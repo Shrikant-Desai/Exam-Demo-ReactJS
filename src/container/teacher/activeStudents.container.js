@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { API_GET, LOCAL_LOGIN_DETAILS } from "../../utils/constant";
 import { ACTIVE_STUDENT_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import useAbortController from "../../hooks/useAbortController";
 
 const ActiveStudentsContainer = () => {
   const currentLoginUser = JSON.parse(
@@ -16,12 +17,10 @@ const ActiveStudentsContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allAPIsData = useSelector((state) => state.apisData);
+  const abortController = useAbortController();
 
   const apiData = useSelector((state) => state?.fetchData);
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     const dispatchFunc = async () => {
       const response = await dispatch(
         fetchDataThunkFunc({
@@ -29,7 +28,7 @@ const ActiveStudentsContainer = () => {
           method: API_GET,
           isToastMessage: false,
           navigate,
-          signal,
+          signal: abortController.signal,
         })
       );
       dispatch(
@@ -40,9 +39,6 @@ const ActiveStudentsContainer = () => {
       );
     };
     dispatchFunc();
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   useEffect(() => {

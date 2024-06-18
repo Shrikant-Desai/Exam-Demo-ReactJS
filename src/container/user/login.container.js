@@ -14,6 +14,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
 import { trim } from "../../utils/javascript";
+import useAbortController from "../../hooks/useAbortController";
 
 const LoginContainer = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const LoginContainer = () => {
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
-
+  const abortController = useAbortController();
   const apiData = useSelector((state) => state.fetchData);
 
   useEffect(() => {
@@ -33,9 +34,6 @@ const LoginContainer = () => {
         accum = item;
         return accum;
       }, {});
-
-      const controller = new AbortController();
-      const signal = controller.signal;
 
       const dispatchFunc = async () => {
         const response = await dispatch(
@@ -48,7 +46,7 @@ const LoginContainer = () => {
             },
             isToastMessage: true,
             navigate,
-            signal,
+            signal: abortController.signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -57,10 +55,6 @@ const LoginContainer = () => {
       };
 
       dispatchFunc();
-
-      return () => {
-        controller.abort();
-      };
     }
   }, [formData]);
 

@@ -12,6 +12,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { addAPIData } from "../../redux/slices/apisData.slice";
+import useAbortController from "../../hooks/useAbortController";
 
 const EditProfileContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
@@ -20,12 +21,11 @@ const EditProfileContainer = () => {
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const abortController = useAbortController();
 
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {
         accum = item;
@@ -41,7 +41,7 @@ const EditProfileContainer = () => {
           },
           isToastMessage: true,
           navigate,
-          signal,
+          signal: abortController.signal,
         })
       );
       response.then(() => {
@@ -58,9 +58,6 @@ const EditProfileContainer = () => {
           navigate(-1);
         }
       });
-      return () => {
-        controller.abort();
-      };
     }
   }, [formData]);
 

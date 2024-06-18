@@ -7,6 +7,7 @@ import { END_POINTS } from "../../utils/api/baseURLs";
 import { useNavigate } from "react-router-dom";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { trim } from "../../utils/javascript";
+import useAbortController from "../../hooks/useAbortController";
 
 const ForgotPasswordContainer = () => {
   const path = USER_FORMS.EDIT_PROFILE_PATH;
@@ -17,14 +18,15 @@ const ForgotPasswordContainer = () => {
   const navigate = useNavigate();
   const apiData = useSelector((state) => state.fetchData);
   const isAPILoading = apiData?.loading;
+  const abortController = useAbortController();
+
   useEffect(() => {
     if (form?.isFormValid) {
       let data = formData.reduce((accum, item) => {
         accum = item;
         return accum;
       }, {});
-      const controller = new AbortController();
-      const signal = controller.signal;
+
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -35,7 +37,7 @@ const ForgotPasswordContainer = () => {
             },
             isToastMessage: true,
             navigate,
-            signal,
+            signal: abortController.signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -43,9 +45,6 @@ const ForgotPasswordContainer = () => {
         }
       };
       dispatchFunc();
-      return () => {
-        controller.abort();
-      };
     }
   }, [formData]);
   useEffect(() => {

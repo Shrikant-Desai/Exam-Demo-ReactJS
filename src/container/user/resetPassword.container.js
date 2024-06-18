@@ -14,6 +14,7 @@ import {
 } from "../../utils/constant";
 import { formSXObject } from "../../description/forms/formsData.description";
 import { trim } from "../../utils/javascript";
+import useAbortController from "../../hooks/useAbortController";
 
 const ResetPasswordContainer = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,6 +34,7 @@ const ResetPasswordContainer = () => {
   const form = useSelector((state) => state.dynamicForm?.[path]);
   const formData = useSelector((state) => state.dynamicFormData?.[path]);
   const dispatch = useDispatch();
+  const abortController = useAbortController();
 
   useEffect(() => {
     if (form?.isFormValid) {
@@ -40,8 +42,6 @@ const ResetPasswordContainer = () => {
         accum = item;
         return accum;
       }, {});
-      const controller = new AbortController();
-      const signal = controller.signal;
       const dispatchFunc = async () => {
         const response = await dispatch(
           fetchDataThunkFunc({
@@ -54,7 +54,7 @@ const ResetPasswordContainer = () => {
             },
             isToastMessage: true,
             navigate,
-            signal,
+            signal: abortController.signal,
           })
         );
         if (response?.payload?.data?.statusCode === API_STATUS_SUCCESS) {
@@ -64,9 +64,6 @@ const ResetPasswordContainer = () => {
         }
       };
       dispatchFunc();
-      return () => {
-        controller.abort();
-      };
     }
   }, [formData]);
 

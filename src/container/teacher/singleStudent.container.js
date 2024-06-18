@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "../../utils/api/baseURLs";
 import { API_GET } from "../../utils/constant";
 import { SINGLE_STUDENT_TABLE_FIELDS } from "../../description/teacher/teacherModule.description";
+import useAbortController from "../../hooks/useAbortController";
 
 const SingleStudentContainer = () => {
   const dispatch = useDispatch();
@@ -13,23 +14,18 @@ const SingleStudentContainer = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const studentID = searchParams.get("id");
+  const abortController = useAbortController();
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     dispatch(
       fetchDataThunkFunc({
         url: `${END_POINTS.GET_SINGLE_STUDENTS}${studentID}`,
         method: API_GET,
         isToastMessage: false,
         navigate,
-        signal,
+        signal: abortController.signal,
       })
     );
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   const handleSearch = (e) => {
