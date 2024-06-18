@@ -80,7 +80,7 @@ const EDExamCompMain = ({
                   inputProps: {
                     ...NOTES_FIELD_DATA.INPUT_PROPS,
                     disabled: isGiveExam ? true : false,
-                    value: examDetails?.description,
+                    value: examDetails?.notes,
                     onChange: handleExamDetailChange,
                   },
                 }}

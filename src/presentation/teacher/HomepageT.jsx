@@ -2,13 +2,7 @@ import React from "react";
 import EDStack from "../../shared/EDStack";
 import EDBox from "../../shared/EDBox";
 import EDTypography from "../../shared/EDTypography";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  Divider,
-} from "@mui/material";
+import { Dialog, DialogActions, DialogTitle, Divider } from "@mui/material";
 import homepageTContainer from "../../container/teacher/homepageT.container";
 import EDTable from "../../shared/EDTable";
 import { EDInput } from "../../shared/EDInput";
@@ -34,7 +28,6 @@ const HomepageT = () => {
     isDialogOpen,
     handleDialogClose,
     handleDelete,
-    searchValue,
   } = homepageTContainer();
 
   return (
@@ -50,7 +43,7 @@ const HomepageT = () => {
         <EDStack direction="column" alignItems="center" justifyContent="center">
           {!allAPIsData.examsCreated || !rowsArr ? (
             <EDTableSkeleton width={800} />
-          ) : !searchValue && rowsArr?.length === 0 ? (
+          ) : apiData?.data?.data?.length === 0 && rowsArr?.length === 0 ? (
             <EDTypography
               sx={{ color: "red", p: 4 }}
               value={MESSAGES.EXAM_NOT_CREATED}

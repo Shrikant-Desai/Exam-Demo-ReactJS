@@ -6,6 +6,7 @@ import EDGrid from "../../shared/EDGrid";
 import { EDButton } from "../../shared/EDButton";
 import { ACTION } from "../../description/forms/examForm.description";
 import { KeyboardBackspace } from "@mui/icons-material";
+import Glimmer from "../../shared/loader/Glimmer";
 // import { MESSAGES } from "../../description/student/studentModule.description";
 
 const GiveExam = () => {
@@ -35,7 +36,7 @@ const GiveExam = () => {
       </EDGrid>
     </EDGrid>
   ) : (
-    <></>
+    <Glimmer />
   );
 };
 
@@ -80,20 +81,5 @@ export default GiveExam;
 //   <></>
 // );
 /* 
-
-- Delay the navigation from login page to check behaviour of button and form [not urgent].✅
-- Same options Error message. ✅
-- See Result. [dialog box] ✅
-- Direct usage of numbers ✅
-- Alert when leaving the page✅
-- Loader in delete exam ✅
-- Dashboard Route ✅
-- Show dashboard and reset password together.✅
-- Change description to notes  
-Bugs: 
-- Submitted even if errors Are there. ✅
-- Search data are not showed properly ✅
-- Trim the data before api request ✅
-make schedule of 3 to 4 lines from above points that i have done today
 
 */

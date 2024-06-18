@@ -71,7 +71,7 @@ const EditExamContainer = () => {
 
   const examDetailsObject = {
     subjectName: data?.subjectName,
-    description: data?.notes?.[0],
+    notes: data?.notes?.[0],
     allQuestionValidError: "",
   };
 

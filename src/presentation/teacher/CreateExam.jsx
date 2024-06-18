@@ -10,10 +10,13 @@ import { EDButton } from "../../shared/EDButton";
 import EDGrid from "../../shared/EDGrid";
 import { KeyboardBackspace } from "@mui/icons-material";
 import { FORMS } from "../../utils/constant";
+import Glimmer from "../../shared/loader/Glimmer";
 
 const CreateExam = () => {
-  const { handleClickToPrevRoute } = createExamContainer();
-  return (
+  const { handleClickToPrevRoute, apiData } = createExamContainer();
+  return apiData?.loading ? (
+    <Glimmer />
+  ) : (
     <EDGrid container direction="row">
       <EDGrid item sx={{ ml: 3 }}>
         <EDButton

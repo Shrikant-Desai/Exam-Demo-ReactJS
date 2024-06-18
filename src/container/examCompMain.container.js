@@ -67,7 +67,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
       errObjectForOptions,
       questionError,
       answerError,
-    } = validateFullQuestion(currentQuestion);
+    } = validateFullQuestion(currentQuestion, questions, currentQuestionIndex);
 
     if (isCurrentQuestionValid) {
       if (currentQuestionIndex < questions?.length - 1) {
@@ -104,7 +104,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
       examDetails.subjectName,
       "Subject Name"
     );
-    const notesError = emptyValidation(examDetails.description, "Description");
+    const notesError = emptyValidation(examDetails.notes, "Notes");
 
     const isErrorInForm =
       action === ACTION.GIVE_EXAM
@@ -124,7 +124,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
                 options: item.options,
               };
             }),
-            notes: [examDetails?.description?.trim()],
+            notes: [examDetails?.notes?.trim()],
           },
         })
       );

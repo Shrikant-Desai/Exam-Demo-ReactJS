@@ -46,7 +46,7 @@ const CreateExamContainer = () => {
   const handleClickToPrevRoute = () => {
     navigate(-1);
   };
-  return { handleClickToPrevRoute };
+  return { handleClickToPrevRoute, apiData };
 };
 
 export default CreateExamContainer;

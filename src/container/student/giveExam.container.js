@@ -30,7 +30,7 @@ const GiveExamContainer = () => {
     if (data) {
       setExamDetailsObject({
         subjectName: data?.[0]?.subjectName,
-        description: data?.[0]?.notes?.[0],
+        notes: data?.[0]?.notes?.[0],
         allQuestionValidError: "",
       });
     }
