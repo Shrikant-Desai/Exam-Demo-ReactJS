@@ -4,4 +4,5 @@ export const MESSAGES = {
   ALL_EXAM_DETAILS: "All Exams Details",
   RESET_PASSWORD: "Reset Password",
   CHANGE_NAME: "Change Name",
+  DATA_NOT_FOUND: "There was an issue.",
 };

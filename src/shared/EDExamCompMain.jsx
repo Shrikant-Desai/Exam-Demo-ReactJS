@@ -89,7 +89,7 @@ const EDExamCompMain = ({
 
               <br />
               <EDQuestionForm
-                questionObj={questions[currentQuestionIndex]}
+                questionObj={questions?.[currentQuestionIndex]}
                 index={currentQuestionIndex}
                 questionsArr={questions}
                 onChange={handleQuestionChange}
@@ -108,7 +108,7 @@ const EDExamCompMain = ({
                 <EDButton
                   type="button"
                   handleChange={handleNext}
-                  disabled={currentQuestionIndex === questions.length - 1}
+                  disabled={currentQuestionIndex === questions?.length - 1}
                   value="Next"
                 />
               </EDBox>

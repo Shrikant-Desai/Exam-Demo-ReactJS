@@ -5,11 +5,12 @@ import { EDInput } from "../../shared/EDInput";
 import EDTable from "../../shared/EDTable";
 import EDTypography from "../../shared/EDTypography";
 import EDBox from "../../shared/EDBox";
-import { API_STATUS_SUCCESS } from "../../utils/constant";
+import { API_STATUS_GENERATION_FAILED } from "../../utils/constant";
 import { EDButton } from "../../shared/EDButton";
 import EDTableSkeleton from "../../shared/EDTableSkeleton";
 import { KeyboardBackspace } from "@mui/icons-material";
 import { MESSAGES } from "../../description/teacher/teacherModule.description";
+import { MESSAGES as STUD_MESSAGES } from "../../description/student/studentModule.description";
 import { DNF_TABLE_PROPS } from "../../description/forms/formsData.description";
 
 const SingleStudentData = () => {
@@ -35,8 +36,12 @@ const SingleStudentData = () => {
           {apiData?.loading ? (
             <EDTableSkeleton width={800} />
           ) : apiData?.data &&
-            apiData?.data?.statusCode !== API_STATUS_SUCCESS ? (
-            <EDTypography value="Session expired please login." variant="h5" />
+            apiData?.data?.statusCode === API_STATUS_GENERATION_FAILED ? (
+            <EDTypography
+              sx={{ color: "red", pl: 5 }}
+              variant="h4"
+              value={STUD_MESSAGES.DATA_NOT_FOUND}
+            />
           ) : (
             <>
               <EDBox sx={{ maxWidth: 200, p: 4 }}>

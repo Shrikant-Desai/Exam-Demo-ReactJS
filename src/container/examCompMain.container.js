@@ -18,7 +18,7 @@ const ExamCompMainContainer = ({ examDetailsArr, questionsArr, action }) => {
 
   useEffect(() => {
     let allQuestionsAreValid = true;
-    const validationData = questions.map((question, index) => {
+    const validationData = questions?.map((question, index) => {
       const {
         isCurrentQuestionValid,
         errObjectForOptions,

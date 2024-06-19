@@ -42,6 +42,11 @@ const ForgotPassword = () => {
           alignItems="flex-start"
           sx={{ p: 4 }}
         >
+          <EDStack direction="row" justifyContent="space-between">
+            <Link className="text-link" to="/login">
+              <KeyboardBackspace />
+            </Link>
+          </EDStack>
           <EDForm
             {...{
               handleChange,
@@ -55,11 +60,6 @@ const ForgotPassword = () => {
               isAPILoading,
             }}
           />
-          <EDStack direction="row" justifyContent="space-between">
-            <Link className="text-link" to="/login">
-              <KeyboardBackspace />
-            </Link>
-          </EDStack>
         </EDStack>
       </EDStack>
     </EDStack>
