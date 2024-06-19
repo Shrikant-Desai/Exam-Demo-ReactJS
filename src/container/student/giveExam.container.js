@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchDataThunkFunc } from "../../utils/api/fetchData";
@@ -28,7 +28,7 @@ const GiveExamContainer = () => {
   const apiData = useSelector((state) => state.fetchData);
   const abortController = useAbortController();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (data) {
       setExamDetailsObject({
         subjectName: data?.[0]?.subjectName,
@@ -38,13 +38,6 @@ const GiveExamContainer = () => {
     }
   }, []);
 
-  // const handleDialogClick = () => {
-  //   setIsDialogOpen(true);
-  // };
-
-  // const handleDialogClose = () => {
-  //   setIsDialogOpen(false);
-  // };
   useEffect(() => {
     const dispatchFunc = async () => {
       const response = await dispatch(
@@ -104,9 +97,6 @@ const GiveExamContainer = () => {
     questionArr,
     apiData,
     data,
-    // isDialogOpen,
-    // handleDialogClose,
-    // handleDialogClick,
     handleClickToPrevRoute,
   };
 };

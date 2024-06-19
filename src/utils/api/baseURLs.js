@@ -1,4 +1,4 @@
-export const EXAM_DEMO_BASE_ENDPOINT = "https://examination.onrender.com";
+export const EXAM_DEMO_BASE_ENDPOINT = process.env.REACT_APP_EXAM_DEMO_URL;
 export const END_POINTS = {
   GET_ALL_STUDENTS: "dashboard/Teachers",
   GET_ACTIVE_STUDENTS: "dashboard/Teachers/StudentForExam",
